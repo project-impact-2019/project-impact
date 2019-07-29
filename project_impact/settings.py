@@ -31,17 +31,29 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Third-party apps
+    'registration',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # personal apps 
+    # Personal apps 
     'core', 
+
+    # Third-party apps
+    'debug_toolbar',
 ]
 
+# Custom User Authentication
+AUTH_USER_MODEL = 'core.User'
+
 MIDDLEWARE = [
+    # Third-party apps
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -101,6 +113,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Django-debug-toolbar settings
+
+INTERNAL_IPS = ['127.0.0.1']
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -120,3 +135,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Registration
+
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = False
+LOGIN_REDIRECT_URL = '/'
+

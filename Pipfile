@@ -10,6 +10,7 @@ django = "*"
 django-registration-redux = "*"
 django-debug-toolbar = "*"
 django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.7"

@@ -61,7 +61,7 @@ class Resource(models.Model):
     """ Model Representing a resource. """
 
     title = models.CharField(max_length=120)
-    description = models.TextField(max_length=500)
+    description = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     url_address = models.URLField(max_length=200, unique=True, help_text='Enter the url for this resource')
     category = models.ManyToManyField(Category, help_text='Select a category for this resource')

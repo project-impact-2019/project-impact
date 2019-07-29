@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "dependencies": {
+    "browserify": "^16.3.0",
+    "watchify": "^3.11.1"
+  }
+}

@@ -21,6 +21,10 @@ from django.views.generic import RedirectView
 from core import views as core_views
 
 urlpatterns = [
+    # Index
+    path('', core_views.index, name='index'), 
+    path('', RedirectView.as_view(url='/index/', permanent=True)),
+    
     # How to Give Back to Foster Community
     path('give_back/', core_views.give_back, name='give_back'),
     

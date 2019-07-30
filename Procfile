@@ -1,1 +1,1 @@
-web: gunicorn <project_dir>.wsgi
+web: gunicorn project_impact.wsgi

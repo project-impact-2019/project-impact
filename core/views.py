@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, get_object_or_404
 from .models import ResourcePost
 from .forms import ResourcesPostModelForm
@@ -40,3 +41,29 @@ def resources_post_detail_view(request, slug):
     context = {'object': obj}
 
     return render(request, 'core/resources_post_detail.html', context)
+=======
+from django.shortcuts import render
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, ProgressTracker, VisionBoard
+import json
+from django.views import generic
+
+# Views Created Here
+
+
+def give_back(request):
+    """View for How to Give Back to Foster Children Aging Out of System"""
+    view = 'give_back'
+    return render(request, 'give_back.html')
+
+class BlogPostListView(generic.ListView):
+    """View for Blog Post List"""
+    model = BlogPost
+    paginate_by = 5
+
+class BlogPostDetailView(generic.DetailView):
+    """View for Blog Post Details"""
+    model = BlogPost
+
+
+
+>>>>>>> f6522029524e2ee73da9017a0895f4bbd42e7f71

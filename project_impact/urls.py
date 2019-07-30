@@ -43,6 +43,10 @@ urlpatterns = [
 
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
+
+    # New Account Sign Up
+    path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
+    # path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
 ]
 
 # Django Debug Toolbar

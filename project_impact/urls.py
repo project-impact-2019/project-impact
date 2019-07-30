@@ -26,7 +26,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/index/', permanent=True)),
     
     # How to Give Back to Foster Community
-    path('give_back/', core_views.give_back, name='give_back'),
+    path('giveback/', core_views.give_back, name='give_back'),
     
     # Blog List and Blog Detail
     path('blog/', core_views.BlogPostListView.as_view(), name='blog'),
@@ -35,6 +35,9 @@ urlpatterns = [
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),
     path('admin/', admin.site.urls),
+
+    # Forms
+    path('newblog/', core_views.add_new_blog, name='add_new_blog'),
 ]
 
 # Django Debug Toolbar

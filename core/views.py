@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from core.models import User, Forum, Comment, Category, Resource, BlogPost, ProgressTracker, VisionBoard
 import json
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 # Views Created Here
 def index(request):
@@ -25,3 +26,17 @@ class BlogPostDetailView(generic.DetailView):
 
 
 
+@login_required
+def add_new_blog(request):
+    from core.forms import BlogForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user
+            form.save()
+            return redirect('blog')
+    else:
+        form = BlogForm()
+    return render(request, 'core/blogpost_form.html', {'form': form})

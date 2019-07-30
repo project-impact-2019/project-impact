@@ -36,3 +36,24 @@ class ResourceListView(generic.ListView):
 class ResourceDetailView(generic.DetailView):
     """View for Resource Details"""
     model = Resource
+
+
+# Search Views
+def search_resource(request):
+    """View function to search for resources. This view is connected with Django Filters."""
+    template_name = 'core/resource_list.html'
+    resource = Resource.objects.filter()
+    resource_filter = ResourceFilter(request.GET, queryset=resource)
+   
+
+    return render(request, 'core/resource_list.html', {'filter': resource_filter})
+
+
+def search_blog(request):
+    """View function to search for blogs. This view is connected with Django Filters."""
+    template_name = 'core/blogpost_list.html'
+    blog = BlogPost.objects.filter()
+    blog_filter = BlogPostFilter(request.GET, queryset=blog)
+   
+
+    return render(request, 'core/blogpost_list.html', {'filter': blog_filter})

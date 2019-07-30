@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+body{
+    max-width: 100%;
+}
+
 .grid-nav{
     display:grid;
     background: blue;

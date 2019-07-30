@@ -68,7 +68,7 @@ class ResourcesPost(models.Model):
     
     
     def get_absolute_url(self):
-        return f"/blog/{self.slug}"
+         return reverse('resources-detail', args=[str(self.id)])
 
     def __str__(self):              
         return self.title

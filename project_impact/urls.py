@@ -14,13 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.conf.urls import include, url
 from django.urls import path, include
 from django.conf import settings
+from django.views.generic import RedirectView
+from core import views
 
 urlpatterns = [
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),
     path('admin/', admin.site.urls),
+    path('blog/', views.BlogPostListView.as_view(), name='blog'),
+    path('blog/<int:pk>', views.BlogPostDetailView.as_view(), name='blog-detail'),
+    path('give_back/', views.give_back, name='give_back'),
 ]
 
 # Django Debug Toolbar

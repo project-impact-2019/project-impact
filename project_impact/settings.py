@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -146,3 +147,8 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = False
 LOGIN_REDIRECT_URL = '/'
 
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+
+# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

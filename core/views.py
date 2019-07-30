@@ -11,6 +11,8 @@ def give_back(request):
     view = 'give_back'
     return render(request, 'give_back.html')
 
+
+#BlogPost Model
 class BlogPostListView(generic.ListView):
     """View for Blog Post List"""
     model = BlogPost
@@ -22,3 +24,12 @@ class BlogPostDetailView(generic.DetailView):
 
 
 
+#Resource Model
+class ResourceListView(generic.ListView):
+    """View for Resource List"""
+    model = Resource
+    paginate_by = 5
+
+class ResourceDetailView(generic.DetailView):
+    """View for Resource Details"""
+    model = Resource

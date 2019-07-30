@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>List of resources</h1>
+  {% if resource_list %}
+  <ul>
+    {% for resource in resource_list %}
+      <li>
+        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no articles to show at the moment! :(.</p>
+  {% endif %}       
+{% endblock %}

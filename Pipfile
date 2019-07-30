@@ -12,6 +12,8 @@ django-debug-toolbar = "*"
 django-heroku = "*"
 gunicorn = "*"
 django-filter = "*"
+django-phonenumber-field = "*"
+phonenumbers = "*"
 
 [requires]
 python_version = "3.7"

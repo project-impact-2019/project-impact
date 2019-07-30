@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f4da9561bc3d7bff59f3b5337fcaba859cde2c85ac150c2f29cf066d6f07b6d5"
+            "sha256": "735d3d14532e92bde2cc253224bdf1fcc1c537b29e6abe9d7dca2e69bb0b94bd"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -16,6 +16,13 @@
         ]
     },
     "default": {
+        "babel": {
+            "hashes": [
+                "sha256:af92e6106cb7c55286b25b38ad7695f8b4efb36a90ba483d7f7a6628c46158ab",
+                "sha256:e86135ae101e31e2c8ec20a4e0c5220f4eed12487d5cf3f78be7e98d3a57fc28"
+            ],
+            "version": "==2.7.0"
+        },
         "dj-database-url": {
             "hashes": [
                 "sha256:4aeaeb1f573c74835b0686a2b46b85990571159ffc21aa57ecd4d1e1cb334163",
@@ -55,6 +62,14 @@
             "index": "pypi",
             "version": "==0.3.1"
         },
+        "django-phonenumber-field": {
+            "hashes": [
+                "sha256:1ab19f723928582fed412bd9844221fa4ff466276d8526b8b4a9913ee1487c5e",
+                "sha256:794ebbc3068a7af75aa72a80cb0cec67e714ff8409a965968040f1fd210b2d97"
+            ],
+            "index": "pypi",
+            "version": "==3.0.1"
+        },
         "django-registration-redux": {
             "hashes": [
                 "sha256:48f60ec15c9a34aad3ab7993c53c20fc32ac4f777fc64e132b337343302fa0ec",
@@ -70,6 +85,14 @@
             ],
             "index": "pypi",
             "version": "==19.9.0"
+        },
+        "phonenumbers": {
+            "hashes": [
+                "sha256:617b9127dc6fd29765ca122915d3b603131446a76a587deed0b92c8db53963fe",
+                "sha256:fcda95d0e4f175dc854bc8c499677fe0b26075f327d6aa5c2f05846007fc4249"
+            ],
+            "index": "pypi",
+            "version": "==8.10.15"
         },
         "psycopg2": {
             "hashes": [

@@ -7,17 +7,61 @@ body{
     max-width: 100%;
 }
 
-.grid-nav{
-    display:grid;
-    background: blue;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-auto-rows: 2em;
+a{
+  text-decoration:none;
+
 }
 
-.grid-nav > a{
-    color: white;
-    font-size: 1.2em;
-    padding: 5px;
-    text-align: left;
+a:hover{
+    color:grey;
+}
 
+a:visited{
+    color: white;
+}
+
+.grid-nav{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12, 1fr));
+    min-height: 70px;
+    background-color: blue;
+}
+
+.logo{
+    display: grid;
+    align-content: center;
+    font-size:2em;
+    grid-column: 1/4;
+    justify-content: space-evenly;
+   
+    
+}
+
+.nav-links{
+    display: grid;
+    grid-column: 7/12;
+    font-size: 1.5em;
+    grid-auto-flow: column;
+    grid-gap:3em;
+    color: white;
+    align-items: center;
+
+   
+}
+
+.nav-links > a{
+  
+}
+
+.grid-container{
+    display: grid;
+
+}
+
+
+
+
+.base-div{
+    padding: 20px;
+    font-size: 20px;
 }

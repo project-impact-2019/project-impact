@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Resources List {% endblock %}
+
+{% block content %}
+
+    {% for object in object_list %}
+        {% include 'core/list-inline.html' with resources_post=object truncate=True detail=False %}
+    {% endfor %}
+
+{% endblock %}

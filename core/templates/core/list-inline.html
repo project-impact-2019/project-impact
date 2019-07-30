@@ -1,0 +1,20 @@
+<div>
+    <div>
+        <div>
+        
+            <h5><a href="{{ object.get_absolute_url }}">{{ resources_post.title }}</a></h5>
+            <p>
+                {% if truncate %}
+                    {{ resources_post.content|linebreaks|truncatewords:30 }}
+                {% else %}
+                    {{ resources_post.content|linebreaks }}
+                {% endif %}
+            </p>
+            
+            {% if not detail %}
+                <a href="{{ resources_post.get_absolute_url }}"> View </a>
+            {% endif %}
+            
+        </div>
+    </div>
+</div>

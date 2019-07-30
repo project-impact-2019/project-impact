@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block head_title %} Resources {% endblock %}
+
+{% block content %}
+
+{% include 'core/list-inline.html' with blog_post=object detail=True %}
+
+{% if request.user.is_authenticated %}
+   
+    <a href="{{ object.get_edit_url }}">Edit</a>
+    <a href="{{ object.get_delete_url }}">Delete</a>
+
+{% endif %}
+
+
+{% endblock %}

@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
+from .utils import unique_slug_generator
 
 # Models created here.
 class User(AbstractUser):
@@ -56,16 +57,18 @@ class Category(models.Model):
         verbose_name_plural = 'categories'
 
 
-
-class Resource(models.Model):
+class ResourcesPost(models.Model):
     """ Model Representing a resource. """
 
     title = models.CharField(max_length=120)
     description = models.TextField()
-    date_posted = models.DateTimeField(auto_now_add=True)
+    publish_date = models.DateTimeField(auto_now_add=True)
     url_address = models.URLField(max_length=200, unique=True, help_text='Enter the url for this resource')
     category = models.ManyToManyField(Category, help_text='Select a category for this resource')
-
+    
+    
+    def get_absolute_url(self):
+        return f"/blog/{self.slug}"
 
     def __str__(self):              
         return self.title

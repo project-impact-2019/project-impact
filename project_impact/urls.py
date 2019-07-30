@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-urlpatterns = [
+urlpatterns = [    
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),
     path('admin/', admin.site.urls),

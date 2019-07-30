@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'debug_toolbar',
+    'django_filters',
 ]
 
 # Custom User Authentication

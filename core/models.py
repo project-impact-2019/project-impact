@@ -89,6 +89,10 @@ class BlogPost(models.Model):
         return reverse('blog-detail', args=[str(self.id)])
 
 
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this book."""
+        return reverse('blog-detail', args=[str(self.id)])
+
     
 
 class ProgressTracker(models.Model):

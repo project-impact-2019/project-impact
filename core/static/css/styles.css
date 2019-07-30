@@ -8,16 +8,24 @@ body{
 }
 
 .grid-nav{
-    display:grid;
-    background: blue;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-auto-rows: 2em;
+    display: grid;
+    background-color: blue;
+    color: white;
 }
 
 .grid-nav > a{
     color: white;
-    font-size: 1.2em;
-    padding: 5px;
-    text-align: left;
+}
 
+
+.nav-links{
+
+   
+
+ 
+}
+
+.base-div{
+    padding: 20px;
+    font-size: 20px;
 }

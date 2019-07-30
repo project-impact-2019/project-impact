@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">Add a Blog</h1>
+<div class="blog-form">
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="table-form">
+    {{ form.as_table }}
+    </table>
+    <input class="add-blog" type="submit" value="Add Blog">
+    <br><br>
+  </form>
+</div>
+  {% endblock %}

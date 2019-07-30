@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from core.models import User, Forum, Comment, Category, Resource, BlogPost, ProgressTracker, VisionBoard
 import json
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 # Views Created Here
 def index(request):
@@ -27,6 +28,22 @@ class BlogPostDetailView(generic.DetailView):
 
 
 
+
+@login_required
+def add_new_blog(request):
+    from core.forms import BlogForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            blog = form.save(commit=False)
+            blog.author = request.user
+            form.save()
+            return redirect('blog')
+    else:
+        form = BlogForm()
+    return render(request, 'core/blogpost_form.html', {'form': form})
+
 #Resource Model
 class ResourceListView(generic.ListView):
     """View for Resource List"""
@@ -36,7 +53,6 @@ class ResourceListView(generic.ListView):
 class ResourceDetailView(generic.DetailView):
     """View for Resource Details"""
     model = Resource
-
 
 # Search Views
 def search_resource(request):
@@ -57,3 +73,4 @@ def search_blog(request):
    
 
     return render(request, 'core/blogpost_list.html', {'filter': blog_filter})
+

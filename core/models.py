@@ -71,6 +71,10 @@ class Resource(models.Model):
     def __str__(self):              
         return self.title
 
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this resource."""
+        return reverse('resource-detail', args=[str(self.id)])
+
 
 class BlogPost(models.Model):
     """ Model representing a blog post."""
@@ -91,7 +95,7 @@ class BlogPost(models.Model):
 
 
     def get_absolute_url(self):
-        """Returns the url to access a detail record for this book."""
+        """Returns the url to access a detail record for this blog."""
         return reverse('blog-detail', args=[str(self.id)])
 
     

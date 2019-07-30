@@ -32,6 +32,11 @@ urlpatterns = [
     path('blog/', core_views.BlogPostListView.as_view(), name='blog'),
     path('blog/<int:pk>', core_views.BlogPostDetailView.as_view(), name='blog-detail'),
 
+    # Resource List and Resource Detail
+    path('resource/', core_views.ResourceListView.as_view(), name='resource'),
+    path('resource/<int:pk>', core_views.ResourceDetailView.as_view(), name='resource-detail'),
+
+
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),
     path('admin/', admin.site.urls),

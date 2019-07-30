@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.forms import MenteeSignUpForm
+from core.filters import BlogPostFilter
 
 
 # Views Created Here
@@ -59,24 +60,24 @@ class ResourceDetailView(generic.DetailView):
     model = Resource
 
 # Search Views
-def search_resource(request):
-    """View function to search for resources. This view is connected with Django Filters."""
-    template_name = 'core/resource_list.html'
-    resource = Resource.objects.filter()
-    resource_filter = ResourceFilter(request.GET, queryset=resource)
+# def search_resource(request):
+#     """View function to search for resources. This view is connected with Django Filters."""
+#     template_name = 'core/resource_list.html'
+#     resource = Resource.objects.filter()
+#     resource_filter = ResourceFilter(request.GET, queryset=resource)
    
 
-    return render(request, 'core/resource_list.html', {'filter': resource_filter})
+#     return render(request, 'core/resource_list.html', {'filter': resource_filter})
 
 
 def search_blog(request):
     """View function to search for blogs. This view is connected with Django Filters."""
-    template_name = 'core/blogpost_list.html'
+    template_name = 'core/search_blog.html'
     blog = BlogPost.objects.filter()
     blog_filter = BlogPostFilter(request.GET, queryset=blog)
    
 
-    return render(request, 'core/blogpost_list.html', {'filter': blog_filter})
+    return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
 # SignUp Views
 class MenteeSignUpView(CreateView):

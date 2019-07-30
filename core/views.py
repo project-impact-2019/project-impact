@@ -82,7 +82,7 @@ def search_blog(request):
 class MenteeSignUpView(CreateView):
     model = User
     form_class = MenteeSignUpForm
-    template_name = 'core/signup_form.html'
+    template_name = 'core/mentee_signup_form.html'
 
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'mentee'
@@ -93,3 +93,21 @@ class MenteeSignUpView(CreateView):
         login(self.request, user)
         return redirect('')
 
+class MentorSignUpView(CreateView):
+    model = User
+    form_class = MenteeSignUpForm
+    template_name = 'core/mentor_signup_form.html'
+
+    def get_context_data(self, **kwargs):
+        kwargs['user_type'] = 'mentor'
+        return super().get_context_data(**kwargs)
+
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect('')
+
+def success(request):
+    """View for a successful submission of a signup form"""
+    view = 'success'
+    return render(request, 'successful_submission.html')

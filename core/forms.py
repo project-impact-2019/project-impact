@@ -4,8 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from phonenumber_field.formfields import PhoneNumberField
 
-
-
 class BlogForm(forms.ModelForm):
 
     class Meta:

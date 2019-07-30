@@ -11,6 +11,7 @@ class User(AbstractUser):
 
     is_mentee = models.BooleanField('mentee status', default=False)
     is_mentor = models.BooleanField('mentor status', default=False)
+    is_admin = models.BooleanField('admin status', default=False)
 
 
 class Forum(models.Model):

@@ -36,6 +36,8 @@ urlpatterns = [
     path('resource/', core_views.ResourceListView.as_view(), name='resource'),
     path('resource/<int:pk>', core_views.ResourceDetailView.as_view(), name='resource-detail'),
 
+    # Search Results
+    path('blog/search', core_views.search_blog, name = 'search_blog'),
 
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),

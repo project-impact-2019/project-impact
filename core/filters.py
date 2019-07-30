@@ -3,28 +3,28 @@ from core.models import Forum, Resource, BlogPost
 
 # Using Django Filter to search via different models
 
-class ForumFilter(django_filters.FilterSet):
+# class ForumFilter(django_filters.FilterSet):
 
-    class Meta:
-        model=Forum
+#     class Meta:
+#         model=Forum
 
-        fields = {
-            'title': ['icontains',], 
-            'description': ['icontains',], 
-            'owner': ['exact',], 
-        }
+#         fields = {
+#             'title': ['icontains',], 
+#             'description': ['icontains',], 
+#             'owner': ['exact',], 
+#         }
 
 
-class ResourceFilter(django_filters.FilterSet):
+# class ResourceFilter(django_filters.FilterSet):
 
-    class Meta:
-        model=Resource
+#     class Meta:
+#         model=Resource
 
-        fields = {
-            'title': ['icontains',], 
-            'description': ['icontains',], 
-            'category': ['exact',], 
-        }
+#         fields = {
+#             'title': ['icontains',], 
+#             'description': ['icontains',], 
+#             'category': ['exact',], 
+#         }
 
 
 class BlogPostFilter(django_filters.FilterSet):

@@ -36,6 +36,8 @@ urlpatterns = [
     path('resource/', core_views.ResourceListView.as_view(), name='resource'),
     path('resource/<int:pk>', core_views.ResourceDetailView.as_view(), name='resource-detail'),
 
+    # Search Results
+    path('blog/search', core_views.search_blog, name = 'search_blog'),
 
     # Django Registration Redux
     path('accounts/', include('registration.backends.admin_approval.urls')),
@@ -46,7 +48,9 @@ urlpatterns = [
 
     # New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
-    # path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
+    path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
+    path('success/', core_views.success, name='success'),
+
 ]
 
 # Django Debug Toolbar

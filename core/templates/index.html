@@ -4,19 +4,27 @@
 {% block content %}
 
 
-<div>
-    <div>
+<div class="image">
         {% load static %}
-        <img class="image" src="{% static 'images/passionledushere.jpg'%}">
-       
-    </div>
+    <!-- <div>
+           <img class="image" src="{% static 'images/passionledushere.jpg'%}"> 
+           <h1> Project Impact </h1>
+    </div> -->
+
 </div>
+
+<!-- <div>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi recusandae consequuntur provident neque, numquam ipsa labore deserunt non harum repudiandae impedit atque dicta, optio odio unde quos quisquam expedita veritatis.
+
+    </p>
+</div> -->
 <div class='buttons'>
     <div class='mentor_signup'>
         <a class="link-button" href="{% url 'mentor_signup' %}">Become a Mentor</a> 
     </div>
     <div class="mentee-signup">
-        <a class="link-button" href="{% url 'mentee_signup' %}">Find a Mentor</a>
+        <a class="link-button" href="{% url 'mentee_signup' %}">Become a Mentee</a>
     </div>
 </div>
 {% endblock %}

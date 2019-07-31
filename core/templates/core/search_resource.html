@@ -11,6 +11,9 @@
               <div>{{ filter.form.description__icontains.label_tag }}</div>
               <div>{{ filter.form.description__icontains }}</div>
 
+              <div class='mt2'>{{ filter.form.category.label_tag }}</div>
+              <div>{{ filter.form.category }}</div>
+
               <button class="bg-white mt5" type='submit'>Search</button>
       </div>
   </form>
@@ -23,7 +26,7 @@
   {% if filter.qs %}
     {% for obj in filter.qs %}
         <p class ='f3 green fw5 mt3' id="resourceTitle">{{obj.title|title}}</p>
-        <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span>  |  <span> Category: {{obj.category}}</span>
+        <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span> 
        
     <div class= 'b--solid br3 b--moon-gray'>
     <p id="resourceDescription">{{obj.description }}</p>

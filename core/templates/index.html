@@ -1,35 +1,22 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
 
 
 {% block content %}
 
-{% load static %}
-<div class="top">
-    <div class="slider">
-       
-            <img scr="{% static 'passionledushere.jpg'%}">
+
+<div>
+    <div>
+        {% load static %}
+        <img class="image" src="{% static 'images/passionledushere.jpg'%}">
        
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<ul>
-<li><a href="{% url 'mentor_signup' %}">Sign up as a mentor</a></li>
-<li><a href="{% url 'mentee_signup' %}">Sign up as a mentee</a></li>
-</ul>
+<div class='buttons'>
+    <div class='mentor_signup'>
+        <a class="link-button" href="{% url 'mentor_signup' %}">Become a Mentor</a> 
+    </div>
+    <div class="mentee-signup">
+        <a class="link-button" href="{% url 'mentee_signup' %}">Find a Mentor</a>
+    </div>
+</div>
 {% endblock %}

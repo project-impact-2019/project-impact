@@ -4,14 +4,58 @@ from django.utils import timezone
 from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 # Models created here.
 class User(AbstractUser):
     """Model Representing a User"""
 
-    is_mentee = models.BooleanField('mentee status', default=False)
-    is_mentor = models.BooleanField('mentor status', default=False)
+    # is_mentee = models.BooleanField('mentee status', default=False)
+    # is_mentor = models.BooleanField('mentor status', default=False)
     is_admin = models.BooleanField('admin status', default=False)
+
+
+class Category(models.Model):
+    """Model representing to identify the category for resource content."""
+    name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')
+    parent = models.ForeignKey('self',blank=True, null=True, related_name='children', on_delete=models.CASCADE)
+
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
+class Chat(models.Model):
+    """ Model representing the chat functionality for a pair """
+    pass
+
+
+class Person(models.Model):
+    """Model Representing a Person"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
+    family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
+    date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
+    email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
+    categories = models.ManyToManyField(Category)
+    pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
+    # mentors = models.ManyToManyField('self', through='Pair', related_name='mentee', symmetrical=False)
+    # mentees = models.ManyToManyField('self', through='Pair', related_name='mentor', symmetrical=False)
+    # mentors = models.ManyToManyField('self', through='Pair', related_name='mentee', symmetrical=False)
+
+    # mentors = models.ManyToManyField('self', through='Pair', blank=True)
+    # mentees = models.ManyToManyField('self', through='Pair', related_name='mentors', blank=True)
+    # mentors = models.ManyToManyField('self', db_table='pair', related_name='mentees', blank=True)
+    # mentees = models.ManyToManyField('self', db_table='pair', related_name='mentors', blank=True)
+
+class Pair(models.Model):
+    """ Model representing the pair of a mentor and mentee """
+    mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)
+    mentee = models.ForeignKey(Person, related_name='mentee', on_delete=models.PROTECT)
+
 
 
 class Forum(models.Model):
@@ -20,7 +64,6 @@ class Forum(models.Model):
     title = models.CharField(max_length=120)
     description = models.TextField(max_length=500)
     date_posted = models.DateTimeField(auto_now_add=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Comment(models.Model):
@@ -29,7 +72,7 @@ class Comment(models.Model):
     comment = models.TextField(max_length=200, help_text='Enter a comment here')
     date_posted = models.DateTimeField(auto_now_add=True)
     target_post = models.ForeignKey(Forum, on_delete=models.CASCADE, null=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['-date_posted']
@@ -40,22 +83,15 @@ class Comment(models.Model):
                             
 
 
-class VisionBoard(models.Model):
-    """Model representing the vision board for mentees"""
-    goals = models.TextField(max_length=500)
-    
-    
+class Goal(models.Model):
+    """Model representing the goal board."""
+    name = models.TextField(max_length=500)
+    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
 
-class Category(models.Model):
-    """Model representing to identify the category for resource content."""
-    name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')
-    
     def __str__(self):
         """String for representing the Model object."""
         return self.name
 
-    class Meta:
-        verbose_name_plural = 'categories'
 
 
 
@@ -66,7 +102,7 @@ class Resource(models.Model):
     description = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     url_address = models.URLField(max_length=200, unique=True, help_text='Enter the url for this resource')
-    category = models.ManyToManyField(Category, help_text='Select a category for this resource')
+    category = models.ForeignKey(Category, help_text='Select a category for this resource', on_delete=models.CASCADE)
 
 
     def __str__(self):              
@@ -82,7 +118,7 @@ class BlogPost(models.Model):
     title    = models.CharField(max_length= 100)
     content  = models.TextField(null=True, blank=True)
     publish_date = models.DateTimeField(auto_now_add= True)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(Person, on_delete=models.PROTECT)
 
     class Meta:
         ordering = ['-publish_date']
@@ -100,12 +136,44 @@ class BlogPost(models.Model):
         return reverse('blog-detail', args=[str(self.id)])
 
     
+class Questionnaire(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    email = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
+    first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
+    family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
+    reference_name = models.CharField(max_length=30, null=False, help_text='Please enter a professional reference.')
+    reference_Phone = PhoneNumberField(null=False, help_text='Please enter your professional reference\'s phone number.')
+    reference_name2 = models.CharField(max_length=30, null=False, help_text='Please enter a personal reference name.')
+    reference_phone2 = PhoneNumberField(null=False, help_text='Please enter your personal reference\'s phone number.')
+    date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
+    category = models.ManyToManyField(Category, null=False, help_text='Please select a skill speciality.')
+    why = models.TextField(null=False, max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
+    availabilty = models.TextField(null=False, max_length=200, help_text='Please list the days and times you would be available to mentor.')
+    address = models.CharField(null=False, max_length=80, help_text='Please enter your full address')
+    
 
-class ProgressTracker(models.Model):
-    """Model representing the progress tracker."""
-    activity = models.CharField(max_length=200, help_text="What activity are you performing?")
-    completed = models.BooleanField(default=False)
+    HIGH_SCHOOL_GED = 'High School / GED'
+    SOME_COLLEGE = 'Some College'
+    ASSOCIATES_DEGREE = 'Associate\'s Degree'
+    BACHELORS_DEGREE = 'Bachelor\'s Degree'
+    MASTERS_DEGREE = 'Masters\' Degree'
+    PHD = 'PhD'
+    NONE = 'None'
 
-    def __str__(self):              
-        return self.activity
+    EDUCATION_CHOICES = [
+        (HIGH_SCHOOL_GED, 'High School / GED'),
+        (SOME_COLLEGE, 'Some College'),
+        (ASSOCIATES_DEGREE, 'Associate\'s Degree'),
+        (BACHELORS_DEGREE, 'Bachelor\'s Degree'),
+        (MASTERS_DEGREE, 'Master\'s Degree'),
+        (PHD, 'PhD'),
+        (NONE, 'None'),
+    ]
+
+    education = models.CharField(
+        max_length=30,
+        choices=EDUCATION_CHOICES,
+        default=NONE
+    )
+
 

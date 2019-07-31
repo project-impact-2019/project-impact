@@ -9,7 +9,7 @@ body{
 
 a{
   text-decoration:none;
-
+    /* color: white; */
 }
 
 a:hover{
@@ -45,12 +45,11 @@ a:visited{
     grid-gap:3em;
     color: white;
     align-items: center;
-
    
 }
 
-.nav-links > a{
-  
+.nav-links a{
+    color: white;
 }
 
 .grid-container{

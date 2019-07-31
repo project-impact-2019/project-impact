@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # Personal apps 
     'core', 
 
@@ -49,6 +50,10 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_filters',
     'phonenumber_field',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
 ]
 
 # Custom User Authentication
@@ -151,4 +156,5 @@ LOGIN_REDIRECT_URL = '/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
 

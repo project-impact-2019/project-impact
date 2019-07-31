@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class= "f4-ns ml5-ns b--solid bw1 bg-blue avenir br3 justify b--dark-blue">
+
+  <form method="GET">
+      <div class="pa4">
+              <div>{{ filter.form.title__icontains.label_tag }}</div>
+              <div>{{ filter.form.title__icontains }}</div>
+
+              <div>{{ filter.form.description__icontains.label_tag }}</div>
+              <div>{{ filter.form.description__icontains }}</div>
+
+              <div class='mt2'>{{ filter.form.category.label_tag }}</div>
+              <div>{{ filter.form.category }}</div>
+
+              <button class="bg-white mt5" type='submit'>Search</button>
+      </div>
+  </form>
+ 
+</div>
+
+  <div class="tc center avenir">
+  
+  <h2>Search For Resource</h2>
+  {% if filter.qs %}
+    {% for obj in filter.qs %}
+        <p class ='f3 green fw5 mt3' id="resourceTitle">{{obj.title|title}}</p>
+        <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span>  |  <span> Category: {{obj.category}}</span>
+       
+    <div class= 'b--solid br3 b--moon-gray'>
+    <p id="resourceDescription">{{obj.description }}</p>
+    {% endfor %}
+  {% else %}
+    <p>Your search contains no results.</p>
+  {% endif %}
+ 
+  </div>
+
+{% endblock %}

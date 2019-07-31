@@ -15,16 +15,16 @@ from core.models import Forum, Resource, BlogPost
 #         }
 
 
-# class ResourceFilter(django_filters.FilterSet):
+class ResourceFilter(django_filters.FilterSet):
 
-#     class Meta:
-#         model=Resource
+    class Meta:
+        model=Resource
 
-#         fields = {
-#             'title': ['icontains',], 
-#             'description': ['icontains',], 
-#             'category': ['exact',], 
-#         }
+        fields = {
+            'title': ['icontains',], 
+            'description': ['icontains',], 
+            'category': ['exact',], 
+        }
 
 
 class BlogPostFilter(django_filters.FilterSet):

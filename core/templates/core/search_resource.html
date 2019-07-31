@@ -8,11 +8,11 @@
               <div>{{ filter.form.title__icontains.label_tag }}</div>
               <div>{{ filter.form.title__icontains }}</div>
 
-              <div>{{ filter.form.content__icontains.label_tag }}</div>
-              <div>{{ filter.form.content__icontains }}</div>
+              <div>{{ filter.form.description__icontains.label_tag }}</div>
+              <div>{{ filter.form.description__icontains }}</div>
 
-              <div class='mt2'>{{ filter.form.author.label_tag }}</div>
-              <div>{{ filter.form.author }}</div>
+              <div class='mt2'>{{ filter.form.category.label_tag }}</div>
+              <div>{{ filter.form.category }}</div>
 
               <button class="bg-white mt5" type='submit'>Search</button>
       </div>
@@ -22,14 +22,14 @@
 
   <div class="tc center avenir">
   
-  <h2>Search For Blog Posts</h2>
+  <h2>Search For Resource</h2>
   {% if filter.qs %}
     {% for obj in filter.qs %}
-        <p class ='f3 green fw5 mt3' id="blogTitle">{{obj.title|title}}</p>
-        <p id="blogAuthor">Author: {{obj.author|title}} | <span>  Entry Date: {{obj.publish_date}}</span>
+        <p class ='f3 green fw5 mt3' id="resourceTitle">{{obj.title|title}}</p>
+        <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span>  |  <span> Category: {{obj.category}}</span>
        
     <div class= 'b--solid br3 b--moon-gray'>
-    <p id="blogContent">{{obj.content }}</p>
+    <p id="resourceDescription">{{obj.description }}</p>
     {% endfor %}
   {% else %}
     <p>Your search contains no results.</p>
@@ -38,4 +38,3 @@
   </div>
 
 {% endblock %}
-

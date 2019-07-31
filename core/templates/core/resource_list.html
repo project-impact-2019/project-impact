@@ -13,23 +13,6 @@
   {% else %}
     <p>There are no articles to show at the moment! :(.</p>
   {% endif %}
-  <div class= "f4-ns ml5-ns b--solid bw1 bg-blue avenir br3 justify b--dark-blue">
-
-    <form method="GET">
-        <div class="pa4">
-                <div>{{ filter.form.title__icontains.label_tag }}</div>
-                <div>{{ filter.form.title__icontains }}</div>
-
-                <div>{{ filter.form.description__icontains.label_tag }}</div>
-                <div>{{ filter.form.description__icontains }}</div>
-
-                <div>{{ filter.form.category.label_tag }}</div>
-                <div>{{ filter.form.category }}</div>
-
-                <button class="bg-white mt5" type='submit'>Search</button>
-        </div>
-    </form>
-   
-  </div>
+  <a href="{% url 'search_resource'%}">Search for a resource!</a>
        
 {% endblock %}

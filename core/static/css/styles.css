@@ -2,69 +2,41 @@
     font-family: 'Crimson Pro', serif;
     margin: 0;
     padding: 0;
+}
+
+html{
     box-sizing: border-box;
 }
 
 body{
     max-width: 100%;
+    background: #F2F2F2;
+    color: #1C1C1C;
+    line-height: 1.4;
+ 
 }
-
-.grid-nav >a{
-  text-decoration:none;
-  color: white;
-
-} 
-
-/* a:hover{
-    color:grey;
-}
-
-a:visited{
-    color: white;
-} */
-
-/* .grid-nav{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12, 1fr));
-    min-height: 70px;
-    background-color: blue;
-} */
-
-.logo{
-    /* display: grid;
-    align-content: center;
-    font-size:2em;
-    grid-column: 1/4;
-    justify-content: space-evenly; */
-    color: white;
-    margin-left: auto;
-    font-size: 1.5em;
-    padding-top: 5px;
-}
-
-/* .nav-links{
-    display: grid;
-    grid-column: 7/12;
-    font-size: 1.5em;
-    grid-auto-flow: column;
-    grid-gap:3em;
-    color: white;
-    align-items: center;   
-} */
-
-/* .nav-links > a{
-  color: white;
-} */
 
 .grid-container{
     display: grid;
+    grid-template-columns: repeat
 
 }
 
-.base-div{
-    padding: 20px;
-    font-size: 20px;
+.index-page{
+    margin: 0 50px;
+    margin-top: 1em;
+    display: grid;
+
 }
+
+.heading{
+    text-align: center;
+}
+
+.content{
+    
+}
+
 
 
 nav{
@@ -86,7 +58,7 @@ nav{
 .nav-links li a{
     color: white;
     text-decoration: none;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 
 .landing{
@@ -104,15 +76,12 @@ nav{
 
 
 .buttons{
-   /* display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-   grid-row: 6/8; */
    display: flex;
 
 }
 
 .mentee_signup{
-    grid-column: ;
+    
 }
 
 .mentor_signup{
@@ -134,8 +103,8 @@ nav{
 
 @media screen and (max-width:768px){
 
-    .image{
-        max-width: 100%;
+    .logo{
+        display: none;
     }
 
     .line{

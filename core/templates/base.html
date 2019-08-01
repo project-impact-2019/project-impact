@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <script src="{% static 'js/compiled.js' %}" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Poppins|Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <title>Project Impact</title>
@@ -22,7 +23,7 @@
     <head>  
         {% include "snippets/navbar2.html" %}
     </head>
-    <div>
+    <div class="grid-container">
     {% block content %}
 
 

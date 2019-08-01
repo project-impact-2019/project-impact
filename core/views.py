@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import User, Forum, Comment, Category, Resource, BlogPost
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -12,6 +12,7 @@ from core.filters import BlogPostFilter, ResourceFilter
 # Views Created Here
 def index(request):
     """View function for home page of site."""
+    """ If user is connect with profile page """
     
     return render(request, 'index.html')
 
@@ -19,6 +20,17 @@ def give_back(request):
     """View for How to Give Back to Foster Children Aging Out of System"""
     view = 'give_back'
     return render(request, 'give_back.html')
+
+
+#Person view
+def create_profile_page(request):
+    profile = Person.objects.all(user=request.user)
+    context={
+        'profile': profile,
+    }
+
+    return render(request, 'core/user_profile.html', context)
+
 
 
 #BlogPost Model

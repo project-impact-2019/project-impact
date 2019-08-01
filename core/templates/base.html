@@ -22,7 +22,9 @@
 </head>
 <body>
     <head>  
+    {% block header %}
         {% include "snippets/navbar2.html" %}
+    {% endblock %}
     </head>
     <div class="landing">
     {% block content %}

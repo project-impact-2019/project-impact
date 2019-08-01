@@ -31,13 +31,21 @@ class Category(models.Model):
 
 class Person(models.Model):
     """Model Representing a Person"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
     pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
+
+
+    def __str__(self):
+        """Returns human-readable representation of the model instance."""
+        return self.first_name
+
+
+
 
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """

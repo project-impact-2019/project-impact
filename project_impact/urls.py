@@ -37,6 +37,7 @@ urlpatterns = [
     path('resource/<int:pk>', core_views.ResourceDetailView.as_view(), name='resource-detail'),
 
     # Search Results
+    path('resource/search', core_views.search_resource, name = 'search_resource'),
     path('blog/search', core_views.search_blog, name = 'search_blog'),
 
     # Django Registration Redux

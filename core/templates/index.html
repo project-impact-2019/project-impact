@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-<h1> Index Page </h1>
-<ul>
-<li><a href="">Sign up as a mentor</a></li>
-<li><a href="">Sign up as a mentee</a></li>
-</ul>
+
+
+<div>
+    <div>
+        {% load static %}
+        <img class="image" src="{% static 'images/passionledushere.jpg'%}">
+       
+    </div>
+</div>
+<div class='buttons'>
+    <div class='mentor_signup'>
+        <a class="link-button" href="">Become a Mentor</a> 
+    </div>
+    <div class="mentee-signup">
+        <a class="link-button" href="">Find a Mentor</a>
+    </div>
+</div>
 {% endblock %}

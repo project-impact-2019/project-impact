@@ -5,7 +5,8 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
-from core.filters import BlogPostFilter
+from core.filters import BlogPostFilter, ResourceFilter
+
 
 
 # Views Created Here
@@ -59,14 +60,14 @@ class ResourceDetailView(generic.DetailView):
     model = Resource
 
 # Search Views
-# def search_resource(request):
-#     """View function to search for resources. This view is connected with Django Filters."""
-#     template_name = 'core/resource_list.html'
-#     resource = Resource.objects.filter()
-#     resource_filter = ResourceFilter(request.GET, queryset=resource)
+def search_resource(request):
+    """View function to search for resources. This view is connected with Django Filters."""
+    template_name = 'core/search_resource.html'
+    resource = Resource.objects.filter()
+    resource_filter = ResourceFilter(request.GET, queryset=resource)
    
 
-#     return render(request, 'core/resource_list.html', {'filter': resource_filter})
+    return render(request, 'core/search_resource.html', {'filter': resource_filter})
 
 
 def search_blog(request):

@@ -18,26 +18,32 @@ body{
 
 .grid-container{
     display: grid;
-    grid-template-columns: repeat
+    grid-gap: 1.5em;
 
 }
 
+.fs{
+    font-size: 1.2em;
+}
+
 .index-page{
-    margin: 0 50px;
-    margin-top: 1em;
+    margin: 0 40px;
     display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2em;
 
 }
 
 .heading{
     text-align: center;
+    font-size: 1.2em;
+    grid-template-columns: 1fr;
+    grid-gap: 2em;
 }
 
 .content{
-    
+    text-align: center;
 }
-
-
 
 nav{
     height: 10vh;
@@ -63,10 +69,10 @@ nav{
 
 .landing{
     height: 90vh;
-    margin-left:10px;
-    margin-right:10px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    /* margin-left:10px;
+    margin-right:10px; */
+    /* display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
 
     /* display: flex; */
     /* justify-content: center;
@@ -76,25 +82,19 @@ nav{
 
 
 .buttons{
-   display: flex;
+  margin-top: 2em;
 
-}
 
-.mentee_signup{
-    
-}
-
-.mentor_signup{
-    grid-column: 2/4;
 }
 
 .link-button{
     background-color: #8E0A18;
-    padding: 1em 1.5em;
+    padding: 1em;
     color:white;
     text-decoration: none;
     font-size:1.5em;
     border-radius: 25px;
+    max-width: 200px;
 }
 
 .link-button:hover{
@@ -103,8 +103,8 @@ nav{
 
 @media screen and (max-width:768px){
 
-    .logo{
-        display: none;
+    .index-page{
+        display: flex;
     }
 
     .line{

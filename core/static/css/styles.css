@@ -14,7 +14,6 @@ body{
   color: white;
 
 } 
-
 /* a:hover{
     color:grey;
 }
@@ -107,14 +106,10 @@ nav{
 
 .buttons{
    display: flex;
-   
-    
-
 }
 
 .mentee_signup{
     grid-column: 2/4;
-}
 
 .link-button{
     background-color: red;

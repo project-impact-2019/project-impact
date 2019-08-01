@@ -1,7 +1,22 @@
 from django.contrib import admin
-from core.models import Forum, Comment, Resource, VisionBoard, Category, ProgressTracker, BlogPost
+from django.contrib.auth.admin import UserAdmin
+from core.models import Forum, Chat, Pair, Comment, Resource, Goal, Category, BlogPost, User, Person, Questionnaire
+
+
 
 # Models registered here.
+@admin.register(Pair)
+class PairAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Chat)
+class ChatAdmin(admin.ModelAdmin):
+    pass
+    
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    pass
+
 @admin.register(Forum)
 class ForumAdmin(admin.ModelAdmin):
     pass
@@ -14,8 +29,8 @@ class CommentAdmin(admin.ModelAdmin):
 class ResourceAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(VisionBoard)
-class VisionBoardAdmin(admin.ModelAdmin):
+@admin.register(Goal)
+class GoalBoardAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(Category)
@@ -26,6 +41,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class BlogPostAdmin(admin.ModelAdmin):
     pass
 
-@admin.register(ProgressTracker)
-class ProgressTrackerAdmin(admin.ModelAdmin):
+@admin.register(Questionnaire)
+class QuestionnaireAdmin(admin.ModelAdmin):
     pass

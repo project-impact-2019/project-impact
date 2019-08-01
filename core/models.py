@@ -14,6 +14,7 @@ class User(AbstractUser):
     # is_mentee = models.BooleanField('mentee status', default=False)
     # is_mentor = models.BooleanField('mentor status', default=False)
     is_admin = models.BooleanField('admin status', default=False)
+    is_paired = models.BooleanField('paired status', default=False)
 
 
 class Category(models.Model):
@@ -28,11 +29,6 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
-class Chat(models.Model):
-    """ Model representing the chat functionality for a pair """
-    pass
-
-
 class Person(models.Model):
     """Model Representing a Person"""
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -42,33 +38,32 @@ class Person(models.Model):
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
     pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
-    # mentors = models.ManyToManyField('self', through='Pair', related_name='mentee', symmetrical=False)
-    # mentees = models.ManyToManyField('self', through='Pair', related_name='mentor', symmetrical=False)
-    # mentors = models.ManyToManyField('self', through='Pair', related_name='mentee', symmetrical=False)
-
-    # mentors = models.ManyToManyField('self', through='Pair', blank=True)
-    # mentees = models.ManyToManyField('self', through='Pair', related_name='mentors', blank=True)
-    # mentors = models.ManyToManyField('self', db_table='pair', related_name='mentees', blank=True)
-    # mentees = models.ManyToManyField('self', db_table='pair', related_name='mentors', blank=True)
 
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """
     mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)
     mentee = models.ForeignKey(Person, related_name='mentee', on_delete=models.PROTECT)
 
+class Chat(models.Model):
+    """ Model representing the chat functionality for a pair """
+    name = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
+    slug = models.CharField(max_length=50)
+    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
 
+    def __str__(self):
+        """Returns human-readable representation of the model instance."""
+        return self.name
 
 class Forum(models.Model):
     """ Model Representing a Forum """
-
     title = models.CharField(max_length=120)
     description = models.TextField(max_length=500)
     date_posted = models.DateTimeField(auto_now_add=True)
-
+    author = models.ForeignKey(Person, on_delete=models.CASCADE)
 
 class Comment(models.Model):
     """Model representing a comment to a forum post."""
-    
     comment = models.TextField(max_length=200, help_text='Enter a comment here')
     date_posted = models.DateTimeField(auto_now_add=True)
     target_post = models.ForeignKey(Forum, on_delete=models.CASCADE, null=True)
@@ -81,19 +76,16 @@ class Comment(models.Model):
         """String for representing the Model object."""
         return self.comment                             
                             
-
-
 class Goal(models.Model):
     """Model representing the goal board."""
-    name = models.TextField(max_length=500)
+    name = models.TextField(max_length=255 )
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
+    how_to_achieve = models.TextField(max_length=500)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model object."""
         return self.name
-
-
-
 
 class Resource(models.Model):
     """ Model Representing a resource. """

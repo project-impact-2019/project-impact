@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
     # Personal apps 
     'core', 
 
@@ -50,9 +49,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_filters',
     'phonenumber_field',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 
 ]
 

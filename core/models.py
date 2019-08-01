@@ -6,6 +6,15 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from phonenumber_field.modelfields import PhoneNumberField
 
+MENTOR = 'mentor'
+MENTEE = 'mentee'
+
+USER_TYPE_CHOICES = (
+    (MENTOR, 'mentor'),
+    (MENTEE, 'mentee'),
+)
+
+
 
 # Models created here.
 class User(AbstractUser):
@@ -34,11 +43,13 @@ class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
-    date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
+    date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
     pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
+    role = models.CharField(max_length=100,  choices=USER_TYPE_CHOICES)
 
+    
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """
     mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)

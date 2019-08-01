@@ -1,5 +1,4 @@
 <nav>
-      <!-- <div class="logo"> Project Impact </div> -->
         <div class="hamburger">
             <div class="line"></div>
             <div class="line"></div>
@@ -11,10 +10,11 @@
                 <li><a  href="{% url 'auth_logout' %}" title="Log out">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'auth_login' %}" title="Login">Login</a></li>
-                <li><a href="{% url 'registration_register' %}" title="Register">Register</a></li>
+                {% comment %}<li><a href="{% url 'registration_register' %}" title="Register">Register</a></li>{% endcomment %}
                 {% endif %}
-                <li><a href="{% url 'give_back' %}" title="give_back"> Give Back</a></li>
+                <li><a href="{% url 'give_back' %}" title="give_back"> Support</a></li>
                 <li><a href="{% url 'resource' %}" title="resource">Resources</a></li>
                 <li><a href="{% url 'blog' %}" title="blog posts">Blogs</a></li>
         </ul>
-    </nav>
+    
+</nav>

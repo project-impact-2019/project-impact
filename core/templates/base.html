@@ -6,19 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <script src="{% static 'js/compiled.js' %}" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
     <link href="https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <title>Project Impact</title>
+    <style>
+        .image{ 
+            background-image: url("{% static 'images/passion2.jpg'%}");
+            background-size: cover;
+            height: 70vh;
+            background-position: center;
+            max-width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <head>
+    <head>  
         {% include "snippets/navbar2.html" %}
     </head>
-    <div>
+    <div class="landing">
     {% block content %}
 
 
     {% endblock %}
     </div>
+  
 </body>
 </html>

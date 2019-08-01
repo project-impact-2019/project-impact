@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_filters',
     'phonenumber_field',
+
 ]
 
 # Custom User Authentication
@@ -128,7 +129,7 @@ INTERNAL_IPS = ['127.0.0.1']
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -139,6 +140,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
@@ -151,4 +154,5 @@ LOGIN_REDIRECT_URL = '/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
 

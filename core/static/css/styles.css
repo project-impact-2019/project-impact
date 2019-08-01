@@ -17,10 +17,10 @@ body{
  
 }
 
-.grid-container{
+
+.grid-nav{
     display: grid;
     grid-gap: 1.5em;
-
 }
 
 .fs{
@@ -91,9 +91,8 @@ nav{
 
 .buttons{
   margin-top: 2em;
-
-
 }
+
 
 .link-button{
     background-color: #8E0A18;
@@ -137,6 +136,7 @@ nav{
         position: relative;
 
     }
+  
     .hamburger{
         position: absolute;
         cursor: pointer;

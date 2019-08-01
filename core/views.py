@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, ProgressTracker, VisionBoard
+from core.models import User, Forum, Comment, Category, Resource, BlogPost
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
-from core.forms import MenteeSignUpForm
 from core.filters import BlogPostFilter, ResourceFilter
+
 
 
 # Views Created Here
@@ -79,36 +79,36 @@ def search_blog(request):
 
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
-# SignUp Views
-class MenteeSignUpView(CreateView):
-    model = User
-    form_class = MenteeSignUpForm
-    template_name = 'core/mentee_signup_form.html'
+# # SignUp Views
+# class MenteeSignUpView(CreateView):
+#     model = User
+#     form_class = MenteeSignUpForm
+#     template_name = 'core/mentee_signup_form.html'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'mentee'
-        return super().get_context_data(**kwargs)
+#     def get_context_data(self, **kwargs):
+#         kwargs['user_type'] = 'mentee'
+#         return super().get_context_data(**kwargs)
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('')
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect('')
 
-class MentorSignUpView(CreateView):
-    model = User
-    form_class = MenteeSignUpForm
-    template_name = 'core/mentor_signup_form.html'
+# class MentorSignUpView(CreateView):
+#     model = User
+#     form_class = MenteeSignUpForm
+#     template_name = 'core/mentor_signup_form.html'
 
-    def get_context_data(self, **kwargs):
-        kwargs['user_type'] = 'mentor'
-        return super().get_context_data(**kwargs)
+#     def get_context_data(self, **kwargs):
+#         kwargs['user_type'] = 'mentor'
+#         return super().get_context_data(**kwargs)
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect('')
+#     def form_valid(self, form):
+#         user = form.save()
+#         login(self.request, user)
+#         return redirect('')
 
-def success(request):
-    """View for a successful submission of a signup form"""
-    view = 'success'
-    return render(request, 'successful_submission.html')
+# def success(request):
+#     """View for a successful submission of a signup form"""
+#     view = 'success'
+#     return render(request, 'successful_submission.html')

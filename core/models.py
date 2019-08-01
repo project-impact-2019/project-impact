@@ -31,7 +31,7 @@ class Category(models.Model):
 
 class Person(models.Model):
     """Model Representing a Person"""
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')

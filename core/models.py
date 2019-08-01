@@ -149,7 +149,7 @@ class Questionnaire(models.Model):
     reference_name2 = models.CharField(max_length=30, null=False, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(null=False, help_text='Please enter your personal reference\'s phone number.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
-    category = models.ManyToManyField(Category, null=False, help_text='Please select a skill speciality.')
+    category = models.ManyToManyField(Category, blank=True, help_text='Please select a skill speciality.')
     why = models.TextField(null=False, max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
     availabilty = models.TextField(null=False, max_length=200, help_text='Please list the days and times you would be available to mentor.')
     address = models.CharField(null=False, max_length=80, help_text='Please enter your full address')

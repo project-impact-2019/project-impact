@@ -25,17 +25,6 @@ def give_back(request):
     return render(request, 'give_back.html')
 
 
-#Person view
-def create_profile_page(request):
-    profile = Person.objects.all(user=request.user)
-    context={
-        'profile': profile,
-    }
-
-    return render(request, 'core/user_profile.html', context)
-
-
-
 #BlogPost Model
 class BlogPostListView(generic.ListView):
     """View for Blog Post List"""
@@ -45,8 +34,6 @@ class BlogPostListView(generic.ListView):
 class BlogPostDetailView(generic.DetailView):
     """View for Blog Post Details"""
     model = BlogPost
-
-
 
 
 @login_required
@@ -94,6 +81,8 @@ def search_blog(request):
 
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
+
+
 # SignUp Views
 class MenteeSignUpView(CreateView):
     model = User
@@ -123,3 +112,17 @@ def success(request):
     """View for a successful submission of a signup form"""
     view = 'success'
     return render(request, 'successful_submission.html')
+
+
+#Person view
+def user_profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+    
+    context={
+        'user': user,
+    }
+    return render(request, 'core/user_profile.html', context)
+   
+
+
+  

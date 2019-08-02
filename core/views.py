@@ -94,7 +94,7 @@ class MenteeSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user
-        send_mail('New Mentee Application', 'There is a new Mentee Application, please review at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -107,7 +107,9 @@ class MentorSignUpView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        user = form.save().user
+        user = form.save().user 
+        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
 def success(request):

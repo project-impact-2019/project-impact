@@ -2,14 +2,15 @@
   "private": true,
   "dependencies": {
     "browserify": "^16.3.0",
+    "npm-run-all": "^4.1.5",
     "watchify": "^3.11.1"
   },
-"scripts": {
-  "start": "npm-run-all -p django start:js",
-  "django": "python3 manage.py runserver",
-  "start:js": "watchify -o core/static/js/compiled.js core/static/js/main.js",
-  "compile:js": "browserify -o core/static/js/compiled.js core/static/js/main.js",
-  "compile": "browserify -o core/static/js/compiled.js core/static/js/main.js",
-  "build": "browserify -o core/static/js/compiled.js core/static/js/main.js"
-}
+  "scripts": {
+    "start": "npm-run-all -p django start:js",
+    "django": "python3 manage.py runserver",
+    "start:js": "watchify -o core/static/js/compiled.js core/static/js/main.js",
+    "compile:js": "browserify -o core/static/js/compiled.js core/static/js/main.js",
+    "compile": "browserify -o core/static/js/compiled.js core/static/js/main.js",
+    "build": "browserify -o core/static/js/compiled.js core/static/js/main.js"
+  }
 }

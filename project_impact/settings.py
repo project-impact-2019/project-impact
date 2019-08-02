@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+dontenv_path = os.path.join(BASE_DIR, '.env')
+load_dotenv(dontenv_path)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -155,3 +156,14 @@ LOGIN_REDIRECT_URL = '/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+
+# Email Settings for Registration
+EMAIL_HOST = 'smtp.gmail.com'  # since you are using a gmail account
+EMAIL_PORT = 587  # Gmail SMTP port for TLS
+EMAIL_USE_TLS = True 
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
+
+PHONENUMBER_DEFAULT_REGION = 'US'
+

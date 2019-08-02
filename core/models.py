@@ -5,6 +5,9 @@ from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from phonenumber_field.modelfields import PhoneNumberField
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.db.models import Q
 
 MENTOR = 'mentor'
 MENTEE = 'mentee'
@@ -13,7 +16,6 @@ USER_TYPE_CHOICES = (
     (MENTOR, 'mentor'),
     (MENTEE, 'mentee'),
 )
-
 
 
 # Models created here.
@@ -27,16 +29,43 @@ class User(AbstractUser):
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     why = models.TextField(max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
-    availabilty = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
+    availability = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
     address = models.CharField(max_length=80, help_text='Please enter your full address')
     reference_name = models.CharField(max_length=30, help_text='Please enter a professional reference.')
-    reference_Phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
+    reference_phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
     reference_name2 = models.CharField(max_length=30, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
+    # date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     
+    HIGH_SCHOOL_GED = 'High School / GED'
+    SOME_COLLEGE = 'Some College'
+    ASSOCIATES_DEGREE = 'Associate\'s Degree'
+    BACHELORS_DEGREE = 'Bachelor\'s Degree'
+    MASTERS_DEGREE = 'Masters\' Degree'
+    PHD = 'PhD'
+    NONE = 'None'
+
+    EDUCATION_CHOICES = [
+        (HIGH_SCHOOL_GED, 'High School / GED'),
+        (SOME_COLLEGE, 'Some College'),
+        (ASSOCIATES_DEGREE, 'Associate\'s Degree'),
+        (BACHELORS_DEGREE, 'Bachelor\'s Degree'),
+        (MASTERS_DEGREE, 'Master\'s Degree'),
+        (PHD, 'PhD'),
+        (NONE, 'None'),
+    ]
+
+    education = models.CharField(
+        help_text='Please enter your highest level of education.',
+        max_length=30,
+        choices=EDUCATION_CHOICES,
+        default=NONE
+    )
+
     def save(self, *args, **kwargs):
         if self.is_superuser: self.is_active=True
         return super().save(*args, **kwargs)
+
 class Category(models.Model):
     """Model representing to identify the category for resource content."""
     name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')
@@ -49,6 +78,8 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
+
+
 class Person(models.Model):
     """Model Representing a Person"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -57,14 +88,28 @@ class Person(models.Model):
     date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
-    pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
+    # pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
     role = models.CharField(max_length=100,  choices=USER_TYPE_CHOICES)
 
-    
+    def __str__(self):
+      """Returns human-readable representation of the model instance."""
+      return self.first_name
+
+    @property
+    def pairs(person):
+        pairs = Pair.objects.filter(Q(mentor=person)|Q(mentee=person))
+        return pairs
+
+
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """
     mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)
     mentee = models.ForeignKey(Person, related_name='mentee', on_delete=models.PROTECT)
+
+    def __str__(self):
+        """Returns human-readable representation of the model instance."""
+        return f"{self.mentor} - {self.mentee}"
+
 
 class Chat(models.Model):
     """ Model representing the chat functionality for a pair """
@@ -77,12 +122,14 @@ class Chat(models.Model):
         """Returns human-readable representation of the model instance."""
         return self.name
 
+
 class Forum(models.Model):
     """ Model Representing a Forum """
     title = models.CharField(max_length=120)
     description = models.TextField(max_length=500)
     date_posted = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(Person, on_delete=models.CASCADE)
+
 
 class Comment(models.Model):
     """Model representing a comment to a forum post."""
@@ -97,7 +144,8 @@ class Comment(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.comment                             
-                            
+
+
 class Goal(models.Model):
     """Model representing the goal board."""
     name = models.TextField(max_length=255 )
@@ -108,6 +156,7 @@ class Goal(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.name
+
 
 class Resource(models.Model):
     """ Model Representing a resource. """
@@ -145,10 +194,6 @@ class BlogPost(models.Model):
         return reverse('blog-detail', args=[str(self.id)])
 
 
-    def get_absolute_url(self):
-        """Returns the url to access a detail record for this blog."""
-        return reverse('blog-detail', args=[str(self.id)])
-
     
 class Questionnaire(models.Model):
     person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
@@ -156,7 +201,7 @@ class Questionnaire(models.Model):
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     reference_name = models.CharField(max_length=30, null=False, help_text='Please enter a professional reference.')
-    reference_Phone = PhoneNumberField(null=False, help_text='Please enter your professional reference\'s phone number.')
+    reference_phone = PhoneNumberField(null=False, help_text='Please enter your professional reference\'s phone number.')
     reference_name2 = models.CharField(max_length=30, null=False, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(null=False, help_text='Please enter your personal reference\'s phone number.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')

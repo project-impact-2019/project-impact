@@ -30,7 +30,7 @@ class User(AbstractUser):
     availability = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
     address = models.CharField(max_length=80, help_text='Please enter your full address')
     reference_name = models.CharField(max_length=30, help_text='Please enter a professional reference.')
-    reference_Phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
+    reference_phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
     reference_name2 = models.CharField(max_length=30, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
     # date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')

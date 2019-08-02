@@ -16,6 +16,7 @@ django-phonenumber-field = "*"
 phonenumbers = "*"
 dj-database-url = "*"
 django-allauth = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

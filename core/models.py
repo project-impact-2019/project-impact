@@ -35,6 +35,31 @@ class User(AbstractUser):
     reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
     # date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     
+    HIGH_SCHOOL_GED = 'High School / GED'
+    SOME_COLLEGE = 'Some College'
+    ASSOCIATES_DEGREE = 'Associate\'s Degree'
+    BACHELORS_DEGREE = 'Bachelor\'s Degree'
+    MASTERS_DEGREE = 'Masters\' Degree'
+    PHD = 'PhD'
+    NONE = 'None'
+
+    EDUCATION_CHOICES = [
+        (HIGH_SCHOOL_GED, 'High School / GED'),
+        (SOME_COLLEGE, 'Some College'),
+        (ASSOCIATES_DEGREE, 'Associate\'s Degree'),
+        (BACHELORS_DEGREE, 'Bachelor\'s Degree'),
+        (MASTERS_DEGREE, 'Master\'s Degree'),
+        (PHD, 'PhD'),
+        (NONE, 'None'),
+    ]
+
+    education = models.CharField(
+        help_text='Please enter your highest level of education.',
+        max_length=30,
+        choices=EDUCATION_CHOICES,
+        default=NONE
+    )
+
     def save(self, *args, **kwargs):
         if self.is_superuser: self.is_active=True
         return super().save(*args, **kwargs)
@@ -162,7 +187,7 @@ class Questionnaire(models.Model):
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     reference_name = models.CharField(max_length=30, null=False, help_text='Please enter a professional reference.')
-    reference_Phone = PhoneNumberField(null=False, help_text='Please enter your professional reference\'s phone number.')
+    reference_phone = PhoneNumberField(null=False, help_text='Please enter your professional reference\'s phone number.')
     reference_name2 = models.CharField(max_length=30, null=False, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(null=False, help_text='Please enter your personal reference\'s phone number.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')

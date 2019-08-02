@@ -16,6 +16,7 @@ User = get_user_model()
 # Views Created Here
 def index(request):
     """View function for home page of site."""
+    """ If user is connect with profile page """
     
     return render(request, 'index.html')
 
@@ -34,8 +35,6 @@ class BlogPostListView(generic.ListView):
 class BlogPostDetailView(generic.DetailView):
     """View for Blog Post Details"""
     model = BlogPost
-
-
 
 
 @login_required
@@ -83,6 +82,8 @@ def search_blog(request):
 
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
+
+
 # SignUp Views
 class MenteeSignUpView(CreateView):
     model = User
@@ -116,3 +117,17 @@ def success(request):
     """View for a successful submission of a signup form"""
     view = 'success'
     return render(request, 'successful_submission.html')
+
+
+#Person view
+def user_profile(request, user_id):
+    user = User.objects.get(pk=user_id)
+    
+    context={
+        'user': user,
+    }
+    return render(request, 'core/user_profile.html', context)
+   
+
+
+  

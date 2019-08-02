@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -119,12 +119,13 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-#Person view
+#Profile
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
-    
+  
     context={
         'user': user,
+    
     }
     return render(request, 'core/user_profile.html', context)
    

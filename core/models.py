@@ -6,6 +6,15 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from phonenumber_field.modelfields import PhoneNumberField
 
+MENTOR = 'mentor'
+MENTEE = 'mentee'
+
+USER_TYPE_CHOICES = (
+    (MENTOR, 'mentor'),
+    (MENTEE, 'mentee'),
+)
+
+
 
 # Models created here.
 class User(AbstractUser):
@@ -34,19 +43,13 @@ class Person(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
-    date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
+    date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
     pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
+    role = models.CharField(max_length=100,  choices=USER_TYPE_CHOICES)
 
-
-    def __str__(self):
-        """Returns human-readable representation of the model instance."""
-        return self.first_name
-
-
-
-
+    
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """
     mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)
@@ -146,7 +149,7 @@ class Questionnaire(models.Model):
     reference_name2 = models.CharField(max_length=30, null=False, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(null=False, help_text='Please enter your personal reference\'s phone number.')
     date_of_birth = models.DateField(null=False, help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
-    category = models.ManyToManyField(Category, null=False, help_text='Please select a skill speciality.')
+    category = models.ManyToManyField(Category, blank=True, help_text='Please select a skill speciality.')
     why = models.TextField(null=False, max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
     availabilty = models.TextField(null=False, max_length=200, help_text='Please list the days and times you would be available to mentor.')
     address = models.CharField(null=False, max_length=80, help_text='Please enter your full address')

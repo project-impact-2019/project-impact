@@ -8,6 +8,7 @@ from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
 from core.forms import MenteeSignUpForm, MentorSignUpForm
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 User = get_user_model()
 
 
@@ -93,6 +94,8 @@ class MenteeSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user
+        send_mail('New Mentee Application', 'There is a new Mentee Application, please review at your earliest convenience.', 'projectimpact919@gmail.com',
+        ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
 class MentorSignUpView(CreateView):

@@ -24,6 +24,7 @@ class User(AbstractUser):
     # is_mentor = models.BooleanField('mentor status', default=False)
     is_admin = models.BooleanField('admin status', default=False)
     is_paired = models.BooleanField('paired status', default=False)
+    is_active = models.BooleanField(default=False)
 
 
 class Category(models.Model):

@@ -92,7 +92,7 @@ class MenteeSignUpView(CreateView):
         return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
-        user = form.save()
+        user = form.save().user
         return redirect('success')
 
 class MentorSignUpView(CreateView):

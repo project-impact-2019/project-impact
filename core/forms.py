@@ -51,13 +51,18 @@ class MentorSignUpForm(UserCreationForm):
         person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
         person.categories.add(*self.cleaned_data.get('categories'))
         person.role = 'mentor'
-        # categories=self.cleaned_data.get('category')
-        # person.categories.set('categories')
         person.save()
         return person
 
 class MenteeSignUpForm(UserCreationForm):
-    email = forms.EmailField(max_length=254, help_text='Please enter a valid email address.')
+
+    categories = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=True
+    )
+
+    email_address = forms.EmailField(max_length=254, help_text='Please enter a valid email address.')
     first_name = forms.CharField(max_length=120, help_text='Please enter your first name.')
     family_name = forms.CharField(max_length=120, help_text='Please enter your family name.')
     reference_name = forms.CharField(max_length=30, help_text='Please enter a professional reference.')
@@ -66,21 +71,19 @@ class MenteeSignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'password2')
+        fields = ('username',)
     
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
         user.save()
         date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        date_of_birth=self.cleaned_data.get('date_of_birth')
-        person = Person.objects.create(user=user, date_of_birth=date_of_birth)
-        # person.date_of_birth.add(*self.cleaned_data.get('date_of_birth'))
+        first_name=self.cleaned_data.get('first_name')
+        family_name=self.cleaned_data.get('family_name')
+        email_address=self.cleaned_data.get('email_address')
+        why=self.cleaned_data.get('why')
+        person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
+        person.categories.add(*self.cleaned_data.get('categories'))
         person.role = 'mentee'
         person.save()
         return person

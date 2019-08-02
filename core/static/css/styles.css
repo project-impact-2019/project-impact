@@ -17,7 +17,10 @@ body{
  
 }
 
+.grid-detail{
+    margin: 0 50px;
 
+}
 .grid-nav{
     display: grid;
     grid-gap: 1.5em;
@@ -25,6 +28,30 @@ body{
 
 .fs{
     font-size: 1.2em;
+}
+
+.list-content{
+    margin: 0 100px;
+
+}
+
+.list-content ul{
+    list-style: none;
+
+}
+
+.border{
+
+}
+
+.link-button-small{
+    background-color: #8E0A18;
+    padding: 1em;
+    color:white;
+    text-decoration: none;
+    font-size:1em;
+    border-radius: 25px;
+    max-width: 100px;
 }
 
 .index-page{

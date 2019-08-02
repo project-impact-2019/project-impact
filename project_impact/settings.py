@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # Personal apps 
     'core', 
 
+
     # Third-party apps
     'debug_toolbar',
     'django_filters',
@@ -157,8 +158,10 @@ import django_heroku
 django_heroku.settings(locals())
 
 
+# Email Settings for Registration
 EMAIL_HOST = 'smtp.gmail.com'  # since you are using a gmail account
 EMAIL_PORT = 587  # Gmail SMTP port for TLS
 EMAIL_USE_TLS = True 
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
+

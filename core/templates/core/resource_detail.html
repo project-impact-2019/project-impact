@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 
+{% block header %}
+   {% include "snippets/navsearchbar.html" %}
+{% endblock %}
+
 {% block content %}
+<div class='grid-detail'>
   <h1>{{ resource.title }}</h1>
-  <p>{{ resource.date_posted }}</p>
-  <p> {{ resource.description }}</p>
+  <p>{{ resource.date_posted }}</p></br>
+  <p class='fs'> {{ resource.description|linebreaksbr }}</p>
+  </div>
 {% endblock %}

@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
+{% block header %}
+   {% include "snippets/navsearchbar.html" %}
+{% endblock %}
+
 {% block content %}
+<div class="list-content fs">
   <h1>List of resources</h1>
   {% if resource_list %}
   <ul>
@@ -13,6 +18,5 @@
   {% else %}
     <p>There are no articles to show at the moment! :(.</p>
   {% endif %}
-  <a href="{% url 'search_resource'%}">Search for a resource!</a>
-       
+</div>  
 {% endblock %}

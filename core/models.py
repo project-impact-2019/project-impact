@@ -27,16 +27,19 @@ class User(AbstractUser):
     family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     why = models.TextField(max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
-    availabilty = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
+    availability = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
     address = models.CharField(max_length=80, help_text='Please enter your full address')
     reference_name = models.CharField(max_length=30, help_text='Please enter a professional reference.')
     reference_Phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
     reference_name2 = models.CharField(max_length=30, help_text='Please enter a personal reference name.')
     reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
+    # date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     
     def save(self, *args, **kwargs):
         if self.is_superuser: self.is_active=True
         return super().save(*args, **kwargs)
+    
+
 class Category(models.Model):
     """Model representing to identify the category for resource content."""
     name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')
@@ -60,7 +63,10 @@ class Person(models.Model):
     pairs = models.ManyToManyField('self', through='Pair', symmetrical=False)
     role = models.CharField(max_length=100,  choices=USER_TYPE_CHOICES)
 
-    
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.user.username
+
 class Pair(models.Model):
     """ Model representing the pair of a mentor and mentee """
     mentor = models.ForeignKey(Person, related_name='mentor', on_delete=models.PROTECT)

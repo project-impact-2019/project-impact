@@ -2,10 +2,20 @@
 
 {% block content %}
 <div class="profile">
-<h2>Username: {{ user }}</h2>
-<p>Name: {{ user.person.first_name }}</p>
-<p>Role: {{ user.person.role }}</p>
-<p>Paired: {{ user.person.pairs}}</p>
+<h2>Username: {{user}}</h2>
+<p>Name: {{user.person.first_name}}</p>
+<p>Role: {{user.person.role}}</p> 
+{% for pair in user.person.pairs %}
+    {% if user.person.role == 'mentor' %}
+        <p>You are paired with: {{pair.mentee}}</p>
+    {% else %}
+     <p> You are paired with: {{pair.mentor}}</p>
+    {% endif %}
+{% endfor %}
 </div>
+
+<div class="visual-board"></div>
+<div class="chat-board"></div>
+<div class="forum"></div>
 
 {% endblock %}

@@ -42,7 +42,6 @@ class User(AbstractUser):
 
     
 
-
 class Category(models.Model):
     """Model representing to identify the category for resource content."""
     name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')

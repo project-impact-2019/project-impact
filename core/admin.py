@@ -5,6 +5,12 @@ from core.models import Forum, Chat, Pair, Comment, Resource, Goal, Category, Bl
 
 
 # Models registered here.
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    pass
+
+
 @admin.register(Pair)
 class PairAdmin(admin.ModelAdmin):
     pass

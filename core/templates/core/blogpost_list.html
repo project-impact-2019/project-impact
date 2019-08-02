@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 
+{% block header %}
+  {% include "snippets/navsearchbar.html" %}
+{% endblock %}
+
 {% block content %}
+<div class="list-content">
   <h1>Blog List</h1>
   {% if blogpost_list %}
   <ul>
@@ -29,7 +34,18 @@
             </span>
         </div>
     {% endif %}
+ 
   {% endblock %} 
   <a href="{% url 'add_new_blog'%}">Add a new blog!</a> 
   <a href="{% url 'search_blog'%}">Search for a blog!</a>
-{% endblock %}
+
+
+ <form action='/search/'>
+  <input type="search" name='q' placeholder='Search' aria-label="Search">
+  <button type="submit">Search</button>
+
+
+ </form>
+
+</div>
+  {% endblock %}

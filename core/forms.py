@@ -42,12 +42,12 @@ class MentorSignUpForm(UserCreationForm):
     @transaction.atomic
     def save(self):
         user = super().save(commit=False)
-        user.save()
         date_of_birth=self.cleaned_data.get('date_of_birth')
         first_name=self.cleaned_data.get('first_name')
         family_name=self.cleaned_data.get('family_name')
         email_address=self.cleaned_data.get('email_address')
         why=self.cleaned_data.get('why')
+        user.save()
         person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
         person.categories.add(*self.cleaned_data.get('categories'))
         person.role = 'mentor'

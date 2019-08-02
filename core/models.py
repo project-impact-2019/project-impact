@@ -19,14 +19,24 @@ USER_TYPE_CHOICES = (
 # Models created here.
 class User(AbstractUser):
     """Model Representing a User"""
-
-    # is_mentee = models.BooleanField('mentee status', default=False)
-    # is_mentor = models.BooleanField('mentor status', default=False)
     is_admin = models.BooleanField('admin status', default=False)
     is_paired = models.BooleanField('paired status', default=False)
     is_active = models.BooleanField(default=False)
-
-
+    is_superuser=models.BooleanField(default=False)
+    first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
+    family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
+    email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
+    why = models.TextField(max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
+    availabilty = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
+    address = models.CharField(max_length=80, help_text='Please enter your full address')
+    reference_name = models.CharField(max_length=30, help_text='Please enter a professional reference.')
+    reference_Phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
+    reference_name2 = models.CharField(max_length=30, help_text='Please enter a personal reference name.')
+    reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
+    
+    def save(self, *args, **kwargs):
+        if self.is_superuser: self.is_active=True
+        return super().save(*args, **kwargs)
 class Category(models.Model):
     """Model representing to identify the category for resource content."""
     name = models.CharField(max_length=200, help_text='Enter a resource category (e.g. Educational, Career)')

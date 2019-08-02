@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     # Personal apps 
     'core', 
 
+
     # Third-party apps
     'debug_toolbar',
     'django_filters',
@@ -154,5 +155,3 @@ LOGIN_REDIRECT_URL = '/'
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
-
-

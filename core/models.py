@@ -106,7 +106,7 @@ class Person(models.Model):
 
     def __str__(self):
       """Returns human-readable representation of the model instance."""
-      return self.first_name
+      return self.user.username
 
     @property
     def pairs(person):

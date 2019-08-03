@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost, User, Questionnaire, Person, Category
+from .models import BlogPost, User, Questionnaire, Person, Category, Pair
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from phonenumber_field.formfields import PhoneNumberField
@@ -105,3 +105,14 @@ class MenteeSignUpForm(UserCreationForm):
         person.role = 'mentee'
         person.save()
         return person
+
+class PairForm(forms.ModelForm):
+    class Meta:
+        model = Pair
+        fields = ('mentee', 'mentor',)
+
+    def __init__(self, *args, **kwargs):
+        super(PairForm, self).__init__(*args, **kwargs)
+        self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
+        self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
+    

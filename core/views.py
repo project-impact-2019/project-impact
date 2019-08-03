@@ -167,3 +167,18 @@ def generateToken(identity):
 
 # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
+
+
+@login_required
+def create_pair(request):
+    from core.forms import PairForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = PairForm(request.POST)
+        if form.is_valid():
+            # blog = form.save(commit=False)
+            form.save()
+            return redirect('index')
+    else:
+        form = PairForm()
+    return render(request, 'core/new_pair_form.html', {'form': form})

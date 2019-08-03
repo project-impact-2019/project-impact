@@ -1,5 +1,10 @@
-from django.shortcuts import render, redirect
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair
+from django.shortcuts import render, redirect, get_object_or_404
+from django.forms.models import model_to_dict
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.views.generic.base import TemplateView
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -130,5 +135,24 @@ def user_profile(request, user_id):
     return render(request, 'core/user_profile.html', context)
    
 
+def goal_view(request):
+    goal = Goal.objects.get
 
-  
+    context={
+        'goal': goal,
+    }
+    
+    return render(request, 'core/goal_detail.html', context=context)
+
+
+
+def goal_detail(request, pk):
+    goal = Goal.objects.get(pk=pk)
+    
+
+    context = {
+        'goal': goal,
+
+    }
+
+    return render(request, 'core/goal_detail.html', context=context)

@@ -9,7 +9,6 @@ verify_ssl = true
 django = "*"
 django-registration-redux = "*"
 django-debug-toolbar = "*"
-django-heroku = "*"
 gunicorn = "*"
 django-filter = "*"
 django-phonenumber-field = "*"
@@ -17,6 +16,8 @@ phonenumbers = "*"
 dj-database-url = "*"
 django-allauth = "*"
 python-dotenv = "*"
+psycopg2-binary = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"

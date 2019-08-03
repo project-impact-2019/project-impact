@@ -22,6 +22,7 @@ from core import views as core_views
 from chatapp import views as chatapp_views
 from django.urls import re_path
 
+
 urlpatterns = [
     # Index
     path('', core_views.index, name='index'), 

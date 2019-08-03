@@ -49,6 +49,14 @@ body{
 
 }
 
+.red{
+    background: red;
+}
+
+.green{
+    background: green;
+}
+
 .link-button-small{
     background-color: #8E0A18;
     padding: 1em;

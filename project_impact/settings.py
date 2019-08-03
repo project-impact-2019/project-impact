@@ -168,9 +168,7 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
 
 PHONENUMBER_DEFAULT_REGION = 'US'
 
-# Static Files for Twilio Chatapp
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__),'static'),)
+
 
 # Twilio Chat Settings
 TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']

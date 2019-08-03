@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Personal apps 
     'core', 
-    'chatapp',
 
 
     # Third-party apps

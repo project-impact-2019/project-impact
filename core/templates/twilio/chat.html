@@ -1,7 +1,8 @@
 {% extends "base.html" %}
-{% block content %}
+
 <!DOCTYPE html>
 <html>
+{% block content %}
 {% load static %}
 <head>
     <title>Twilio Chat Quickstart</title>
@@ -10,13 +11,6 @@
     <link rel="stylesheet" href="{% static 'twilio/index.css' %}">
 </head>
 <body>
-  <header>
-    <a href="https://www.twilio.com/docs/api/chat/guides/quickstart-js"
-      target="_blank">Read the getting started guide
-        <i class="fa fa-fw fa-external-link"></i>
-    </a>
-  </header>
-
   <section>
     <div id="messages"></div>
     <input id="chat-input" type="text" placeholder="say anything" autofocus/>

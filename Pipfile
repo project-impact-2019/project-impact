@@ -17,6 +17,9 @@ phonenumbers = "*"
 dj-database-url = "*"
 django-allauth = "*"
 python-dotenv = "*"
+twilio = "*"
+honcho = "*"
+faker = "*"
 
 [requires]
 python_version = "3.7"

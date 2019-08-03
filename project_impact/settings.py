@@ -72,6 +72,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project_impact.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -166,4 +167,16 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
 
 PHONENUMBER_DEFAULT_REGION = 'US'
+
+
+
+# Twilio Chat Settings
+TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
+TWILIO_CHAT_SID = os.environ['TWILIO_CHAT_SID']
+TWILIO_SYNC_SID = os.environ['TWILIO_SYNC_SID']
+TWILIO_API_SID = os.environ['TWILIO_API_SID']
+TWILIO_API_SECRET = os.environ['TWILIO_API_SECRET']
+
+
+
 

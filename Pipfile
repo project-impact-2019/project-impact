@@ -18,6 +18,10 @@ django-allauth = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
 django-heroku = "*"
+twilio = "*"
+honcho = "*"
+faker = "*"
+
 
 [requires]
 python_version = "3.7"

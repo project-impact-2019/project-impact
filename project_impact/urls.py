@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.views.generic import RedirectView
 from core import views as core_views
+from django.urls import re_path
+
 
 urlpatterns = [
     # Index
@@ -47,15 +49,19 @@ urlpatterns = [
 
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
+    path('newpair/', core_views.create_pair, name='create_pair'),
 
     #  New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
     path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
     path('success/', core_views.success, name='success'),
 
+
     #Goal
     # path('goal/', core_views.)
     path('goal/<int:pk>', core_views.goal_detail, name='goal_detail'),
+    # Chat app
+    path(r'', include('core.urls')),
 
 ]
 

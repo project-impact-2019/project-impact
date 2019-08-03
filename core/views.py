@@ -16,6 +16,16 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 User = get_user_model()
 
+# Twilio Chat
+from faker import Factory
+from django.http import JsonResponse
+from django.conf import settings
+from twilio.rest import Client
+from twilio.jwt.access_token import AccessToken
+from twilio.jwt.access_token.grants import (
+    SyncGrant,
+    ChatGrant
+)
 
 
 # Views Created Here
@@ -135,6 +145,8 @@ def user_profile(request, user_id):
     return render(request, 'core/user_profile.html', context)
    
 
+#Goal Views
+
 def goal_view(request):
     goal = Goal.objects.get
 
@@ -156,3 +168,47 @@ def goal_detail(request, pk):
     }
 
     return render(request, 'core/goal_detail.html', context=context)
+
+# Twilio Chat
+
+def app(request):
+    return render(request, 'twilio/chat.html')
+
+def token(request):
+    fake = Factory.create()
+    return generateToken(fake.user_name())
+
+def generateToken(identity):
+    # Get credentials from environment variables
+    account_sid      = settings.TWILIO_ACCT_SID
+    chat_service_sid = settings.TWILIO_CHAT_SID
+    sync_service_sid = settings.TWILIO_SYNC_SID
+    api_sid          = settings.TWILIO_API_SID
+    api_secret       = settings.TWILIO_API_SECRET
+
+# Create access token with credentials
+    token = AccessToken(account_sid, api_sid, api_secret, identity=identity)
+
+ # Create a Sync grant and add to token
+    if sync_service_sid:
+        sync_grant = SyncGrant(service_sid=sync_service_sid)
+        token.add_grant(sync_grant)
+
+# Return token info as JSON
+    return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
+
+
+@login_required
+def create_pair(request):
+    from core.forms import PairForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = PairForm(request.POST)
+        if form.is_valid():
+            # blog = form.save(commit=False)
+            form.save()
+            return redirect('index')
+    else:
+        form = PairForm()
+    return render(request, 'core/new_pair_form.html', {'form': form})
+

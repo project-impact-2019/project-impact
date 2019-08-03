@@ -1,5 +1,5 @@
 from django.urls import re_path
-from . import views
+from core import views
 
 urlpatterns = [
     re_path(r'^$', views.app, name='twilio'),

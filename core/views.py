@@ -143,7 +143,7 @@ def user_profile(request, user_id):
 # Twilio Chat
 
 def app(request):
-    return render(request, 'twilio/index.html')
+    return render(request, 'twilio/chat.html')
 
 def token(request):
     fake = Factory.create()

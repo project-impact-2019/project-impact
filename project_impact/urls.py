@@ -49,6 +49,7 @@ urlpatterns = [
 
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
+    path('newpair/', core_views.create_pair, name='create_pair'),
 
     #  New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
@@ -57,6 +58,7 @@ urlpatterns = [
 
     # Chat app
     path(r'', include('core.urls')),
+
 ]
 
 # Django Debug Toolbar

@@ -5,9 +5,10 @@ from django.conf import settings
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from phonenumber_field.modelfields import PhoneNumberField
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.db.models import Q
+from django.core.mail import send_mail
 
 MENTOR = 'mentor'
 MENTEE = 'mentee'
@@ -25,16 +26,16 @@ class User(AbstractUser):
     is_paired = models.BooleanField('paired status', default=False)
     is_active = models.BooleanField(default=False)
     is_superuser=models.BooleanField(default=False)
-    first_name = models.CharField(max_length=120, help_text='Please enter your first name.')
-    family_name = models.CharField(max_length=120, help_text='Please enter your family name.')
-    email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
-    why = models.TextField(max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
-    availability = models.TextField(max_length=200, help_text='Please list the days and times you would be available to mentor.')
-    address = models.CharField(max_length=80, help_text='Please enter your full address')
-    reference_name = models.CharField(max_length=30, help_text='Please enter a professional reference.')
-    reference_phone = PhoneNumberField(help_text='Please enter your professional reference\'s phone number.')
-    reference_name2 = models.CharField(max_length=30, help_text='Please enter a personal reference name.')
-    reference_phone2 = PhoneNumberField(help_text='Please enter your personal reference\'s phone number.')
+    first_name = models.CharField(blank=True, max_length=120, help_text='Please enter your first name.')
+    family_name = models.CharField(blank=True, max_length=120, help_text='Please enter your family name.')
+    email_address = models.EmailField(blank=True, max_length=254, help_text='Please enter a valid email address.')
+    why = models.TextField(blank=True, max_length=200, help_text='Please briefly describe why you want to become a foster mentor.')
+    availability = models.TextField(blank=True, max_length=200, help_text='Please list the days and times you would be available to mentor.')
+    address = models.CharField(blank=True, max_length=80, help_text='Please enter your full address')
+    reference_name = models.CharField(blank=True, max_length=30, help_text='Please enter a professional reference.')
+    reference_phone = PhoneNumberField(blank=True, help_text='Please enter your professional reference\'s phone number.')
+    reference_name2 = models.CharField(blank=True, max_length=30, help_text='Please enter a personal reference name.')
+    reference_phone2 = PhoneNumberField(blank=True, help_text='Please enter your personal reference\'s phone number.')
     # date_of_birth = models.DateField(help_text='Please enter your date of birth. (i.e. YYYY-MM-DD)')
     
     HIGH_SCHOOL_GED = 'High School / GED'
@@ -65,6 +66,17 @@ class User(AbstractUser):
     def save(self, *args, **kwargs):
         if self.is_superuser: self.is_active=True
         return super().save(*args, **kwargs)
+
+    def save (self):
+    # Only when we update an element. Not when we create it
+        if self.pk:
+        # We get the old values of the model
+            old = User.objects.get(pk=self.pk)
+        # If it's approved and it wasn't before
+            if self.is_active == True and old.is_active == False:
+                send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now.', 'projectimpact919@gmail.com',
+                [self.email_address], fail_silently=False)
+        super(User, self).save()
 
 
 class Category(models.Model):

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(function() {
   // Get handle to the chat div
   var $chatWindow = $('#messages');
 

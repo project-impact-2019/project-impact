@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.conf import settings
 from django.views.generic import RedirectView
 from core import views as core_views
+from chatapp import views as chatapp_views
+from django.urls import re_path
 
 urlpatterns = [
     # Index
@@ -53,6 +55,8 @@ urlpatterns = [
     path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
     path('success/', core_views.success, name='success'),
 
+    # Chat app
+    path(r'', include('chatapp.urls')),
 ]
 
 # Django Debug Toolbar

@@ -173,7 +173,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (os.path.join(os.path.dirname(__file__),'static'),)
 
 # Twilio Chat Settings
-TWILIO_ACCOUNT_SID = os.environ.get('TWILIO_ACCOUNT_SID', None)
-TWILIO_API_KEY = os.environ.get('TWILIO_API_KEY', None)
-TWILIO_API_SECRET = os.environ.get('TWILIO_API_SECRET', None)
-TWILIO_CHAT_SERVICE_SID = os.environ.get('TWILIO_CHAT_SERVICE_SID', None)
+TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
+TWILIO_CHAT_SID = os.environ['TWILIO_CHAT_SID']
+TWILIO_SYNC_SID = os.environ['TWILIO_SYNC_SID']
+TWILIO_API_SID = os.environ['TWILIO_API_SID']
+TWILIO_API_SECRET = os.environ['TWILIO_API_SECRET']
+
+
+
+

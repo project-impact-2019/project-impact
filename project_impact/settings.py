@@ -171,11 +171,11 @@ PHONENUMBER_DEFAULT_REGION = 'US'
 
 
 # Twilio Chat Settings
-TWILIO_ACCT_SID = os.environ['TWILIO_ACCT_SID']
-TWILIO_CHAT_SID = os.environ['TWILIO_CHAT_SID']
-TWILIO_SYNC_SID = os.environ['TWILIO_SYNC_SID']
-TWILIO_API_SID = os.environ['TWILIO_API_SID']
-TWILIO_API_SECRET = os.environ['TWILIO_API_SECRET']
+TWILIO_ACCT_SID = os.environ.get('TWILIO_ACCT_SID', None)
+TWILIO_CHAT_SID = os.environ.get('TWILIO_CHAT_SID', None)
+TWILIO_SYNC_SID = os.environ.get('TWILIO_SYNC_SID', None)
+TWILIO_API_SID = os.environ.get('TWILIO_API_SID', None)
+TWILIO_API_SECRET = os.environ.get('TWILIO_API_SECRET', None)
 
 
 

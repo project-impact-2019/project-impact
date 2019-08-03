@@ -73,6 +73,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'project_impact.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

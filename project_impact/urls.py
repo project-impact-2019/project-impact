@@ -57,7 +57,7 @@ urlpatterns = [
     path('success/', core_views.success, name='success'),
 
     # Chat app
-    path(r'', include('chatapp.urls')),
+    path(r'', include('core.urls')),
 ]
 
 # Django Debug Toolbar

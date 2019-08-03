@@ -56,6 +56,10 @@ urlpatterns = [
     path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
     path('success/', core_views.success, name='success'),
 
+
+    #Goal
+    # path('goal/', core_views.)
+    path('goal/<int:pk>', core_views.goal_detail, name='goal_detail'),
     # Chat app
     path(r'', include('core.urls')),
 

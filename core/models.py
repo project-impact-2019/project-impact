@@ -161,9 +161,8 @@ class Comment(models.Model):
 
 class Goal(models.Model):
     """Model representing the goal board."""
-    name = models.TextField(max_length=255 )
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
-    how_to_achieve = models.TextField(max_length=500)
+    description = models.CharField(max_length=200)
     completed = models.BooleanField(default=False)
 
     def __str__(self):

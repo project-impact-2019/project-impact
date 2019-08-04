@@ -1,3 +1,4 @@
+/* General styling */
 * {
     font-family: 'Crimson Pro', serif;
     margin: 0;
@@ -14,7 +15,29 @@ body{
     background: #F2F2F2;
     color: #1C1C1C;
     line-height: 1.4;
- 
+}
+
+.list{
+    list-style: none;
+}
+
+.white{
+    color: white;
+}
+
+.link{
+    text-decoration: none;
+
+}
+
+/* Goal Styling */
+
+.goal-completed{
+    text-decoration-line: line-through;
+}
+
+.fs12{
+    font-size: 1.2em;
 }
 
 .grid-detail{
@@ -26,19 +49,13 @@ body{
     grid-gap: 1.5em;
 }
 
-.fs{
-    font-size: 1.2em;
-}
 
 .list-content{
     margin: 0 100px;
 
 }
 
-.list-content ul{
-    list-style: none;
 
-}
 
 .profile{
     margin-top:  50px;

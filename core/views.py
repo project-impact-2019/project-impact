@@ -186,6 +186,7 @@ def addGoal(request):
 def app(request):
     return render(request, 'twilio/chat.html')
 
+@login_required
 def token(request):
     fake = Factory.create()
     return generateToken(fake.user_name())

@@ -22,12 +22,12 @@
                 <div>
                     <div>
                         <div class="">
-                            <a href="#"><button type="button" class="button">
+                            <a href="{% url 'delete_completed' %}"><button type="button" class="button">
                                 <i class="fa fa-trash" aria-hidden="true"></i> DELETE COMPLETED
                             </button></a>
                         </div>
                         <div class="">
-                            <a href="#"><button type="button" class="button">
+                            <a href="{% url 'delete_all' %}"><button type="button" class="button">
                                 <i class="fa fa-trash" aria-hidden="true"></i>DELETE ALL
                             </button></a>
                         </div>
@@ -40,7 +40,7 @@
                     {% if goal.completed %}
                         <li class='goal-completed'>{{ goal.description }}</li>
                    {% else %}
-                         <a class="link" href="#"><li>{{ goal.description }}</li></a>
+                         <a class="link" href="{% url 'completed' goal.id %}"><li>{{ goal.description }}</li></a>
                     {% endif %}
                 {% endfor %}
             </ul>

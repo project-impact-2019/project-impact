@@ -58,8 +58,9 @@ urlpatterns = [
 
 
     #Goal
-    # path('goal/', core_views.)
-    path('goal/<int:pk>', core_views.goal_detail, name='goal_detail'),
+    path('goal/', core_views.goal_list_view, name='goal_list'),
+    path('goal/add', core_views.addGoal, name='add_goal'),
+    # path('goal/<int:pk>', core_views.goal_detail, name='goal_detail'),
     # Chat app
     path(r'', include('core.urls')),
 

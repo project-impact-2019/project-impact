@@ -161,13 +161,12 @@ class Comment(models.Model):
 
 class Goal(models.Model):
     """Model representing the goal board."""
-    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, null=True, blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.name
+        return self.description
 
 
 class Resource(models.Model):

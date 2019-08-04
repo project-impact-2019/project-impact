@@ -55,6 +55,9 @@ body{
 
 }
 
+.goal-completed{
+    background: grey;
+}
 
 
 .profile{

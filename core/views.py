@@ -186,15 +186,20 @@ def generateToken(identity):
     api_sid          = settings.TWILIO_API_SID
     api_secret       = settings.TWILIO_API_SECRET
 
-# Create access token with credentials
+    # Create access token with credentials
     token = AccessToken(account_sid, api_sid, api_secret, identity=identity)
 
- # Create a Sync grant and add to token
+    # Create a Sync grant and add to token
     if sync_service_sid:
         sync_grant = SyncGrant(service_sid=sync_service_sid)
         token.add_grant(sync_grant)
 
-# Return token info as JSON
+    # Create a Chat grant and add to token
+    if chat_service_sid:
+        chat_grant = ChatGrant(service_sid=chat_service_sid)
+        token.add_grant(chat_grant)
+
+    # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
 
 

@@ -62,28 +62,6 @@ class User(AbstractUser):
         choices=EDUCATION_CHOICES,
         default=NONE
     )
-            
-    # def save (self, *args, **kwargs):
-    #     if self.is_superuser: self.is_active=True
-    #     return super().save(*args, **kwargs)
-
-
-    #     def save (self, *args, **kwargs):
-    # # Only when we update an element. Not when we create it
-    #     if self.pk:
-    #     # We get the old values of the model
-    #         old = User.objects.get(pk=self.pk)
-    #     # If it's approved and it wasn't before
-    #         if self.is_active == True and old.is_active == False:
-    #             send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now.', 'projectimpact919@gmail.com',
-    #             [self.email_address], fail_silently=False)
-    #     super(User, self).save(*args, **kwargs)
-
-
-
-    # def save (self, *args, **kwargs):
-    #     if self.is_superuser: self.is_active=True
-    #     return super().save(*args, **kwargs)
 
     def save (self, *args, **kwargs):
         if self.pk:

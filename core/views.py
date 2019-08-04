@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
 from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal
 import json
@@ -11,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
-from core.forms import MenteeSignUpForm, MentorSignUpForm
+from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 User = get_user_model()
@@ -146,28 +145,41 @@ def user_profile(request, user_id):
    
 
 #Goal Views
+def goal_list_view(request):
+    goal_list = Goal.objects.order_by('id')
 
-def goal_view(request):
-    goal = Goal.objects.get
+    form = GoalForm()
+
 
     context={
-        'goal': goal,
+        'goal_list': goal_list,
+        'form': form
     }
     
-    return render(request, 'core/goal_detail.html', context=context)
+    return render(request, 'core/goal_list.html', context=context)
+
+@require_POST
+def addGoal(request):
+    form = GoalForm(request.POST)
+    
+    if form.is_valid():
+        new_description = Goal(description=request.POST['description'])
+        new_description.save()
+
+    return redirect('goal_list')
 
 
 
-def goal_detail(request, pk):
-    goal = Goal.objects.get(pk=pk)
+# def goal_detail(request, pk):
+#     goal = Goal.objects.get(pk=pk)
     
 
-    context = {
-        'goal': goal,
+#     context = {
+#         'goal': goal,
 
-    }
+#     }
 
-    return render(request, 'core/goal_detail.html', context=context)
+#     return render(request, 'core/goal_detail.html', context=context)
 
 # Twilio Chat
 

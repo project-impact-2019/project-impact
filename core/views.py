@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -14,6 +14,7 @@ from core.filters import BlogPostFilter, ResourceFilter
 from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.http import HttpResponse
 User = get_user_model()
 
 # Twilio Chat
@@ -191,6 +192,14 @@ def deleteAll(request):
 
 # Twilio Chat
 
+def chatrooms(request):
+    chatrooms = Chat.objects.all()
+    return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
+
+def chatroom_detail(request, slug):
+    chatroom = Chat.objects.get(slug=slug)
+    return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
+
 def app(request):
     return render(request, 'twilio/chat.html')
 
@@ -247,3 +256,18 @@ def create_pair(request):
 class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
+
+@login_required
+def add_new_goal(request):
+    print('goal')
+    from core.forms import GoalForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = GoalForm(request.POST)
+        if form.is_valid():
+            goal = form.save(commit=False)
+            goal.person = Person.objects.get(user=request.user)
+            form.save()
+    else:
+        form = GoalForm()
+    return HttpResponse()

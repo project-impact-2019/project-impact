@@ -7,6 +7,7 @@
                 <li><a  href="{% url 'auth_logout' %}" title="Log out">Logout</a></li>
         {% else %}
                 <li><a href="{% url 'auth_login' %}" title="Login">Login</a></li>
+<<<<<<< HEAD
         {% comment %}<li><a href="{% url 'registration_register' %}" title="Register">Register</a></li>{% endcomment %}
         {% endif %}
         <li><a href="{% url 'give_back' %}" title="give_back"> Support</a></li>
@@ -19,3 +20,12 @@
         <div class="line"></div>
       </div>
 </nav>
+=======
+                {% endif %}
+                <li><a href="{% url 'give_back' %}" title="give_back"> Support</a></li>
+                <li><a href="{% url 'resource' %}" title="resource">Resources</a></li>
+                <li><a href="{% url 'blog' %}" title="blog posts">Blogs</a></li>
+        </ul>
+    
+</nav>
+>>>>>>> 52680221cc24017cd385125055fa7dbc05da72c0

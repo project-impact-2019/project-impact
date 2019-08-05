@@ -194,8 +194,10 @@ def app(request):
 
 @login_required
 def token(request):
-    fake = Factory.create()
-    return generateToken(fake.user_name())
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.get_username()
+    return generateToken(username)
 
 def generateToken(identity):
     # Get credentials from environment variables

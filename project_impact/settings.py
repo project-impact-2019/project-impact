@@ -52,6 +52,9 @@ INSTALLED_APPS = [
     'django_filters',
     'phonenumber_field',
 
+    #crispy-forms
+    'crispy_forms',
+
 ]
 
 # Custom User Authentication
@@ -176,6 +179,8 @@ TWILIO_CHAT_SID = os.environ['TWILIO_CHAT_SID']
 TWILIO_SYNC_SID = os.environ['TWILIO_SYNC_SID']
 TWILIO_API_SID = os.environ['TWILIO_API_SID']
 TWILIO_API_SECRET = os.environ['TWILIO_API_SECRET']
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 

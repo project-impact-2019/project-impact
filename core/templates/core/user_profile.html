@@ -8,7 +8,7 @@
                 <p>Role: {{user.person.role}}</p> 
         </div>
 </section>
-<!-- <section class='chat-mentor'>
+<section class='chat-mentor'>
         <div class='mentor-list'>
                 {% for pair in user.person.pairs %}
                 {% if user.person.role == 'mentor' %}
@@ -21,59 +21,22 @@
         <div class="buttons index-buttons">
                 <a  href="{% url 'twilio' %}" title="Chat">Chat Test</a>
        </div>
-</section> -->
+</section>
 
 <section class="goals">
         
-        <div class="buttons index-buttons">
-                <a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a>
-        </div>
-        <form action="{% url 'add_goal' %}" method="POST" role="form">
-                        {% csrf_token %}
-                        <div class="form green">
-                            <div class="purple">
-                              {{ form.description }}
-                              <span class="">
-                                  <button type="submit" class="button">ADD</button>
-                              </span>
-                            </div>
-                        </div>
-                    </form>
-        
-                    <div class='blue'>
-                        <div class='purple'>
-                            <div class='green'>
-                                <div class="blue">
-                                    <a href="{% url 'delete_completed' %}"><button class='blue' type="button" class="button">
-                                        <i class="fa fa-trash" aria-hidden="true"></i> DELETE COMPLETED
-                                    </button></a>
-                                </div>
-                                <div class="blue">
-                                    <a href="{% url 'delete_all' %}"><button type="button" class="button">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>DELETE ALL
-                                    </button></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <ul class='list fs12 white'>
-                        {% for goal in goal_list %}
-                            {% if goal.completed %}
-                                <li class='goal-completed'>{{ goal.description }}</li>
-                           {% else %}
-                                 <a class="link" href="{% url 'completed' goal.id %}"><li>{{ goal.description }}</li></a>
-                            {% endif %}
-                        {% endfor %}
-                    </ul>
+<div class="buttons index-buttons">
+ <a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a>
+</div>
+    
 </section>
-<!-- 
+
 <section class="forum">
         <div class="forum"></div>
         {% if request.user.is_superuser or request.user.is_admin %}
         <div class="admin-pair">
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
+                <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
         </div>
-</section> -->
+</section>
 {% endif %}
 {% endblock %}

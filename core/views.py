@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -133,20 +134,21 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-#Profile
+
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
   
     context={
         'user': user,
-    
     }
     return render(request, 'core/user_profile.html', context)
    
 
 #Goal Views
+
+
 def goal_list_view(request):
-    goal_list = Goal.objects.order_by('id')
+    goal_list = Goal.objects.order_by('user')
 
     form = GoalForm()
 
@@ -156,7 +158,7 @@ def goal_list_view(request):
         'form': form
     }
     
-    return render(request, 'core/user_profile', context=context)
+    return render(request, 'core/goal_list', context=context)
 
 @require_POST
 def addGoal(request):
@@ -166,25 +168,25 @@ def addGoal(request):
         new_description = Goal(description=request.POST['description'])
         new_description.save()
 
-    return redirect('user_profile')
+    return redirect('goal_list')
 
 def completedGoal(request, goal_id):
     goal = Goal.objects.get(pk=goal_id)
     goal.completed = True
     goal.save()
 
-    return redirect('user_profile')
+    return redirect('goal_list')
 
 def deleteCompleted(request):
     Goal.objects.filter(completed__exact=True).delete()
 
-    return redirect('user_profile')
+    return redirect('goal_list')
 
 
 def deleteAll(request):
     Goal.objects.all().delete()
 
-    return redirect('user_profile')
+    return redirect('goal_list')
 
 
 # Twilio Chat

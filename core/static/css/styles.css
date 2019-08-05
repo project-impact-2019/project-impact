@@ -63,6 +63,7 @@ body {
     text-align: justify;
     padding-bottom: 30px;
     margin: 0 20px;
+    display: grid;
 
 }
 
@@ -74,6 +75,7 @@ body {
     background:#F1EFEF;
     margin-bottom: 20px;
     border-radius: 10px;
+    padding: 15px;
     
 }
 
@@ -81,6 +83,7 @@ body {
     background:#F1EFEF;
     margin-bottom: 20px;
     border-radius: 10px;
+    padding: 10px;
 }
 
 /* Support Page */
@@ -197,14 +200,22 @@ nav{
 .logo{
     color: var(--white);
     font-size: 2em;
+    margin-left: 50px;
 
+
+}
+
+.logo a{
+    color: var(--white);
+    text-decoration: none;
 }
 
 .nav-links{
     display: flex;
-    width:40%;
+    width:50%;
     justify-content: space-around;
     list-style: none;
+    margin-left: auto;
 }
 
 .nav-links a{
@@ -218,14 +229,28 @@ nav{
 
 
 /* Media Queries */
+
+@media only screen  and (min-width:767px){
+   .index-page{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2em;
+   }
+
+   .mentee-index, .mentor-index{
+       padding: 15px;
+   }
+
+
+}
 @media only screen and (max-width: 1024px){
     .nav-links{
-        width: 50%;
+        width: 60%;
     }
 
 }
 
 @media only screen and (max-width: 767px) {
+
 
    .line{
         width: 30px;

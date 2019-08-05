@@ -58,7 +58,7 @@ body {
     text-align: center;
 }
 
-.content{
+.index-page{
     padding: 25px;
     text-align: justify;
     padding-bottom: 30px;
@@ -217,13 +217,7 @@ nav{
 
 
 
-
-
-
-
-
-
-/* Navegation Media Queries */
+/* Media Queries */
 @media only screen and (max-width: 1024px){
     .nav-links{
         width: 50%;

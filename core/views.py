@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -13,6 +14,7 @@ from core.filters import BlogPostFilter, ResourceFilter
 from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.http import HttpResponse
 User = get_user_model()
 
 # Twilio Chat
@@ -133,20 +135,21 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-#Profile
+
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
   
     context={
         'user': user,
-    
     }
     return render(request, 'core/user_profile.html', context)
    
 
 #Goal Views
+
+
 def goal_list_view(request):
-    goal_list = Goal.objects.order_by('id')
+    goal_list = Goal.objects.order_by('user')
 
     form = GoalForm()
 
@@ -156,7 +159,7 @@ def goal_list_view(request):
         'form': form
     }
     
-    return render(request, 'core/goal_list.html', context=context)
+    return render(request, 'core/goal_list', context=context)
 
 @require_POST
 def addGoal(request):
@@ -253,3 +256,18 @@ def create_pair(request):
 class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
+
+@login_required
+def add_new_goal(request):
+    print('goal')
+    from core.forms import GoalForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = GoalForm(request.POST)
+        if form.is_valid():
+            goal = form.save(commit=False)
+            goal.person = Person.objects.get(user=request.user)
+            form.save()
+    else:
+        form = GoalForm()
+    return HttpResponse()

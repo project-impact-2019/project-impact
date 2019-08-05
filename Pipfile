@@ -21,7 +21,7 @@ django-heroku = "*"
 twilio = "*"
 honcho = "*"
 faker = "*"
-
+django-crispy-forms = "*"
 
 [requires]
 python_version = "3.7"

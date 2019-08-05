@@ -11,6 +11,7 @@
     --body-bg:#F9F9F9;
     --white:#F8F4F4;
     --black: #252424;
+    --div-bg:#F9F4F4;
 }
 
 body {
@@ -72,7 +73,7 @@ body {
 }
 
 .mentor-index{
-    background:#F1EFEF;
+    background: var(--div-bg);
     margin-bottom: 20px;
     border-radius: 10px;
     padding: 15px;
@@ -80,7 +81,7 @@ body {
 }
 
 .mentee-index{
-    background:#F1EFEF;
+    background: var(--div-bg);
     margin-bottom: 20px;
     border-radius: 10px;
     padding: 10px;
@@ -181,6 +182,19 @@ body {
 .sidepage-detail p{
     font-size: 1.2em;
 }
+
+/* Forms */
+.forms{
+    margin: 0 auto;
+}
+
+.custom-bg{
+    background: var(--red);
+    color: var(--white);
+}
+
+
+
 
 /* Profile */
 

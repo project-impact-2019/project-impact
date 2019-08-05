@@ -1,42 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<section class='user-profile'>
-        <div class="profile">
-                <h2>Username: {{user}}</h2>
-                <p>Name: {{user.person.first_name}}</p>
-                <p>Role: {{user.person.role}}</p> 
-        </div>
-</section>
-<section class='chat-mentor'>
-        <div class='mentor-list'>
-                {% for pair in user.person.pairs %}
-                {% if user.person.role == 'mentor' %}
-                   <p>You are paired with: {{pair.mentee}}</p>
-                {% else %}
-                   <p> You are paired with: {{pair.mentor}}</p>
-                {% endif %}
-                {% endfor %}
-        </div>
-        <div class="buttons index-buttons">
-                <a  href="{% url 'twilio' %}" title="Chat">Chat Test</a>
-       </div>
-</section>
+<div class="profile">
+        <h2>Username: {{user}}</h2>
+        <p>Name: {{user.person.first_name}}</p>
+        <p>Role: {{user.person.role}}</p> 
+        {% for pair in user.person.pairs %}
+        {% if user.person.role == 'mentor' %}
+        <p>You are paired with: {{pair.mentee}}</p>
+        {% else %}
+        <p> You are paired with: {{pair.mentor}}</p>
+        {% endif %}
+        {% endfor %}
+</div> 
 
-<section class="goals">
+<!-- <div class="visual-board profile">
+        <div class="buttons index-buttons"><a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a></div>
         
-<div class="buttons index-buttons">
- <a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a>
-</div>
-    
-</section>
+</div> -->
 
-<section class="forum">
-        <div class="forum"></div>
-        {% if request.user.is_superuser or request.user.is_admin %}
-        <div class="admin-pair">
-                <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
-        </div>
-</section>
-{% endif %}
+
+
+
+
+<h1 class="title">Add a goal</h1>
+<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+        <textarea class="newGoal" placeholder='Add Goal'></textarea>
+        <button type="submit"> Submit </button>
+</form>
+
+
+<!-- <div class="chat-board">
+        <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">Chat Test</a></div>
+</div>
+<div class="forum"></div>
+{% if request.user.is_superuser or request.user.is_admin %}
+<div class="admin-pair">
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
+</div> -->
+<!-- {% endif %} -->
 {% endblock %}

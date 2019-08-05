@@ -14,6 +14,7 @@ from core.filters import BlogPostFilter, ResourceFilter
 from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
+from django.http import HttpResponse
 User = get_user_model()
 
 # Twilio Chat
@@ -247,3 +248,18 @@ def create_pair(request):
 class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
+
+@login_required
+def add_new_goal(request):
+    print('goal')
+    from core.forms import GoalForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = GoalForm(request.POST)
+        if form.is_valid():
+            goal = form.save(commit=False)
+            goal.person = Person.objects.get(user=request.user)
+            form.save()
+    else:
+        form = GoalForm()
+    return HttpResponse()

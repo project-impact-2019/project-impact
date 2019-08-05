@@ -4,7 +4,7 @@
             <div class="line"></div>
             <div class="line"></div>
         </div>
-        <div class='logo'>Project Impact</div>
+        <div class='logo'><a href="{% url 'index' %}" title='Home'>Project Impact</a></div>
         <ul class='nav-links'>
                 <li><a href="{% url 'index' %}" title='Home'>Home</a></li>
                 {% if request.user.is_authenticated %}

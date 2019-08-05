@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost, User, Questionnaire, Person, Category, Pair
+from .models import BlogPost, User, Questionnaire, Person, Category, Pair, Goal
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from phonenumber_field.formfields import PhoneNumberField
@@ -119,3 +119,4 @@ class PairForm(forms.ModelForm):
 class GoalForm(forms.Form):
     description = forms.CharField(max_length=200, 
     widget=forms.TextInput(attrs={'class': 'form'}))
+

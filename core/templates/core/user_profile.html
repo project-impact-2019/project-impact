@@ -19,10 +19,6 @@
         
 </div> -->
 
-
-
-
-
 <h1 class="title">Add a goal</h1>
 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
         <textarea class="newGoal" placeholder='Add Goal'></textarea>
@@ -30,13 +26,15 @@
 </form>
 
 
-<!-- <div class="chat-board">
-        <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">Chat Test</a></div>
+<div class="chat-board">
+                <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Chatrooms</a></div>
 </div>
 <div class="forum"></div>
+
+
 {% if request.user.is_superuser or request.user.is_admin %}
 <div class="admin-pair">
         <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
-</div> -->
-<!-- {% endif %} -->
+</div>
+{% endif %}
 {% endblock %}

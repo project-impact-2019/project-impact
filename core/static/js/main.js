@@ -12,7 +12,7 @@ function qAll (selector) {
 const hamburger = q('.hamburger');
 const navLinks = q('.nav-links');
 const links = qAll('.nav-links li');
-
+const newGoal = q('.new_goal')
 
 // Main execution
 document.addEventListener('DOMContentLoaded', function() {
@@ -25,4 +25,22 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+});
+
+newGoal.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log(newGoal)
+    $.ajax({
+        type: 'POST',
+        url: $("#new_goal").attr('action'),
+        data: {
+            'description': $('.newGoal').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        dataType: 'json',
+        success: function (data) {
+            console.log('Success')
+            // $(".answers").load(" .answers")
+        }
+    });
 });

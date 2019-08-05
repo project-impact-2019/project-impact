@@ -186,10 +186,14 @@ class Goal(models.Model):
     def __str__(self):
         """String for representing the Model object."""
         return self.description
+    
+    def get_absolute_url(self):
+        """Returns the url to access a detail record for this resource."""
+        return reverse('goal-detail', args=[str(self.id)])
 
 class Step(models.Model):
     """Model representing the steps for each goal"""
-    goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE, related_name = 'steps')
     step = models.CharField(max_length=200, null=True, blank=True)
     done = models.BooleanField(default=False)
     date_done = models.DateTimeField(auto_now_add=True)

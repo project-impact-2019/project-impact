@@ -14,11 +14,17 @@
         {% endfor %}
 </div> 
 
-<!-- <div class="visual-board profile">
-        <div class="buttons index-buttons"><a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a></div>
-        
-</div> -->
-
+{% for goal in goals_by_user %}
+<br>
+<ul> <a href=""></a>{{ goal.description }}</a> </ul>
+{% for step in goal.steps.all %}  
+      <li>{{ step }}</li>
+{% endfor %}
+<form class='new_step' method='post' data-goal={{goal.pk}} action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                <textarea class="newStep" placeholder='Add Step'></textarea>
+                <button type="submit"> Submit </button>
+</form>
+{% endfor %}
 
 
 
@@ -28,6 +34,7 @@
         <textarea class="newGoal" placeholder='Add Goal'></textarea>
         <button type="submit"> Submit </button>
 </form>
+
 
 
 <!-- <div class="chat-board">

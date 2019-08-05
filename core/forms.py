@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost, User, Questionnaire, Person, Category, Pair, Goal
+from .models import BlogPost, User, Questionnaire, Person, Category, Pair, Goal, Step
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from phonenumber_field.formfields import PhoneNumberField
@@ -127,3 +127,8 @@ class GoalForm(forms.ModelForm):
         model = Goal
         fields = ('description',)
 
+class StepForm(forms.ModelForm):
+
+    class Meta:
+        model = Step
+        fields = ('step',)

@@ -14,6 +14,7 @@ const hamburger = q('.hamburger');
 const navLinks = q('.nav-links');
 const links = qAll('.nav-links li');
 const newGoal = q('.new_goal')
+const newStep = qAll('.new_step')
 
 // Main execution
 document.addEventListener('DOMContentLoaded', function() {
@@ -45,4 +46,27 @@ newGoal.addEventListener('submit', function (e) {
         }
     });
 });
+
+
+newStep.forEach(item => {
+    item.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log(item.action)
+    console.log(item.dataset.goal)
+    $.ajax({
+        type: 'POST',
+        url: item.action,
+        data: {
+            'goal': item.dataset.goal,
+            'step': $(item).find('.newStep').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        // dataType: 'json',
+        success: function (data) {
+            console.log('Success')
+            // $(".answers").load(" .answers")
+        }
+    });
+});
+})
 },{}]},{},[1]);

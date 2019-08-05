@@ -15,12 +15,18 @@
 </div>
 
 <div class="visual-board profile">
+        <div class="buttons index-buttons"><a  href="{% url 'goal_list' %}" title="Goalboard">Goalboard Test</a></div>
     
-   
 </div>
 
 
-<div class="chat-board"></div>
+<div class="chat-board">
+        <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">Chat Test</a></div>
+</div>
 <div class="forum"></div>
+
+<div class="admin-pair">
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
+</div>
 
 {% endblock %}

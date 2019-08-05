@@ -226,15 +226,18 @@ def generateToken(identity):
 
 @login_required
 def create_pair(request):
-    from core.forms import PairForm
-    from django.views.generic.edit import CreateView
-    if request.method == "POST":
-        form = PairForm(request.POST)
-        if form.is_valid():
-            # blog = form.save(commit=False)
-            form.save()
-            return redirect('index')
+    if request.user.is_superuser or request.user.is_admin:
+        from core.forms import PairForm
+        from django.views.generic.edit import CreateView
+        if request.method == "POST":
+            form = PairForm(request.POST)
+            if form.is_valid():
+                # blog = form.save(commit=False)
+                form.save()
+                return redirect('index')
+        else:
+            form = PairForm()
+        return render(request, 'core/new_pair_form.html', {'form': form})
     else:
-        form = PairForm()
-    return render(request, 'core/new_pair_form.html', {'form': form})
+        return redirect('index')
 

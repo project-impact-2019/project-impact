@@ -156,7 +156,7 @@ def goal_list_view(request):
         'form': form
     }
     
-    return render(request, 'core/goal_list.html', context=context)
+    return render(request, 'core/user_profile', context=context)
 
 @require_POST
 def addGoal(request):
@@ -166,25 +166,25 @@ def addGoal(request):
         new_description = Goal(description=request.POST['description'])
         new_description.save()
 
-    return redirect('goal_list')
+    return redirect('user_profile')
 
 def completedGoal(request, goal_id):
     goal = Goal.objects.get(pk=goal_id)
     goal.completed = True
     goal.save()
 
-    return redirect('goal_list')
+    return redirect('user_profile')
 
 def deleteCompleted(request):
     Goal.objects.filter(completed__exact=True).delete()
 
-    return redirect('goal_list')
+    return redirect('user_profile')
 
 
 def deleteAll(request):
     Goal.objects.all().delete()
 
-    return redirect('goal_list')
+    return redirect('user_profile')
 
 
 # Twilio Chat

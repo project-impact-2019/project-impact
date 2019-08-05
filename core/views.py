@@ -1,3 +1,4 @@
+from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -134,20 +135,21 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-#Profile
+
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
   
     context={
         'user': user,
-    
     }
     return render(request, 'core/user_profile.html', context)
    
 
 #Goal Views
+
+
 def goal_list_view(request):
-    goal_list = Goal.objects.order_by('id')
+    goal_list = Goal.objects.order_by('user')
 
     form = GoalForm()
 
@@ -157,7 +159,7 @@ def goal_list_view(request):
         'form': form
     }
     
-    return render(request, 'core/goal_list.html', context=context)
+    return render(request, 'core/goal_list', context=context)
 
 @require_POST
 def addGoal(request):

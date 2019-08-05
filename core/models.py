@@ -180,6 +180,8 @@ class Goal(models.Model):
     description = models.CharField(max_length=120, null=True, blank=True)
     completed = models.BooleanField(default=False)
     date_completed = models.DateTimeField(auto_now_add=True)
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+
 
     def __str__(self):
         """String for representing the Model object."""
@@ -191,7 +193,8 @@ class Step(models.Model):
     step = models.CharField(max_length=200, null=True, blank=True)
     done = models.BooleanField(default=False)
     date_done = models.DateTimeField(auto_now_add=True)
-    
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+
     def __str__(self):
         """String for representing the Model object."""
         return self.step

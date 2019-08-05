@@ -177,12 +177,24 @@ class Comment(models.Model):
 
 class Goal(models.Model):
     """Model representing the goal board."""
-    description = models.CharField(max_length=200, null=True, blank=True)
+    description = models.CharField(max_length=120, null=True, blank=True)
     completed = models.BooleanField(default=False)
+    date_completed = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """String for representing the Model object."""
         return self.description
+
+class Step(models.Model):
+    """Model representing the steps for each goal"""
+    goal = models.ForeignKey(Goal, on_delete=models.CASCADE)
+    step = models.CharField(max_length=200, null=True, blank=True)
+    done = models.BooleanField(default=False)
+    date_done = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        """String for representing the Model object."""
+        return self.step
 
 
 class Resource(models.Model):

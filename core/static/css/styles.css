@@ -10,6 +10,7 @@
     --red: #8E0A18;
     --body-bg:#F9F9F9;
     --white:#F8F4F4;
+    --black: #252424;
 }
 
 body {
@@ -52,6 +53,7 @@ body {
     
 }
 
+/* Index Page */
 .header-div{
     text-align: center;
 }
@@ -80,6 +82,106 @@ body {
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+/* Support Page */
+
+.support{
+    display: grid;
+    grid-gap: 30px;
+    margin: 0 20px;
+}
+
+.support-header h2{
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
+.support-content{
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
+.support-content ul{
+    grid-column: 2;
+    list-style: none;
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+.support-content a{
+    color: var(--black);
+}
+
+.support-content a:hover{
+    color: var(--red);
+}
+
+/* Resources  & Blog List view*/
+
+.sidepage-content{
+    display: grid;
+    grid-gap: 30px;
+    margin: 0 20px;
+
+}
+
+.sidepage-header h2{
+    text-align: center;
+    margin: 30px 0;
+    padding: 20px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
+.sidepage-list{
+    display: grid;
+    grid-template-columns: 80px 1fr 80px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
+.sidepage-list ul{
+    grid-column: 2;
+    list-style: none;
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+.sidepage-list ul{
+    grid-column: 2;
+    list-style: none;
+    padding: 20px;
+    font-size: 1.5em;
+}
+
+.sidepage-list a{
+    color: var(--black);
+}
+
+.sidepage-list a:hover{
+    color: var(--red);
+}
+
+.sidepage-detail{
+    display: grid;
+    grid-gap: 2px;
+    margin: 20px 20px;
+    text-align: justify;
+
+}
+
+.sidepage-detail p{
+    font-size: 1.2em;
+}
+
+/* Profile */
+
+
 
 /* Navegation styling desktop first */
 
@@ -111,11 +213,17 @@ nav{
     font-size: 1.2em;
     letter-spacing: .1em;
 
-
 }
 
 
-/* Media Queries */
+
+
+
+
+
+
+
+/* Navegation Media Queries */
 @media only screen and (max-width: 1024px){
     .nav-links{
         width: 50%;
@@ -200,6 +308,3 @@ nav{
 
 }
 
-
-
-  }

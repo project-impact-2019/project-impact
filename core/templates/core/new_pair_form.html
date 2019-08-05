@@ -16,10 +16,12 @@
     <h2>Existing Pairs</h2>
     {% if pair_list %}
     <ul>
-      {% for pair in pair_list.all %}
+      {% for pair in pair_list %}
+        {% for pair in person.pair %}
         <li>
-          {{ pair.mentor }} - {{ pair.mentee }}
+            {{ pair }}
         </li>
+        {% endfor %}
       {% endfor %}
     </ul>
     {% else %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from core.models import Forum, Chat, Pair, Comment, Resource, Goal, Category, BlogPost, User, Person, Questionnaire
+from core.models import Forum, Chat, Pair, Comment, Resource, Goal, Category, BlogPost, User, Person, Questionnaire, Step
 
 
 
@@ -49,4 +49,8 @@ class BlogPostAdmin(admin.ModelAdmin):
 
 @admin.register(Questionnaire)
 class QuestionnaireAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Step)
+class StepAdmin(admin.ModelAdmin):
     pass

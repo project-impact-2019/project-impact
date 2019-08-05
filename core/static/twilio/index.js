@@ -9,7 +9,7 @@ $(function() {
   // will have in this sample app
   var generalChannel;
 
-  // The server will assign the client a random username - store that value
+  // The server obtain the username of logged in user - store that value
   // here
   var username;
 
@@ -37,7 +37,7 @@ $(function() {
     $chatWindow.scrollTop($chatWindow[0].scrollHeight);
   }
 
-  // Alert the user they have been assigned a random username
+  // Alert the user they have been logged in
   print('Logging in...');
 
   // Get an access token for the current user, passing a username (identity)
@@ -54,9 +54,9 @@ $(function() {
       chatClient = client;
       chatClient.getSubscribedChannels().then(createOrJoinGeneralChannel);
 
-    // Alert the user they have been assigned a random username
+    // Alert the user they have been logged in
     username = data.identity;
-    print('You have been assigned a random username of: '
+    print('You are logged in to chat: '
     + '<span class="me">' + username + '</span>', true);
 
     }).catch(error => {
@@ -69,7 +69,7 @@ $(function() {
   function createOrJoinGeneralChannel() {
     // Get the general chat channel, which is where all the messages are
     // sent in this simple application
-    print('Attempting to join "general" chat channel...');
+    print('Welcome to the chat. Proceed to chat...');
     chatClient.getChannelByUniqueName('general')
     .then(function(channel) {
       generalChannel = channel;

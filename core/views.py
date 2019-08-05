@@ -168,18 +168,24 @@ def addGoal(request):
 
     return redirect('goal_list')
 
+def completedGoal(request, goal_id):
+    goal = Goal.objects.get(pk=goal_id)
+    goal.completed = True
+    goal.save()
+
+    return redirect('goal_list')
+
+def deleteCompleted(request):
+    Goal.objects.filter(completed__exact=True).delete()
+
+    return redirect('goal_list')
 
 
-# def goal_detail(request, pk):
-#     goal = Goal.objects.get(pk=pk)
-    
+def deleteAll(request):
+    Goal.objects.all().delete()
 
-#     context = {
-#         'goal': goal,
+    return redirect('goal_list')
 
-#     }
-
-#     return render(request, 'core/goal_detail.html', context=context)
 
 # Twilio Chat
 
@@ -188,8 +194,10 @@ def app(request):
 
 @login_required
 def token(request):
-    fake = Factory.create()
-    return generateToken(fake.user_name())
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.get_username()
+    return generateToken(username)
 
 def generateToken(identity):
     # Get credentials from environment variables

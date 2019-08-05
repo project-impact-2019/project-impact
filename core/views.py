@@ -241,3 +241,7 @@ def create_pair(request):
     else:
         return redirect('index')
 
+
+class PairListView(generic.ListView):
+    """View for Pair List"""
+    model = Pair

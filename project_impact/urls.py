@@ -49,14 +49,25 @@ urlpatterns = [
 
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
+    path('newpair/', core_views.create_pair, name='create_pair'),
 
     #  New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
     path('accounts/signup/mentor/', core_views.MentorSignUpView.as_view(), name='mentor_signup'),
     path('success/', core_views.success, name='success'),
 
+
+    #Goal
+    path('goal/', core_views.goal_list_view, name='goal_list'),
+    path('goal/add', core_views.addGoal, name='add_goal'),
+    path('goal/completed<goal_id>', core_views.completedGoal, name='completed'),
+    path('goal/deletecomplete', core_views.deleteCompleted, name='delete_completed'),
+    path('goal/deleteall', core_views.deleteAll, name='delete_all'),
+  
+   
     # Chat app
     path(r'', include('core.urls')),
+
 ]
 
 # Django Debug Toolbar

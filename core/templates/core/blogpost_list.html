@@ -5,16 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<div class="list-content">
-  <h1>Blog List</h1>
+<div class="sidepage-content">
+    <div class='sidepage-header'><h2>Blog List</h2></div>
   {% if blogpost_list %}
+  <div class="sidepage-list">
   <ul>
     {% for blog in blogpost_list %}
       <li>
-        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> ({{blog.author}})
+        <a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a> </br>
       </li>
     {% endfor %}
   </ul>
+</div>
   {% else %}
     <p>There are no blogs! :(.</p>
   {% endif %}
@@ -36,16 +38,19 @@
     {% endif %}
  
   {% endblock %} 
-  <a href="{% url 'add_new_blog'%}">Add a new blog!</a> 
-  <a href="{% url 'search_blog'%}">Search for a blog!</a>
+  <div class="buttons">
+    <a href="{% url 'add_new_blog'%}">Add a new post</a> 
+  </div>
+  <div class="buttons">
+    <a href="{% url 'search_blog'%}">Search for a post</a>
+  </div>
 
-
+{% comment %}
  <form action='/search/'>
   <input type="search" name='q' placeholder='Search' aria-label="Search">
   <button type="submit">Search</button>
-
-
  </form>
+ {% endcomment %}
 
 </div>
   {% endblock %}

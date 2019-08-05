@@ -1,15 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">Create a pair connection</h1>
-<div class="blog-form">
+<h1 class="title">Create a Mentor/Mentee Pair</h1>
+<div class="pair-form">
 <form action="" method="post">
     {% csrf_token %}
     <table class="table-form">
     {{ form.as_table }}
     </table>
-    <input class="add-blog" type="submit" value="Add Blog">
+    <input class="add-pair" type="submit" value="Create Pair">
     <br><br>
   </form>
+</div>
+<div class="existing-pairs">
+    <h2>Existing Pairs</h2>
+    {% if pair_list %}
+    <ul>
+      {% for pair in pair_list.all %}
+        <li>
+          {{ pair.mentor }} - {{ pair.mentee }}
+        </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no pairs yet! :(</p>
+    {% endif %}
 </div>
   {% endblock %}

@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block content %}
-<div class='grid-detail'>
-  <h1>{{ resource.title }}</h1>
-  <p>{{ resource.date_posted }}</p></br>
-  <p class='fs'> {{ resource.description|linebreaksbr }}</p>
+<div class='sidepage-detail'>
+    <h1>{{ resource.title }}</h1>
+    <p>{{ resource.date_posted }}</p></br>
+    <p class='fs'> {{ resource.description|linebreaksbr }}</p>
+    <a href="{{resources.url_address}}">for more information</a>
   </div>
 {% endblock %}

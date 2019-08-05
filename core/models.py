@@ -62,20 +62,36 @@ class User(AbstractUser):
         choices=EDUCATION_CHOICES,
         default=NONE
     )
+            
+    # def save (self, *args, **kwargs):
+    #     if self.is_superuser: self.is_active=True
+    #     return super().save(*args, **kwargs)
+
+
+    #     def save (self, *args, **kwargs):
+    # # Only when we update an element. Not when we create it
+    #     if self.pk:
+    #     # We get the old values of the model
+    #         old = User.objects.get(pk=self.pk)
+    #     # If it's approved and it wasn't before
+    #         if self.is_active == True and old.is_active == False:
+    #             send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now.', 'projectimpact919@gmail.com',
+    #             [self.email_address], fail_silently=False)
+    #     super(User, self).save(*args, **kwargs)
+
+
+
+    # def save (self, *args, **kwargs):
+    #     if self.is_superuser: self.is_active=True
+    #     return super().save(*args, **kwargs)
 
     def save (self, *args, **kwargs):
-        if self.is_superuser: self.is_active=True
-        return super().save(*args, **kwargs)
-
-    def save (self, *args, **kwargs):
-    # Only when we update an element. Not when we create it
         if self.pk:
-        # We get the old values of the model
             old = User.objects.get(pk=self.pk)
-        # If it's approved and it wasn't before
             if self.is_active == True and old.is_active == False:
                 send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now.', 'projectimpact919@gmail.com',
                 [self.email_address], fail_silently=False)
+        if self.is_superuser: self.is_active=True
         super(User, self).save(*args, **kwargs)
 
 
@@ -106,7 +122,7 @@ class Person(models.Model):
 
     def __str__(self):
       """Returns human-readable representation of the model instance."""
-      return self.first_name
+      return self.user.username
 
     @property
     def pairs(person):
@@ -161,14 +177,12 @@ class Comment(models.Model):
 
 class Goal(models.Model):
     """Model representing the goal board."""
-    name = models.TextField(max_length=255 )
-    pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
-    how_to_achieve = models.TextField(max_length=500)
+    description = models.CharField(max_length=200, null=True, blank=True)
     completed = models.BooleanField(default=False)
 
     def __str__(self):
         """String for representing the Model object."""
-        return self.name
+        return self.description
 
 
 class Resource(models.Model):

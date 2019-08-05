@@ -116,7 +116,14 @@ class PairForm(forms.ModelForm):
         self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
         self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
     
-class GoalForm(forms.Form):
-    description = forms.CharField(max_length=200, 
-    widget=forms.TextInput(attrs={'class': 'form'}))
+
+# class GoalForm(forms.Form):
+#     description = forms.CharField(max_length=200, 
+#     widget=forms.TextInput(attrs={'class': 'form'}))
+
+class GoalForm(forms.ModelForm):
+
+    class Meta:
+        model = Goal
+        fields = ('description',)
 

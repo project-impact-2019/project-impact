@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<div class="container-wrapper red profile">	
+<!-- <div class="container-wrapper profile">	 -->
     <div class='green'>
-        <div>
+        <div class='red'>
             <h2>WHAT IS YOUR GOAL TODAY?</h2>
             <form action="{% url 'add_goal' %}" method="POST" role="form">
                 {% csrf_token %}
-                <div class="form">
-                    <div class="input-group">
+                <div class="form green">
+                    <div class="purple">
                       {{ form.description }}
                       <span class="">
                           <button type="submit" class="button">ADD</button>
@@ -18,15 +18,15 @@
                 </div>
             </form>
 
-            <div>
-                <div>
-                    <div>
-                        <div class="">
-                            <a href="{% url 'delete_completed' %}"><button type="button" class="button">
+            <div class='blue'>
+                <div class='purple'>
+                    <div class='green'>
+                        <div class="blue">
+                            <a href="{% url 'delete_completed' %}"><button class='blue' type="button" class="button">
                                 <i class="fa fa-trash" aria-hidden="true"></i> DELETE COMPLETED
                             </button></a>
                         </div>
-                        <div class="">
+                        <div class="blue">
                             <a href="{% url 'delete_all' %}"><button type="button" class="button">
                                 <i class="fa fa-trash" aria-hidden="true"></i>DELETE ALL
                             </button></a>
@@ -45,7 +45,7 @@
                 {% endfor %}
             </ul>
         </div>
-    </div>
+    <!-- </div> -->
 
 
 {% endblock %}

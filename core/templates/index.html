@@ -2,12 +2,11 @@
 
 {% block content %}
 
-
-<div class="image"> </div>
+<div class="main-image"> </div>
 <div class="grid-container">
-<div class='heading'> <h1> Project Impact </h1></div>
+<div class='header-div'> <h2> Our mission:</h2></div>
 <div class='index-page'>
-        <div class= 'content'> 
+        <div class= 'content mentor-index'> 
             <p>Lorem ipsum, dolor sit amet 
             consectetur adipisicing elit. 
             Dolorum natus accusantium minus 
@@ -25,11 +24,11 @@
             Aspernatur, quidem distinctio, amet sit voluptas quasi 
             deleniti cumque maiores animi velit aperiam esse ut tempore commodi totam architecto sint nulla porro!
             </p>
-            <div class="buttons">
+            <div class="buttons index-buttons">
                 <a class="link-button" href="{% url 'mentor_signup' %}">Become a Mentor</a> 
             </div>
         </div>
-        <div class="content">
+        <div class="content mentee-index">
             <p>Lorem ipsum, dolor sit amet 
             consectetur adipisicing elit. 
             Dolorum natus accusantium minus 
@@ -45,12 +44,8 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto sint magni, sapiente obcaecati veritatis, cupiditate non maiores, doloremque dignissimos illum unde. 
             Maiores voluptatibus adipisci odio necessitatibus eaque? Impedit, iste quisquam!
             </p>
-            <div class="buttons">
+            <div class="buttons index-buttons">
                 <a class="link-button" href="{% url 'mentee_signup' %}">Become a Mentee</a>
-            </div>
-            <br><br>
-            <div class="buttons">
-                <a class="link-button" href="{% url 'twilio' %}">Chat Test</a>
             </div>
         </div>
 </div>

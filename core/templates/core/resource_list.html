@@ -5,18 +5,23 @@
 {% endblock %}
 
 {% block content %}
-<div class="list-content fs">
-  <h1>List of resources</h1>
-  {% if resource_list %}
-  <ul>
-    {% for resource in resource_list %}
-      <li>
-        <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no articles to show at the moment! :(.</p>
-  {% endif %}
+<div class="sidepage-content">
+  <div class='sidepage-header'><h2>List of resources</h2></div>
+    {% if resource_list %}
+      <div class="sidepage-list">
+      <ul>
+        {% for resource in resource_list %}
+          <li>
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+          </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>There are no articles to show at the moment! :(.</p>
+      {% endif %}
+    </div>
 </div>  
+<div class="buttons">
+  <li><a href="{% url 'search_resource'%}" title="Search">Search for a Resource</a></li>
+</div>
 {% endblock %}

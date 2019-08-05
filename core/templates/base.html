@@ -12,27 +12,30 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <title>Project Impact</title>
     <style>
-        .image{ 
+        .main-image{ 
             background-image: url("{% static 'images/passion2.jpg'%}");
             background-size: cover;
-            height: 70vh;
+            height: 50vh;
             background-position: center;
-            max-width: 100%;
+    
         }
     </style>
 </head>
 <body>
-    <head>  
+    <header>
     {% block header %}
         {% include "snippets/navbar2.html" %}
     {% endblock %}
-    </head>
-    <div class="landing">
-    {% block content %}
+    </header>
+    
+    <section class='landing'>
+        <div class='main'>
+        {% block content %}
 
 
-    {% endblock %}
-    </div>
+        {% endblock %}
+        </div>
+    </section>
   
 </body>
 </html>

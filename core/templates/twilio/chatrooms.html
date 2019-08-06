@@ -30,13 +30,14 @@
                 <p>
                   {{chatroom.description}} 
                 </p>
-                <p>
-                  Chatroom Model: {{chatroom.pair}}
-                </p>
                 {% for pair in user.person.pairs %}
-                <p>Pair: {{pair}}</p>
+                  {% if pair == chatroom.pair %}
+                    <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
+                  {% endif %}
                 {% endfor %}
+                {% if request.user.is_superuser or request.user.is_admin %}
                 <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
+                {% endif %}
               </div>
             </div>
         </div>

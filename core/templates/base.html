@@ -31,7 +31,7 @@
     {% endblock %}
     </header>
     
-    <section class='landing'>
+    <section class='landing register'>
         <div class='main'>
         {% block content %}
 
@@ -40,5 +40,9 @@
         </div>
     </section>
   
+    {% block footer %}
+     {% include "snippets/footer.html" %}
+    {% endblock %}
+
 </body>
 </html>

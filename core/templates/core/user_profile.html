@@ -22,7 +22,7 @@
       <li>{{ step }}</li>
 {% endfor %}
 <form class='new_step' method='post' data-goal={{goal.pk}} action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                <textarea class="newStep" placeholder='Add Step'></textarea>
+                <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
                 <button type="submit"> Submit </button>
 </form>
 {% endfor %}
@@ -30,7 +30,7 @@
 
 <h1 class="title">Add a goal</h1>
 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-        <textarea class="newGoal" placeholder='Add Goal'></textarea>
+        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
         <button type="submit"> Submit </button>
 </form>
 

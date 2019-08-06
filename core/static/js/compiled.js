@@ -41,8 +41,9 @@ newGoal.addEventListener('submit', function (e) {
         },
         // dataType: 'json',
         success: function (data) {
-            console.log('Success')
-            $(".goals").load(" .goals")
+            // console.log('Success')
+            // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });
@@ -63,8 +64,9 @@ newStep.forEach(item => {
         },
         // dataType: 'json',
         success: function (data) {
-            console.log('Success')
-            $(".goals").load(" .goals")
+            // console.log('Success')
+            // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });

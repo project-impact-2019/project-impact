@@ -77,7 +77,7 @@ newStep.forEach(item => {
 });
 })
 
-// TEST
+// Drop down list menu
 
 function toggleClass(elem,className){
 	if (elem.className.indexOf(className) !== -1){
@@ -144,3 +144,8 @@ const dropdownOptions = document.querySelectorAll('.dropdown .option');
 dropdownTitle.addEventListener('click', toggleMenuDisplay);
 dropdownOptions.forEach(option => option.addEventListener('click',handleOptionSelected));
 document.querySelector('.dropdown .title').addEventListener('change',handleTitleChange);
+
+//Trying to select item from goals
+
+const getGoalItem = document.querySelectorAll('.goal-description')
+console.log(getGoalItem)

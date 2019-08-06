@@ -19,28 +19,30 @@
 </head>
 
 <body>
-  <section class="hero is-info">
-    <div class="hero-body has-text-centered">
-      <div class="container">
-      </div>
-    </div>
-  </section>
   <section class="section">
     <div class="container">
       <div class="columns">
         {% for chatroom in chatrooms %}
         <div class="column">
-          <div class="card rounded-edges">
-            <div class="card-content">
+              <div class= 'content mentor-index'> 
               <p class="title is-4">{{chatroom.name}}</p>
               <div class="content">
                 <p>
-                  {{chatroom.description}}
+                  {{chatroom.description}} 
                 </p>
-                <a href="/chatrooms/{{chatroom.slug}}" class="button">Join Room</a>
+                <p>
+                  Chatroom Model: {{chatroom.pair}}
+                </p>
+                {% if request.user.is_authenticated %}
+                <p>
+                  User Model: {{user.person.pairs}}
+                </p>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
+                {% endif %}
               </div>
             </div>
-          </div>
         </div>
         {% endfor %}
       </div>

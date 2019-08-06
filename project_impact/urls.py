@@ -58,11 +58,9 @@ urlpatterns = [
 
 
     #Goal
-    path('goal/', core_views.goal_list_view, name='goal_list'),
+    path('goal/', core_views.goal_list_view, name='user-profile'),
     path('goal/add', core_views.add_new_goal, name='add_goal'),
-    path('goal/completed<goal_id>', core_views.completedGoal, name='completed'),
-    path('goal/deletecomplete', core_views.deleteCompleted, name='delete_completed'),
-    path('goal/deleteall', core_views.deleteAll, name='delete_all'),
+    path('goal/add_step/<int:pk>', core_views.add_new_step, name='add_step'),
   
    
     # Chat app

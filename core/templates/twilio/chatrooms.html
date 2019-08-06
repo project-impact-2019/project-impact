@@ -32,7 +32,6 @@
                 </p>
                 {% for pair in user.person.pairs %}
                   {% if pair == chatroom.pair %}
-                    <p>Chatroom Pair: {{pair}}</p>
                     <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
                   {% endif %}
                 {% endfor %}

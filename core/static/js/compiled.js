@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 newGoal.addEventListener('submit', function (e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(newGoal)
     $.ajax({
         type: 'POST',
@@ -39,10 +39,11 @@ newGoal.addEventListener('submit', function (e) {
             'description': $('.newGoal').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         },
-        dataType: 'json',
+        // dataType: 'json',
         success: function (data) {
-            console.log('Success')
+            // console.log('Success')
             // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });
@@ -50,7 +51,7 @@ newGoal.addEventListener('submit', function (e) {
 
 newStep.forEach(item => {
     item.addEventListener('submit', function (e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(item.action)
     console.log(item.dataset.goal)
     $.ajax({
@@ -63,8 +64,9 @@ newStep.forEach(item => {
         },
         // dataType: 'json',
         success: function (data) {
-            console.log('Success')
+            // console.log('Success')
             // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });

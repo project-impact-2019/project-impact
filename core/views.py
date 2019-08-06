@@ -163,13 +163,27 @@ def app(request):
 @login_required
 def token(request):
     username = None
+    chatrooms = Chat.objects.all()
+
     if request.user.is_authenticated:
         if request.user.is_superuser or request.user.is_admin:
             username = request.user.get_username()
-        if request.user.person.role == 'mentor':
-            username = request.user.get_username()
-    
+
+        for chatroom in chatrooms:
+            for pair in request.user.person.pairs:
+                if pair == chatroom.pair:
+                    username = request.user.get_username()
+                    print(request.user.person.pairs)
+                    print(chatroom.pair)
+                    # Send Email Notification When Mentor/Mentee logs into chatroom
+                    if request.user.person.role == 'mentor':
+                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                            [pair.mentee.email_address], fail_silently=False)
+                    elif request.user.person.role == 'mentee':
+                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                            [pair.mentor.email_address], fail_silently=False)
     return generateToken(username)
+
 
 def generateToken(identity):
     # Get credentials from environment variables

@@ -44,10 +44,11 @@ newGoal.addEventListener('submit', function (e) {
             'description': $('.newGoal').val(),
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
         },
-        dataType: 'json',
+        // dataType: 'json',
         success: function (data) {
-            console.log('Success')
-            $(".goals").load(" .goals")
+            // console.log('Success')
+            // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });
@@ -68,8 +69,9 @@ newStep.forEach(item => {
         },
         // dataType: 'json',
         success: function (data) {
-            console.log('Success')
-            $(".goals").load(" .goals")
+            // console.log('Success')
+            // $(".goals").load(" .goals")
+            location.reload();
         }
     });
 });

@@ -138,57 +138,14 @@ def success(request):
 
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
-  
+    person = Person.objects.get(user=request.user)
+    goals_by_user = Goal.objects.filter(person=person)
     context={
         'user': user,
+        'goals_by_user': goals_by_user,
     }
     return render(request, 'core/user_profile.html', context)
    
-
-#Goal Views
-
-
-def goal_list_view(request):
-    goal_list = Goal.objects.order_by('user')
-
-    form = GoalForm()
-
-
-    context={
-        'goal_list': goal_list,
-        'form': form
-    }
-    
-    return render(request, 'core/goal_list', context=context)
-
-@require_POST
-def addGoal(request):
-    form = GoalForm(request.POST)
-    
-    if form.is_valid():
-        new_description = Goal(description=request.POST['description'])
-        new_description.save()
-
-    return redirect('goal_list')
-
-def completedGoal(request, goal_id):
-    goal = Goal.objects.get(pk=goal_id)
-    goal.completed = True
-    goal.save()
-
-    return redirect('goal_list')
-
-def deleteCompleted(request):
-    Goal.objects.filter(completed__exact=True).delete()
-
-    return redirect('goal_list')
-
-
-def deleteAll(request):
-    Goal.objects.all().delete()
-
-    return redirect('goal_list')
-
 
 # Twilio Chat
 
@@ -242,13 +199,15 @@ def create_pair(request):
         from django.views.generic.edit import CreateView
         if request.method == "POST":
             form = PairForm(request.POST)
+            chatrooms = Chat.objects.all()
             if form.is_valid():
                 # blog = form.save(commit=False)
                 form.save()
                 return redirect('index')
         else:
+            chatrooms = Chat.objects.all()
             form = PairForm()
-        return render(request, 'core/new_pair_form.html', {'form': form})
+        return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 
@@ -256,6 +215,20 @@ def create_pair(request):
 class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
+
+#Goal Views
+
+# class GoalListView(generic.ListView):
+#     """View for Goal List"""
+#     model = Goal
+
+def goal_list_view(request):
+    person = Person.objects.get(user=request.user)
+    goals_by_user = Goal.objects.filter(person=person)
+    context={
+        'goals_by_user': goals_by_user,
+    }
+    return render(request, 'core/user_profile.html', context=context)
 
 @login_required
 def add_new_goal(request):
@@ -271,3 +244,41 @@ def add_new_goal(request):
     else:
         form = GoalForm()
     return HttpResponse()
+
+@login_required
+def add_new_step(request, pk):
+    print('step')
+    from core.forms import StepForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = StepForm(request.POST)
+        if form.is_valid():
+            step = form.save(commit=False)
+            step.person = Person.objects.get(user=request.user)
+            step.goal = get_object_or_404(Goal, pk=pk)
+            form.save()
+    else:
+        form = StepForm()
+    return HttpResponse()
+
+# class UserProfileView(generic.ListView):
+#     model = Goal
+#     template_name = 'core/user_profile.html'
+
+#     def get_queryset(self):
+#         """
+#         Return list of Goal objects created by Person (owner id specified in URL)
+#         """
+#         id = self.kwargs['pk']
+#         target_person = Person.objects.get(user=request.user)
+#         return Goal.objects.filter(person=target_person)
+
+#     def get_context_data(self, **kwargs):
+#         """
+#         Add goal owner to context so they can be displayed in the template
+#         """
+#         # Call the base implementation first to get a context
+#         context = super(UserProfileView, self).get_context_data(**kwargs)
+#         # Get the owner object from the "pk" URL parameter and add it to the context
+#         context['person'] = Person.objects.get(user=request.user)
+#         return context

@@ -242,13 +242,15 @@ def create_pair(request):
         from django.views.generic.edit import CreateView
         if request.method == "POST":
             form = PairForm(request.POST)
+            chatrooms = Chat.objects.all()
             if form.is_valid():
                 # blog = form.save(commit=False)
                 form.save()
                 return redirect('index')
         else:
+            chatrooms = Chat.objects.all()
             form = PairForm()
-        return render(request, 'core/new_pair_form.html', {'form': form})
+        return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 

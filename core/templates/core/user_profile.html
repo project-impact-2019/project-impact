@@ -13,6 +13,24 @@
         {% endif %}
         {% endfor %}
 </div> 
+<div class="dropdown">
+       <div class="title pointerCursor">Select a goal<i class="fa fa-angle-right"></i></div>
+        <div class="menu pointerCursor hide goals">
+                {% for goal in goals_by_user %}
+                <div class="option">{{goal.description}}</div>
+                {% endfor %}
+        
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 <div class='goals'>
 {% for goal in goals_by_user %}

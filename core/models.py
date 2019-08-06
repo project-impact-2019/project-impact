@@ -201,6 +201,8 @@ class Step(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
+        if self.step==None:
+            return "ERROR-STEP NAME IS NULL"
         return self.step
 
 

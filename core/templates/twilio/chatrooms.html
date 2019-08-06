@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+
+<!DOCTYPE html>
+<html>
+{% block content %}
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="//www.twilio.com/marketing/bundles/marketing/img/favicons/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css" />
+  <style>
+    .rounded-edges {
+      border-radius: 0.25rem;
+    }
+  </style>
+  <title>All Chat Rooms</title>
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        {% for chatroom in chatrooms %}
+        <div class="column">
+              <div class= 'content mentor-index'> 
+              <p class="title is-4">{{chatroom.name}}</p>
+              <div class="content">
+                <p>
+                  {{chatroom.description}} 
+                </p>
+                <p>
+                  Chatroom Model: {{chatroom.pair}}
+                </p>
+                {% if request.user.is_authenticated %}
+                <p>
+                  User Model: {{user.person.pairs}}
+                </p>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
+                {% endif %}
+              </div>
+            </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+{% endblock %}

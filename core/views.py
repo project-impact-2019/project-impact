@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -149,6 +149,14 @@ def user_profile(request, user_id):
 
 # Twilio Chat
 
+def chatrooms(request):
+    chatrooms = Chat.objects.all()
+    return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
+
+def chatroom_detail(request, slug):
+    chatroom = Chat.objects.get(slug=slug)
+    return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
+
 def app(request):
     return render(request, 'twilio/chat.html')
 
@@ -191,13 +199,15 @@ def create_pair(request):
         from django.views.generic.edit import CreateView
         if request.method == "POST":
             form = PairForm(request.POST)
+            chatrooms = Chat.objects.all()
             if form.is_valid():
                 # blog = form.save(commit=False)
                 form.save()
                 return redirect('index')
         else:
+            chatrooms = Chat.objects.all()
             form = PairForm()
-        return render(request, 'core/new_pair_form.html', {'form': form})
+        return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 

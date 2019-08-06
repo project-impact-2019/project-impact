@@ -38,7 +38,7 @@ $(function() {
   }
 
   // Alert the user they have been logged in
-  print('Logging in...');
+  print('Attempting to log in. If username does not display within a few more seconds, then you do not have permission to chat in this room. Please contact site admin for assistance...');
 
   // Get an access token for the current user, passing a username (identity)
   // and a device ID - for browser-based apps, we'll always just use the
@@ -114,7 +114,7 @@ $(function() {
 
     if (e.keyCode == 13) {
       if (generalChannel === undefined) {
-        print('The Chat Service is not configured. Please check your .env file.', false);
+        print('The Chat Service is not configured for you. Please contact admin for assistance.', false);
         return;
       }
       generalChannel.sendMessage($input.val())

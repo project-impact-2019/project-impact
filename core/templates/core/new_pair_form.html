@@ -14,18 +14,15 @@
 </div>
 <div class="existing-pairs">
     <h2>Existing Pairs</h2>
-    {% if pair_list %}
-    <ul>
-      {% for pair in pair_list %}
-        {% for pair in person.pair %}
-        <li>
-            {{ pair }}
-        </li>
-        {% endfor %}
+      {% for chatroom in chatrooms %}
+      <div class="column">
+            <div class= 'content mentor-index'> 
+            <div class="content">
+                Mentor/Mentee Pair: {{chatroom.pair}}
+              </p>
+            </div>
+          </div>
+      </div>
       {% endfor %}
-    </ul>
-    {% else %}
-      <p>There are no pairs yet! :(</p>
-    {% endif %}
 </div>
   {% endblock %}

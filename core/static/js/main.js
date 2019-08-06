@@ -12,10 +12,9 @@ function qAll (selector) {
 const hamburger = q('.hamburger');
 const navLinks = q('.nav-links');
 const links = qAll('.nav-links li');
-const newGoal = q('.new_goal')
-const newStep = qAll('.new_step')
 
-// Main execution
+
+// Main execution for navigation bar
 document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger Style Navigation
@@ -27,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 });
+
+
+// Goals variables
+const newGoal = q('.new_goal')
+const newStep = qAll('.new_step')
+
+// Main execution for goals
 
 newGoal.addEventListener('submit', function (e) {
     e.preventDefault();

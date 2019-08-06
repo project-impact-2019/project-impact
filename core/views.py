@@ -164,7 +164,11 @@ def app(request):
 def token(request):
     username = None
     if request.user.is_authenticated:
-        username = request.user.get_username()
+        if request.user.is_superuser or request.user.is_admin:
+            username = request.user.get_username()
+        if request.user.person.role == 'mentor':
+            username = request.user.get_username()
+    
     return generateToken(username)
 
 def generateToken(identity):

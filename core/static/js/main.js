@@ -47,7 +47,7 @@ newGoal.addEventListener('submit', function (e) {
         dataType: 'json',
         success: function (data) {
             console.log('Success')
-            // $(".answers").load(" .answers")
+            $(".goals").load(" .goals")
         }
     });
 });
@@ -69,7 +69,7 @@ newStep.forEach(item => {
         // dataType: 'json',
         success: function (data) {
             console.log('Success')
-            // $(".answers").load(" .answers")
+            $(".goals").load(" .goals")
         }
     });
 });

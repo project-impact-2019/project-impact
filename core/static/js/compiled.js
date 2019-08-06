@@ -36,7 +36,7 @@ const newStep = qAll('.new_step')
 // Main execution for goals
 
 newGoal.addEventListener('submit', function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(newGoal)
     $.ajax({
         type: 'POST',
@@ -48,7 +48,7 @@ newGoal.addEventListener('submit', function (e) {
         dataType: 'json',
         success: function (data) {
             console.log('Success')
-            // $(".answers").load(" .answers")
+            // $(".goals").load(" .goals")
         }
     });
 });
@@ -56,7 +56,7 @@ newGoal.addEventListener('submit', function (e) {
 
 newStep.forEach(item => {
     item.addEventListener('submit', function (e) {
-    e.preventDefault();
+    // e.preventDefault();
     console.log(item.action)
     console.log(item.dataset.goal)
     $.ajax({
@@ -70,7 +70,7 @@ newStep.forEach(item => {
         // dataType: 'json',
         success: function (data) {
             console.log('Success')
-            // $(".answers").load(" .answers")
+            // $(".goals").load(" .goals")
         }
     });
 });

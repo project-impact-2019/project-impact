@@ -185,7 +185,10 @@ class Goal(models.Model):
 
     def __str__(self):
         """String for representing the Model object."""
+        if self.description==None:
+            return "ERROR-GOAL IS NULL"
         return self.description
+        
     
     def get_absolute_url(self):
         """Returns the url to access a detail record for this resource."""

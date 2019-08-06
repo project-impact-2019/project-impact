@@ -105,9 +105,9 @@ $(function() {
     // Get Messages for a previously created channel
     generalChannel.getMessages().then(function(messages) {
         const totalMessages = messages.items.length;
-        for (i = 0; i < totalMessages; i++) {
+        for (i = 23; i < totalMessages; i++) {
           const message = messages.items[i];
-          console.log(message.author, message.body);
+          printMessage('Chat History ' + message.author, message.body);
         }
         console.log('Total Messages:' + totalMessages);
     });

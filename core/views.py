@@ -15,6 +15,7 @@ from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from core.decorators import chatroompair_required
 User = get_user_model()
 
 # Twilio Chat
@@ -153,6 +154,7 @@ def chatrooms(request):
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
+@chatroompair_required
 def chatroom_detail(request, slug):
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})

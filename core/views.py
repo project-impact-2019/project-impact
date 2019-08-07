@@ -136,7 +136,7 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-
+@login_required
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
@@ -149,7 +149,7 @@ def user_profile(request, user_id):
    
 
 # Twilio Chat
-
+@login_required
 def chatrooms(request):
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
@@ -159,6 +159,7 @@ def chatroom_detail(request, slug):
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
+@login_required
 def app(request):
     return render(request, 'twilio/chat.html')
 

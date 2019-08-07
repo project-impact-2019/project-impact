@@ -1,11 +1,12 @@
-from django.views.generic.base import TemplateView
+
+import json
+from django.forms.models import model_to_dict
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat
-import json
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat, Step
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -98,7 +99,6 @@ def search_blog(request):
    
 
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
-
 
 
 # SignUp Views
@@ -239,9 +239,47 @@ class PairListView(generic.ListView):
 
 #Goal Views
 
-# class GoalListView(generic.ListView):
-#     """View for Goal List"""
-#     model = Goal
+
+class ProfileView(TemplateView):
+    template_name = "profile.html"
+
+
+@csrf_exempt
+@require_http_methods(['GET', 'POST'])
+def api_steps_list(request):
+    if request.method == "POST":
+        return api_steps_create(request)
+
+    steps = Step.objects.all()
+    step_data = [model_to_dict(step) for step in steps]
+    return JsonResponse({"step": step_data})
+
+
+def api_steps_create(request):
+    step_data = json.loads(request.body)
+
+    # data should be validated first
+    step = Step(**step_data)
+    step.save()
+
+    return JsonResponse(model_to_dict(step), status=201)
+
+
+@csrf_exempt
+@require_http_methods(['PATCH'])
+def api_steps_detail(request, pk):
+    step = get_object_or_404(Step, pk=pk)
+    step_data = json.loads(request.body)
+
+    if 'done' in step_data:
+        step.done = step_data['done']
+
+    step.save()
+
+    return JsonResponse(model_to_dict(step))
+
+
+# Some of this work
 
 def goal_list_view(request):
     person = Person.objects.get(user=request.user)

@@ -1,6 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<section class='accordion'>
+                {% for goal in goals_by_user %}
+<article class="accordion is-active">
+                <div class="accordion-header toggle">
+                  <p>{{goal.description}}</p>
+                </div>
+                {% for step in goal.steps.all %}
+                <div class="accordion-body">
+                  <div class="accordion-contentindividual-steps" data-step={{step}}></div>
+                   
+                  </div>
+                  {% endfor %}
+                </div>
+</article>
+{% endfor %}
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="profile">
         <h2>Username: {{user}}</h2>
         <p>Name: {{user.person.first_name}}</p>

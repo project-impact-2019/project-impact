@@ -22,6 +22,8 @@ twilio = "*"
 honcho = "*"
 faker = "*"
 django-crispy-forms = "*"
+django-bulma = "*"
+django-simple-bulma = "*"
 
 [requires]
 python_version = "3.7"

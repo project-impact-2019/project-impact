@@ -66,6 +66,16 @@ urlpatterns = [
     # Chat app
     path(r'', include('core.urls')),
 
+
+    #test
+
+       path('test', core_views.ProfileView.as_view()),
+    path('api/steps/', core_views.api_steps_list, name="api-steps-list"),
+    path('api/steps/<int:pk>/',
+         core_views.api_steps_detail,
+         name="api-steps-detail"),
+    path('admin/', admin.site.urls),
+
 ]
 
 # Django Debug Toolbar

@@ -38,11 +38,6 @@ hamburger.addEventListener('click', () => {
 });
 
 
-
-
-
-
-
 // Goals variables
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
@@ -92,8 +87,6 @@ newStep.forEach(item => {
 });
 })
 
-
-
 const goals = document.querySelectorAll('.goal-div')
 goals.forEach(item => {
     item.addEventListener('click', function (e) {
@@ -107,4 +100,6 @@ goals.forEach(item => {
 
     });
 
+
+      
 },{}]},{},[1]);

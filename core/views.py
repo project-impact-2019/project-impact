@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
@@ -219,10 +219,14 @@ def generateToken(identity):
     # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
 
+def pair_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'pair_created'
+    return render(request, 'successful_create_pair.html')
 
 @login_required
 def create_pair(request):
-    """View to Create Mentor/Mentee Pair"""
+    """View to Create Mentor/Mentee Pair and Chatroom for Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -230,12 +234,11 @@ def create_pair(request):
             form = PairForm(request.POST)
             chatrooms = Chat.objects.all()
             if form.is_valid():
-                # blog = form.save(commit=False)
                 form.save()
-                return redirect('index')
+                return redirect('pair_created')
         else:
-            chatrooms = Chat.objects.all()
             form = PairForm()
+            chatrooms = Chat.objects.all()
         return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
@@ -294,10 +297,11 @@ def add_new_step(request, pk):
     return HttpResponse()
 
 
-def error_404_view(request, exception):
-    """View to display Custom 404 Page"""
-    data = {"name": "ThePythonDjango.com"}
-    return render(request,'templates/404.html', data)
+def handler404(request, exception, template_name="404.html"):
+    """View for Custom 404 Page"""
+    response = render_to_response("404.html")
+    response.status_code = 404
+    return response
 
 # class UserProfileView(generic.ListView):
 #     model = Goal

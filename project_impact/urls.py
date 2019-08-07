@@ -51,6 +51,8 @@ urlpatterns = [
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
     path('newpair/', core_views.create_pair, name='create_pair'),
+    path('pair_created/', core_views.pair_created, name='pair_created'),
+
 
     #  New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),
@@ -70,7 +72,7 @@ urlpatterns = [
 ]
 
 # Handler for 404 View
-handler404 = 'core.views.error_404_view'
+handler404 = 'core.views.handler404'
 
 # Django Debug Toolbar
 if settings.DEBUG:

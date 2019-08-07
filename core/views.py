@@ -4,19 +4,22 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat, Step
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
-from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
+from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.forms.models import model_to_dict
 from core.decorators import chatroompair_required
+
 User = get_user_model()
+
 
 # Twilio Chat
 from faker import Factory
@@ -307,7 +310,6 @@ def add_new_goal(request):
 @login_required
 def add_new_step(request, pk):
     """View to Add New Step to Goal"""
-    print('step')
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -322,30 +324,24 @@ def add_new_step(request, pk):
     return HttpResponse()
 
 
+@csrf_exempt
+def check_mark(request, pk):
+    step = Step.objects.get(pk=pk)
+    # step.done = request.data['done']
+    # breakpoint()
+    body = json.loads(request.body)
+    done = body['done']
+    step.done = done
+    step.save()
+    data = model_to_dict(step)
+    return JsonResponse(data, status=200)
+
+
+
 def handler404(request, exception, template_name="404.html"):
     """View for Custom 404 Page"""
     response = render_to_response("404.html")
     response.status_code = 404
     return response
 
-# class UserProfileView(generic.ListView):
-#     model = Goal
-#     template_name = 'core/user_profile.html'
 
-#     def get_queryset(self):
-#         """
-#         Return list of Goal objects created by Person (owner id specified in URL)
-#         """
-#         id = self.kwargs['pk']
-#         target_person = Person.objects.get(user=request.user)
-#         return Goal.objects.filter(person=target_person)
-
-#     def get_context_data(self, **kwargs):
-#         """
-#         Add goal owner to context so they can be displayed in the template
-#         """
-#         # Call the base implementation first to get a context
-#         context = super(UserProfileView, self).get_context_data(**kwargs)
-#         # Get the owner object from the "pk" URL parameter and add it to the context
-#         context['person'] = Person.objects.get(user=request.user)
-#         return context

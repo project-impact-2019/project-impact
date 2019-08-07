@@ -14,7 +14,7 @@ const navLinks = q('.nav-links');
 const links = qAll('.nav-links li');
 
 
-// Main execution for navigation bar
+// Main execution
 document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger Style Navigation

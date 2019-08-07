@@ -15,6 +15,7 @@ from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from core.decorators import chatroompair_required
 User = get_user_model()
 
 # Twilio Chat
@@ -111,7 +112,7 @@ class MenteeSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user
-        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -125,7 +126,7 @@ class MentorSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user 
-        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -135,7 +136,7 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-
+@login_required
 def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
@@ -148,15 +149,17 @@ def user_profile(request, user_id):
    
 
 # Twilio Chat
-
+@login_required
 def chatrooms(request):
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
+@chatroompair_required
 def chatroom_detail(request, slug):
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
+@login_required
 def app(request):
     return render(request, 'twilio/chat.html')
 
@@ -177,10 +180,10 @@ def token(request):
                     print(chatroom.pair)
                     # Send Email Notification When Mentor/Mentee logs into chatroom
                     if request.user.person.role == 'mentor':
-                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
                             [pair.mentee.email_address], fail_silently=False)
                     elif request.user.person.role == 'mentee':
-                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
                             [pair.mentor.email_address], fail_silently=False)
     return generateToken(username)
 

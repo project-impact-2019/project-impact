@@ -51,8 +51,11 @@ urlpatterns = [
     # Forms
     path('newblog/', core_views.add_new_blog, name='add_new_blog'),
     path('newpair/', core_views.create_pair, name='create_pair'),
-    path('pair_created/', core_views.pair_created, name='pair_created'),
+    path('newchat/', core_views.create_chat, name='create_chat'),
 
+    # Success URLs
+    path('pair_created/', core_views.pair_created, name='pair_created'),
+    path('chat_created/', core_views.chat_created, name='chat_created'),
 
     #  New Account Sign Up
     path('accounts/signup/mentee/', core_views.MenteeSignUpView.as_view(), name='mentee_signup'),

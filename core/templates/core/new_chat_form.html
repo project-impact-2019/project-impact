@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">Create a Chatroom</h1>
+<div class="pair-form">
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="table-form">
+    {{ form.as_table }}
+    </table>
+    <input class="add-pair" type="submit" value="Create Chat">
+    <br><br>
+  </form>
+</div>
+
+
+
+<div class="existing-pairs">
+  <h2>Existing Pairs</h2>
+    {% for chatroom in chatrooms %}
+    <div class="column">
+          <div class= 'content mentor-index'> 
+          <div class="content">
+              Mentor/Mentee Pair: {{chatroom.pair}}
+            </p>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+  {% endblock %}

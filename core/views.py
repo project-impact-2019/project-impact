@@ -226,7 +226,7 @@ def pair_created(request):
 
 @login_required
 def create_pair(request):
-    """View to Create Mentor/Mentee Pair and Chatroom for Pair"""
+    """View to Create Mentor/Mentee Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -243,6 +243,31 @@ def create_pair(request):
     else:
         return redirect('index')
 
+
+def chat_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'chat_created'
+    return render(request, 'successful_create_chat.html')
+    
+
+@login_required
+def create_chat(request):
+    """View to Create Chatroom for Pair"""
+    if request.user.is_superuser or request.user.is_admin:
+        from core.forms import ChatForm
+        from django.views.generic.edit import CreateView
+        if request.method == "POST":
+            form = ChatForm(request.POST)
+            chatrooms = Chat.objects.all()
+            if form.is_valid():
+                form.save()
+                return redirect('chat_created')
+        else:
+            form = ChatForm()
+            chatrooms = Chat.objects.all()
+        return render(request, 'core/new_chat_form.html', {'form': form, 'chatrooms': chatrooms})
+    else:
+        return redirect('index')
 
 class PairListView(generic.ListView):
     """View for Pair List"""

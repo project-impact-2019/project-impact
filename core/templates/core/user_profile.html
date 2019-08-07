@@ -95,7 +95,11 @@
 
 {% if request.user.is_superuser or request.user.is_admin %}
 <div class="admin-pair">
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></div>
 </div>
+<div class="admin-chat">
+        <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Chat</a></div>
+</div>
+<br>
 {% endif %}
 {% endblock %}

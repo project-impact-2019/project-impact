@@ -56,6 +56,7 @@ class BlogPostDetailView(generic.DetailView):
 
 @login_required
 def add_new_blog(request):
+    """View for Adding New Blog Entry"""
     from core.forms import BlogForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -103,6 +104,7 @@ def search_blog(request):
 
 # SignUp Views
 class MenteeSignUpView(CreateView):
+    """View for Mentee Sign Up"""
     model = User
     form_class = MenteeSignUpForm
     template_name = 'core/mentee_signup_form.html'
@@ -117,6 +119,7 @@ class MenteeSignUpView(CreateView):
         return redirect('success')
 
 class MentorSignUpView(CreateView):
+    """View for Mentor Sign Up"""
     model = User
     form_class = MentorSignUpForm
     template_name = 'core/mentor_signup_form.html'
@@ -138,6 +141,7 @@ def success(request):
 
 @login_required
 def user_profile(request, user_id):
+    """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
@@ -151,16 +155,19 @@ def user_profile(request, user_id):
 # Twilio Chat
 @login_required
 def chatrooms(request):
+    """View for All Chatrooms"""
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
 @chatroompair_required
 def chatroom_detail(request, slug):
+    """View for Specific Chatroom"""
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
 @login_required
 def app(request):
+    """View for General Chatroom"""
     return render(request, 'twilio/chat.html')
 
 @login_required
@@ -215,6 +222,7 @@ def generateToken(identity):
 
 @login_required
 def create_pair(request):
+    """View to Create Mentor/Mentee Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -244,6 +252,7 @@ class PairListView(generic.ListView):
 #     model = Goal
 
 def goal_list_view(request):
+    """View for Goal List"""
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
     context={
@@ -253,6 +262,7 @@ def goal_list_view(request):
 
 @login_required
 def add_new_goal(request):
+    """View to Add New Goal"""
     print('goal')
     from core.forms import GoalForm
     from django.views.generic.edit import CreateView
@@ -268,6 +278,7 @@ def add_new_goal(request):
 
 @login_required
 def add_new_step(request, pk):
+    """View to Add New Step to Goal"""
     print('step')
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
@@ -281,6 +292,12 @@ def add_new_step(request, pk):
     else:
         form = StepForm()
     return HttpResponse()
+
+
+def error_404_view(request, exception):
+    """View to display Custom 404 Page"""
+    data = {"name": "ThePythonDjango.com"}
+    return render(request,'templates/404.html', data)
 
 # class UserProfileView(generic.ListView):
 #     model = Goal

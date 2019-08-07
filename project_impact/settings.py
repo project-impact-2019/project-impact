@@ -28,6 +28,7 @@ SECRET_KEY = '8to63ay#nc1$#2cv808x_^!ybzn4pdlztvtmxo%_5+_ius)u=$'
 in_production = bool(os.getenv('PRODUCTION'))
 DEBUG = not in_production
 
+
 ALLOWED_HOSTS = []
 
 

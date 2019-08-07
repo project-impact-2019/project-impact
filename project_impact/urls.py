@@ -20,6 +20,7 @@ from django.conf import settings
 from django.views.generic import RedirectView
 from core import views as core_views
 from django.urls import re_path
+from django.conf.urls import handler404
 
 
 urlpatterns = [
@@ -67,6 +68,9 @@ urlpatterns = [
     path(r'', include('core.urls')),
 
 ]
+
+# Handler for 404 View
+handler404 = 'core.views.error_404_view'
 
 # Django Debug Toolbar
 if settings.DEBUG:

@@ -135,6 +135,11 @@ class StepForm(forms.ModelForm):
         fields = ('step',)
 
 
+class CheckListForm(forms.Form):
+
+    done = forms.BooleanField()
+
+
 class ChatForm(forms.ModelForm):
     
     class Meta:

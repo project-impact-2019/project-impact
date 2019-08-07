@@ -1,5 +1,5 @@
 from django import forms
-from .models import BlogPost, User, Questionnaire, Person, Category, Pair, Goal, Step
+from .models import BlogPost, User, Questionnaire, Person, Category, Pair, Goal, Step, Chat
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from phonenumber_field.formfields import PhoneNumberField
@@ -115,6 +115,7 @@ class PairForm(forms.ModelForm):
         super(PairForm, self).__init__(*args, **kwargs)
         self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
         self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
+
     
 
 # class GoalForm(forms.Form):
@@ -133,6 +134,16 @@ class StepForm(forms.ModelForm):
         model = Step
         fields = ('step',)
 
+
 class CheckListForm(forms.Form):
 
     done = forms.BooleanField()
+
+
+class ChatForm(forms.ModelForm):
+    
+    class Meta:
+        model = Chat
+        fields = ('name', 'description', 'slug', 'pair',)
+        
+

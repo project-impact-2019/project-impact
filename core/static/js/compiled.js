@@ -9,24 +9,38 @@ function qAll (selector) {
     return document.querySelectorAll(selector)
 }
 
-// Navigation Variables
-const hamburger = q('.hamburger');
-const navLinks = q('.nav-links');
-const links = qAll('.nav-links li');
+const hamburger = q('.burger');
+const nav = q('.nav-links');
+const navLinks = qAll('.nav-links li');
 
 
-// Main execution for navigation bar
+// Main execution
 document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger Style Navigation
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle("open");
-        links.forEach(link => {
-            link.classList.toggle('fade');
-        });
-    });
+hamburger.addEventListener('click', () => {
 
+    nav.classList.toggle("nav-active");
+    
+    // Animate
+    navLinks.forEach((link, index) =>{
+        if(link.style.animation){
+            link.style.animation = ' ';
+        
+        } else{
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index/7 + .2}s`
+        }
+        
+    });
+        
 });
+    
+});
+
+
+
+
+
 
 
 // Goals variables
@@ -56,29 +70,15 @@ newGoal.addEventListener('submit', function (e) {
 
 
 
-// Drop down list menu
 
-function toggleClass(elem,className){
-	if (elem.className.indexOf(className) !== -1){
-		elem.className = elem.className.replace(className,'');
-	}
-	else{
-		elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
-	}
-	
-	return elem;
-}
 
-function toggleDisplay(elem){
-	const curDisplayStyle = elem.style.display;			
-				
-	if (curDisplayStyle === 'none' || curDisplayStyle === ''){
-		elem.style.display = 'block';
-	}
-	else{
-		elem.style.display = 'none';
-	}
-}
+const goals = document.querySelectorAll('.goal-div')
+goals.forEach(item => {
+    item.addEventListener('click', function (e) {
+    const individualSteps = item.querySelectorAll('.individual-steps')
+        individualSteps.forEach(step => { 
+            step.innerHTML = `<div> ${step.dataset.step} </div>`
+        });
 
 
 function toggleMenuDisplay(e){
@@ -155,40 +155,5 @@ checkBox.forEach(item => {
     })
 })
 
-        // $.ajax({
-        //     type: 'POST',
-        //     url: item.action,
-        //     data: {
-        //         'step': item.dataset.step,
-        //         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        //     },
-        //     // dataType: 'json',
-        //     success: function (data) {
-        //         // console.log('success')
-        //         location.reload();
-        //     } 
-        // });
-//     });
-// });
 
-// checkMark.forEach(item => {
-//     item.addEventListener('submit', function (e) {
-//     e.preventDefault();
-//     console.log(item.dataset.step)
-//     console.log(item.dataset.goal)
-//     $.ajax({
-//         type: 'POST',
-//         url: item.action,
-//         data: {
-//             'step': item.dataset.step,
-//             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-//         },
-//         dataType: 'json',
-//         success: function (data) {
-//             console.log('Success')
-            // location.reload();
-//         }
-//     });
-// });
-// })
 },{}]},{},[1]);

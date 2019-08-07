@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
@@ -16,6 +16,8 @@ from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
+from core.decorators import chatroompair_required
+
 User = get_user_model()
 
 
@@ -57,6 +59,7 @@ class BlogPostDetailView(generic.DetailView):
 
 @login_required
 def add_new_blog(request):
+    """View for Adding New Blog Entry"""
     from core.forms import BlogForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -104,6 +107,7 @@ def search_blog(request):
 
 # SignUp Views
 class MenteeSignUpView(CreateView):
+    """View for Mentee Sign Up"""
     model = User
     form_class = MenteeSignUpForm
     template_name = 'core/mentee_signup_form.html'
@@ -113,11 +117,12 @@ class MenteeSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user
-        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
 class MentorSignUpView(CreateView):
+    """View for Mentor Sign Up"""
     model = User
     form_class = MentorSignUpForm
     template_name = 'core/mentor_signup_form.html'
@@ -127,7 +132,7 @@ class MentorSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user 
-        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -137,8 +142,9 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 
-
+@login_required
 def user_profile(request, user_id):
+    """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
@@ -150,28 +156,47 @@ def user_profile(request, user_id):
    
 
 # Twilio Chat
-
+@login_required
 def chatrooms(request):
+    """View for All Chatrooms"""
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
+@chatroompair_required
 def chatroom_detail(request, slug):
+    """View for Specific Chatroom"""
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
+@login_required
 def app(request):
+    """View for General Chatroom"""
     return render(request, 'twilio/chat.html')
 
 @login_required
 def token(request):
     username = None
+    chatrooms = Chat.objects.all()
+
     if request.user.is_authenticated:
         if request.user.is_superuser or request.user.is_admin:
             username = request.user.get_username()
-        if request.user.person.role == 'mentor':
-            username = request.user.get_username()
-    
+
+        for chatroom in chatrooms:
+            for pair in request.user.person.pairs:
+                if pair == chatroom.pair:
+                    username = request.user.get_username()
+                    print(request.user.person.pairs)
+                    print(chatroom.pair)
+                    # Send Email Notification When Mentor/Mentee logs into chatroom
+                    if request.user.person.role == 'mentor':
+                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
+                            [pair.mentee.email_address], fail_silently=False)
+                    elif request.user.person.role == 'mentee':
+                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
+                            [pair.mentor.email_address], fail_silently=False)
     return generateToken(username)
+
 
 def generateToken(identity):
     # Get credentials from environment variables
@@ -197,9 +222,14 @@ def generateToken(identity):
     # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
 
+def pair_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'pair_created'
+    return render(request, 'successful_create_pair.html')
 
 @login_required
 def create_pair(request):
+    """View to Create Mentor/Mentee Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -207,16 +237,40 @@ def create_pair(request):
             form = PairForm(request.POST)
             chatrooms = Chat.objects.all()
             if form.is_valid():
-                # blog = form.save(commit=False)
                 form.save()
-                return redirect('index')
+                return redirect('pair_created')
         else:
-            chatrooms = Chat.objects.all()
             form = PairForm()
+            chatrooms = Chat.objects.all()
         return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 
+
+def chat_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'chat_created'
+    return render(request, 'successful_create_chat.html')
+    
+
+@login_required
+def create_chat(request):
+    """View to Create Chatroom for Pair"""
+    if request.user.is_superuser or request.user.is_admin:
+        from core.forms import ChatForm
+        from django.views.generic.edit import CreateView
+        if request.method == "POST":
+            form = ChatForm(request.POST)
+            chatrooms = Chat.objects.all()
+            if form.is_valid():
+                form.save()
+                return redirect('chat_created')
+        else:
+            form = ChatForm()
+            chatrooms = Chat.objects.all()
+        return render(request, 'core/new_chat_form.html', {'form': form, 'chatrooms': chatrooms})
+    else:
+        return redirect('index')
 
 class PairListView(generic.ListView):
     """View for Pair List"""
@@ -229,6 +283,7 @@ class PairListView(generic.ListView):
 #     model = Goal
 
 def goal_list_view(request):
+    """View for Goal List"""
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
     context={
@@ -238,6 +293,7 @@ def goal_list_view(request):
 
 @login_required
 def add_new_goal(request):
+    """View to Add New Goal"""
     print('goal')
     from core.forms import GoalForm
     from django.views.generic.edit import CreateView
@@ -253,7 +309,7 @@ def add_new_goal(request):
 
 @login_required
 def add_new_step(request, pk):
-    # print('step')
+    """View to Add New Step to Goal"""
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -267,6 +323,7 @@ def add_new_step(request, pk):
         form = StepForm()
     return HttpResponse()
 
+
 @csrf_exempt
 def check_mark(request, pk):
     step = Step.objects.get(pk=pk)
@@ -279,79 +336,12 @@ def check_mark(request, pk):
     data = model_to_dict(step)
     return JsonResponse(data, status=200)
 
-# def check_mark(request, pk):
-#     if request.method == "POST":
-#         print('something')
-#         try:
-#             Step = Step.objects.get(Step, pk=pk)
-#             done.done = True
-#             step.save()
-#             print(step)
-#             print(step.done)
-#             return HttpResponse('', status=200)
-#         except Step.DoesNotExist: # There is no product with that identifier in your database. So a 404 response should return.
-#             return HttpResponse('Step not found', status=404)
-#         except Exception: # Other exceptions happened while you trying saving your model. you can add mor specific exception handeling codes here.
-#             return HttpResponse('Internal Error', status=500)
-#     return HttpResponse('', status=200)
 
 
-# @login_required
-# def check_mark(request, pk):
-#     if request.method == 'POST':
-#         try:
-#             step = Step.objects.get(Step, pk=pk)
-#             step.done = True
-#             step.save()
-#             return HttpResponse('')
-#     return HttpResponse('Method not allowed', status=405)
-
-# @login_required
-# def check_mark(request, pk):
-#     from core.forms import CheckListForm
-#     from django.views.generic.edit import CreateView
-#     if request.method == "POST":
-#         form = CheckListForm(request.POST)
-#         if form.is_valid():
-#             done = form.save(commit=False)
-#             done.person = Person.objects.get(user=request.user)
-#             done.goal = get_object_or_404(Goal, pk=pk)
-#             done.step = get_object_or_404(Step, pk=pk)
-#             done.save()
-#     else:
-#         form = CheckListForm()
-#     return HttpResponse()
+def handler404(request, exception, template_name="404.html"):
+    """View for Custom 404 Page"""
+    response = render_to_response("404.html")
+    response.status_code = 404
+    return response
 
 
-# def check_mark(request, pk):
-#     form = CheckListForm(request.POST)
-#     step = step.objects.get(Step, pk=pk)
-#     print('Test')
-#     # first you get your Job model
-#     # step.done = step.objects.get(Step, pk=pk)
-#     try:
-#         step.done = True
-#         # step.save()
-#         return JsonResponse({"success": True})
-#     except Exception as e:
-#         return JsonResponse({"success": False})
-#     return JsonResponse(data)
-
-
-
-
-
-
-# @login_required
-# def check_mark(request, pk):
-#     # from core.forms import CheckListForm
-#     from django.views.generic.edit import CreateView
-#     if request.method == "POST":
-#             step = Step.objects.all()
-#             step.person = Person.objects.get(user=request.user)
-#             step.goal = get_object_or_404(Goal, pk=pk)
-#             step.step = get_object_or_404(Step, pk=pk)
-#             step.done()
-#     # else:
-#     #     form = CheckListForm()
-#     return HttpResponse()

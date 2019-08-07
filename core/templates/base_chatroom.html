@@ -13,23 +13,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
     <title>Project Impact</title>
-    <style>
-        .main-image{ 
-            background-image: url("{% static 'images/passion2.jpg'%}");
-            background-size: cover;
-            height: 50vh;
-            background-position: center;
-    
-        }
-    </style>
 </head>
 <body>
-    <header>
-    {% block header %}
-        {% include "snippets/navbar2.html" %}
-    {% endblock %}
-    </header>
-    
     <section class='landing register'>
         <div class='main'>
         {% block content %}
@@ -38,10 +23,12 @@
         {% endblock %}
         </div>
     </section>
-  
-    {% block footer %}
-     {% include "snippets/footer.html" %}
-    {% endblock %}
+    <header>
+            {% block header %}
+                {% include "snippets/navbar2.html" %}
+            {% endblock %}
+    </header>
+
 
 </body>
 </html>

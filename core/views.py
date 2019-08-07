@@ -1,5 +1,5 @@
 from django.views.generic.base import TemplateView
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
@@ -56,6 +56,7 @@ class BlogPostDetailView(generic.DetailView):
 
 @login_required
 def add_new_blog(request):
+    """View for Adding New Blog Entry"""
     from core.forms import BlogForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -103,6 +104,7 @@ def search_blog(request):
 
 # SignUp Views
 class MenteeSignUpView(CreateView):
+    """View for Mentee Sign Up"""
     model = User
     form_class = MenteeSignUpForm
     template_name = 'core/mentee_signup_form.html'
@@ -117,6 +119,7 @@ class MenteeSignUpView(CreateView):
         return redirect('success')
 
 class MentorSignUpView(CreateView):
+    """View for Mentor Sign Up"""
     model = User
     form_class = MentorSignUpForm
     template_name = 'core/mentor_signup_form.html'
@@ -138,6 +141,7 @@ def success(request):
 
 @login_required
 def user_profile(request, user_id):
+    """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
@@ -151,16 +155,19 @@ def user_profile(request, user_id):
 # Twilio Chat
 @login_required
 def chatrooms(request):
+    """View for All Chatrooms"""
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
 @chatroompair_required
 def chatroom_detail(request, slug):
+    """View for Specific Chatroom"""
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
 @login_required
 def app(request):
+    """View for General Chatroom"""
     return render(request, 'twilio/chat.html')
 
 @login_required
@@ -212,9 +219,14 @@ def generateToken(identity):
     # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
 
+def pair_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'pair_created'
+    return render(request, 'successful_create_pair.html')
 
 @login_required
 def create_pair(request):
+    """View to Create Mentor/Mentee Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -222,16 +234,40 @@ def create_pair(request):
             form = PairForm(request.POST)
             chatrooms = Chat.objects.all()
             if form.is_valid():
-                # blog = form.save(commit=False)
                 form.save()
-                return redirect('index')
+                return redirect('pair_created')
         else:
-            chatrooms = Chat.objects.all()
             form = PairForm()
+            chatrooms = Chat.objects.all()
         return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 
+
+def chat_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'chat_created'
+    return render(request, 'successful_create_chat.html')
+    
+
+@login_required
+def create_chat(request):
+    """View to Create Chatroom for Pair"""
+    if request.user.is_superuser or request.user.is_admin:
+        from core.forms import ChatForm
+        from django.views.generic.edit import CreateView
+        if request.method == "POST":
+            form = ChatForm(request.POST)
+            chatrooms = Chat.objects.all()
+            if form.is_valid():
+                form.save()
+                return redirect('chat_created')
+        else:
+            form = ChatForm()
+            chatrooms = Chat.objects.all()
+        return render(request, 'core/new_chat_form.html', {'form': form, 'chatrooms': chatrooms})
+    else:
+        return redirect('index')
 
 class PairListView(generic.ListView):
     """View for Pair List"""
@@ -244,6 +280,7 @@ class PairListView(generic.ListView):
 #     model = Goal
 
 def goal_list_view(request):
+    """View for Goal List"""
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
     context={
@@ -253,6 +290,7 @@ def goal_list_view(request):
 
 @login_required
 def add_new_goal(request):
+    """View to Add New Goal"""
     print('goal')
     from core.forms import GoalForm
     from django.views.generic.edit import CreateView
@@ -268,6 +306,7 @@ def add_new_goal(request):
 
 @login_required
 def add_new_step(request, pk):
+    """View to Add New Step to Goal"""
     print('step')
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
@@ -281,6 +320,13 @@ def add_new_step(request, pk):
     else:
         form = StepForm()
     return HttpResponse()
+
+
+def handler404(request, exception, template_name="404.html"):
+    """View for Custom 404 Page"""
+    response = render_to_response("404.html")
+    response.status_code = 404
+    return response
 
 # class UserProfileView(generic.ListView):
 #     model = Goal

@@ -107,7 +107,7 @@ $(function() {
         const totalMessages = messages.items.length;
         for (i = 23; i < totalMessages; i++) {
           const message = messages.items[i];
-          printMessage('Chat History ' + message.author, message.body);
+          console.log('Chat History ' + message.author, message.body);
         }
         console.log('Total Messages:' + totalMessages);
     });

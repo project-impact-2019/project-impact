@@ -1,7 +1,5 @@
-
-import json
-from django.forms.models import model_to_dict
-from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic.base import TemplateView
+from django.shortcuts import render, redirect, get_object_or_404, render_to_response
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
@@ -57,6 +55,7 @@ class BlogPostDetailView(generic.DetailView):
 
 @login_required
 def add_new_blog(request):
+    """View for Adding New Blog Entry"""
     from core.forms import BlogForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -103,6 +102,7 @@ def search_blog(request):
 
 # SignUp Views
 class MenteeSignUpView(CreateView):
+    """View for Mentee Sign Up"""
     model = User
     form_class = MenteeSignUpForm
     template_name = 'core/mentee_signup_form.html'
@@ -117,6 +117,7 @@ class MenteeSignUpView(CreateView):
         return redirect('success')
 
 class MentorSignUpView(CreateView):
+    """View for Mentor Sign Up"""
     model = User
     form_class = MentorSignUpForm
     template_name = 'core/mentor_signup_form.html'
@@ -138,6 +139,7 @@ def success(request):
 
 @login_required
 def user_profile(request, user_id):
+    """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
@@ -151,16 +153,19 @@ def user_profile(request, user_id):
 # Twilio Chat
 @login_required
 def chatrooms(request):
+    """View for All Chatrooms"""
     chatrooms = Chat.objects.all()
     return render(request, 'twilio/chatrooms.html', {'chatrooms': chatrooms})
 
 @chatroompair_required
 def chatroom_detail(request, slug):
+    """View for Specific Chatroom"""
     chatroom = Chat.objects.get(slug=slug)
     return render(request, 'twilio/chatroom_detail.html', {'chatroom': chatroom})
 
 @login_required
 def app(request):
+    """View for General Chatroom"""
     return render(request, 'twilio/chat.html')
 
 @login_required
@@ -212,9 +217,14 @@ def generateToken(identity):
     # Return token info as JSON
     return JsonResponse({'identity':identity,'token':token.to_jwt().decode('utf-8')})
 
+def pair_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'pair_created'
+    return render(request, 'successful_create_pair.html')
 
 @login_required
 def create_pair(request):
+    """View to Create Mentor/Mentee Pair"""
     if request.user.is_superuser or request.user.is_admin:
         from core.forms import PairForm
         from django.views.generic.edit import CreateView
@@ -222,66 +232,50 @@ def create_pair(request):
             form = PairForm(request.POST)
             chatrooms = Chat.objects.all()
             if form.is_valid():
-                # blog = form.save(commit=False)
                 form.save()
-                return redirect('index')
+                return redirect('pair_created')
         else:
-            chatrooms = Chat.objects.all()
             form = PairForm()
+            chatrooms = Chat.objects.all()
         return render(request, 'core/new_pair_form.html', {'form': form, 'chatrooms': chatrooms})
     else:
         return redirect('index')
 
 
+def chat_created(request):
+    """View for a successful submission of a signup form"""
+    view = 'chat_created'
+    return render(request, 'successful_create_chat.html')
+    
+
+@login_required
+def create_chat(request):
+    """View to Create Chatroom for Pair"""
+    if request.user.is_superuser or request.user.is_admin:
+        from core.forms import ChatForm
+        from django.views.generic.edit import CreateView
+        if request.method == "POST":
+            form = ChatForm(request.POST)
+            chatrooms = Chat.objects.all()
+            if form.is_valid():
+                form.save()
+                return redirect('chat_created')
+        else:
+            form = ChatForm()
+            chatrooms = Chat.objects.all()
+        return render(request, 'core/new_chat_form.html', {'form': form, 'chatrooms': chatrooms})
+    else:
+        return redirect('index')
+
 class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
 
-#Goal Views
 
-
-class ProfileView(TemplateView):
-    template_name = "profile.html"
-
-
-@csrf_exempt
-@require_http_methods(['GET', 'POST'])
-def api_steps_list(request):
-    if request.method == "POST":
-        return api_steps_create(request)
-
-    steps = Step.objects.all()
-    step_data = [model_to_dict(step) for step in steps]
-    return JsonResponse({"step": step_data})
-
-
-def api_steps_create(request):
-    step_data = json.loads(request.body)
-
-    # data should be validated first
-    step = Step(**step_data)
-    step.save()
-
-    return JsonResponse(model_to_dict(step), status=201)
-
-
-@csrf_exempt
-@require_http_methods(['PATCH'])
-def api_steps_detail(request, pk):
-    step = get_object_or_404(Step, pk=pk)
-    step_data = json.loads(request.body)
-
-    if 'done' in step_data:
-        step.done = step_data['done']
-
-    step.save()
-
-    return JsonResponse(model_to_dict(step))
-
-
-# Some of this work
+# Goals and steps
 
 def goal_list_view(request):
+    """View for Goal List"""
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
     context={
@@ -291,6 +285,7 @@ def goal_list_view(request):
 
 @login_required
 def add_new_goal(request):
+    """View to Add New Goal"""
     print('goal')
     from core.forms import GoalForm
     from django.views.generic.edit import CreateView
@@ -306,6 +301,7 @@ def add_new_goal(request):
 
 @login_required
 def add_new_step(request, pk):
+    """View to Add New Step to Goal"""
     print('step')
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
@@ -320,24 +316,10 @@ def add_new_step(request, pk):
         form = StepForm()
     return HttpResponse()
 
-# class UserProfileView(generic.ListView):
-#     model = Goal
-#     template_name = 'core/user_profile.html'
 
-#     def get_queryset(self):
-#         """
-#         Return list of Goal objects created by Person (owner id specified in URL)
-#         """
-#         id = self.kwargs['pk']
-#         target_person = Person.objects.get(user=request.user)
-#         return Goal.objects.filter(person=target_person)
+def handler404(request, exception, template_name="404.html"):
+    """View for Custom 404 Page"""
+    response = render_to_response("404.html")
+    response.status_code = 404
+    return response
 
-#     def get_context_data(self, **kwargs):
-#         """
-#         Add goal owner to context so they can be displayed in the template
-#         """
-#         # Call the base implementation first to get a context
-#         context = super(UserProfileView, self).get_context_data(**kwargs)
-#         # Get the owner object from the "pk" URL parameter and add it to the context
-#         context['person'] = Person.objects.get(user=request.user)
-#         return context

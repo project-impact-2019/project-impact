@@ -87,6 +87,7 @@
 </div>
 
 <div class="chat-board">
+     <h3><center>User Chat Access:</center></h3>
      <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">General Chatroom</a></div>
      <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Mentor/Mentee Paired Chatrooms</a></div>
 </div>
@@ -94,8 +95,11 @@
 
 
 {% if request.user.is_superuser or request.user.is_admin %}
-<div class="admin-pair">
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
+<div class="admin-functionality">
+        <h3><center>Admin Functionality:</center></h3>
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Chat</a></div>
 </div>
+<br>
 {% endif %}
 {% endblock %}

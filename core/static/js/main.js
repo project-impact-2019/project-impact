@@ -8,24 +8,38 @@ function qAll (selector) {
     return document.querySelectorAll(selector)
 }
 
-// Navigation Variables
-const hamburger = q('.hamburger');
-const navLinks = q('.nav-links');
-const links = qAll('.nav-links li');
+const hamburger = q('.burger');
+const nav = q('.nav-links');
+const navLinks = qAll('.nav-links li');
 
 
-// Main execution for navigation bar
+// Main execution
 document.addEventListener('DOMContentLoaded', function() {
 
     // Hamburger Style Navigation
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle("open");
-        links.forEach(link => {
-            link.classList.toggle('fade');
-        });
-    });
+hamburger.addEventListener('click', () => {
 
+    nav.classList.toggle("nav-active");
+    
+    // Animate
+    navLinks.forEach((link, index) =>{
+        if(link.style.animation){
+            link.style.animation = ' ';
+        
+        } else{
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index/7 + .2}s`
+        }
+        
+    });
+        
 });
+    
+});
+
+
+
+
+
 
 
 // Goals variables
@@ -77,75 +91,17 @@ newStep.forEach(item => {
 });
 })
 
-// Drop down list menu
-
-function toggleClass(elem,className){
-	if (elem.className.indexOf(className) !== -1){
-		elem.className = elem.className.replace(className,'');
-	}
-	else{
-		elem.className = elem.className.replace(/\s+/g,' ') + 	' ' + className;
-	}
-	
-	return elem;
-}
-
-function toggleDisplay(elem){
-	const curDisplayStyle = elem.style.display;			
-				
-	if (curDisplayStyle === 'none' || curDisplayStyle === ''){
-		elem.style.display = 'block';
-	}
-	else{
-		elem.style.display = 'none';
-	}
-}
 
 
-function toggleMenuDisplay(e){
-	const dropdown = e.currentTarget.parentNode;
-	const menu = dropdown.querySelector('.menu');
-	const icon = dropdown.querySelector('.fa-angle-right');
+const goals = document.querySelectorAll('.goal-div')
+goals.forEach(item => {
+    item.addEventListener('click', function (e) {
+    const individualSteps = item.querySelectorAll('.individual-steps')
+        individualSteps.forEach(step => { 
+            step.innerHTML = `<div> ${step.dataset.step} </div>`
+        });
 
-	toggleClass(menu,'hide');
-	toggleClass(icon,'rotate-90');
-}
+        return individualSteps
+    });
 
-function handleOptionSelected(e){
-	toggleClass(e.target.parentNode, 'hide');			
-
-	const id = e.target.id;
-	const newValue = e.target.textContent + ' ';
-	const titleElem = document.querySelector('.dropdown .title');
-	const icon = document.querySelector('.dropdown .title .fa');
-
-
-	titleElem.textContent = newValue;
-	titleElem.appendChild(icon);
-	
-	//trigger custom event
-	document.querySelector('.dropdown .title').dispatchEvent(new Event('change'));
-	//setTimeout is used so transition is properly shown
-    setTimeout(() => toggleClass(icon,'rotate-90',0));
-
-}
-
-function handleTitleChange(e){
-	const result = document.getElementById('result');
-
-	result.innerHTML = 'The result is: ' + e.target.textContent;
-}
-
-//get elements
-const dropdownTitle = document.querySelector('.dropdown .title');
-const dropdownOptions = document.querySelectorAll('.dropdown .option');
-
-//bind listeners to these elements
-dropdownTitle.addEventListener('click', toggleMenuDisplay);
-dropdownOptions.forEach(option => option.addEventListener('click',handleOptionSelected));
-document.querySelector('.dropdown .title').addEventListener('change',handleTitleChange);
-
-//Trying to select item from goals
-
-const getGoalItem = document.querySelectorAll('.goal-description')
-console.log(getGoalItem)
+    });

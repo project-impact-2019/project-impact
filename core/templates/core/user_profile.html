@@ -13,28 +13,49 @@
         {% endif %}
         {% endfor %}
 </div> 
-<div class="dropdown">
-       <div class="title pointerCursor">Select a goal<i class="fa fa-angle-right"></i></div>
-        <div class="menu pointerCursor hide goals">
-                {% for goal in goals_by_user %}
-                <div class="option goal-description">{{goal.description}}</div>
-                {% endfor %}
+
+{% for goal in goals_by_user %}
+
+<div class="goal-div">
+
+        <a class="" href="#">{{goal.description}}</a>
+        {% for step in goal.steps.all %}
+        <div class="individual-steps" data-step={{step}}>
         
         </div>
+        {% endfor %}
+       
+              
+
 </div>
+{% endfor %}
+
+
 <h4 class="title">Add a goal</h4>
 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
         <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
         <button type="submit"> Submit </button>
 </form>
 
-<div class="goal-steps">
 
 
 
 
 
-</div>
+<!-- <div class="goal-detail">
+        
+        {% for goal in goals_by_user %}
+        <details>
+        <summary class="option goal-description">{{goal.description}} </summary>
+                {% for step in goal.steps.all %} 
+                <li>{{step}}</li> 
+                {% endfor %}
+
+        </details>
+        {% endfor %}
+
+
+</div> -->
 
 
 

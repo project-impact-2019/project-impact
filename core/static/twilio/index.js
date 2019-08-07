@@ -102,6 +102,16 @@ $(function() {
       + '<span class="me">' + username + '</span>.', true);
     });
 
+    // Get Messages for a previously created channel
+    generalChannel.getMessages().then(function(messages) {
+        const totalMessages = messages.items.length;
+        for (i = 23; i < totalMessages; i++) {
+          const message = messages.items[i];
+          printMessage('Chat History ' + message.author, message.body);
+        }
+        console.log('Total Messages:' + totalMessages);
+    });
+
     // Listen for new messages sent to the channel
     generalChannel.on('messageAdded', function(message) {
       printMessage(message.author, message.body);

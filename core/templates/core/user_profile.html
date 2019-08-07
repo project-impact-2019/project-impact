@@ -14,6 +14,7 @@
         {% endfor %}
 </div> 
 
+
 {% for goal in goals_by_user %}
 
 <div class="goal-div">
@@ -71,20 +72,33 @@
 
 
 
+
 <div class='goals'>
-{% for goal in goals_by_user %}
-<br>
-<ul> <a href=""></a>{{ goal.description }}</a> </ul>
-{% for step in goal.steps.all %}  
-      <li>{{ step }}</li>
-{% endfor %}
-<form class='new_step' method='post' data-goal={{goal.pk}} action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
-                <button type="submit"> Submit </button>
+        {% for goal in goals_by_user %}
+        <ul>{{ goal.description }}</ul>
+                {% for step in goal.steps.all %}  
+                        <li>{{ step }} 
+                                {% if step.done %}
+                                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% else %}
+                                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% endif %}
+                        </li>
+                {% endfor %}
+
+<form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+        <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
+        <button type="submit"> Submit </button>
 </form>
 {% endfor %}
 
 </div>
+
+<h4 class="title">Add a goal</h4>
+<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
+        <button type="submit"> Submit </button>
+</form>
 
 <div class="chat-board">
      <h3><center>User Chat Access:</center></h3>
@@ -100,6 +114,8 @@
         <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></div>
         <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Chat</a></div>
 </div>
+
 <br>
+
 {% endif %}
 {% endblock %}

@@ -28,6 +28,7 @@ SECRET_KEY = '8to63ay#nc1$#2cv808x_^!ybzn4pdlztvtmxo%_5+_ius)u=$'
 in_production = bool(os.getenv('PRODUCTION'))
 DEBUG = not in_production
 
+
 ALLOWED_HOSTS = []
 
 
@@ -54,6 +55,9 @@ INSTALLED_APPS = [
 
     #crispy-forms
     'crispy_forms',
+
+    # bulma
+    'bulma',
 
 ]
 
@@ -147,9 +151,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
 
 # Registration
 

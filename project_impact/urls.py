@@ -61,6 +61,7 @@ urlpatterns = [
     path('goal/', core_views.goal_list_view, name='user-profile'),
     path('goal/add', core_views.add_new_goal, name='add_goal'),
     path('goal/add_step/<int:pk>', core_views.add_new_step, name='add_step'),
+    path('profile/goal/check_mark/<int:pk>/', core_views.check_mark, name='check_mark'),
   
    
     # Chat app

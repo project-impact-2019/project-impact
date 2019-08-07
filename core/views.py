@@ -4,18 +4,20 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
-from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat
+from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat, Step
 import json
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
-from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm
+from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
+from django.forms.models import model_to_dict
 User = get_user_model()
+
 
 # Twilio Chat
 from faker import Factory
@@ -251,7 +253,7 @@ def add_new_goal(request):
 
 @login_required
 def add_new_step(request, pk):
-    print('step')
+    # print('step')
     from core.forms import StepForm
     from django.views.generic.edit import CreateView
     if request.method == "POST":
@@ -265,24 +267,91 @@ def add_new_step(request, pk):
         form = StepForm()
     return HttpResponse()
 
-# class UserProfileView(generic.ListView):
-#     model = Goal
-#     template_name = 'core/user_profile.html'
+@csrf_exempt
+def check_mark(request, pk):
+    step = Step.objects.get(pk=pk)
+    # step.done = request.data['done']
+    # breakpoint()
+    body = json.loads(request.body)
+    done = body['done']
+    step.done = done
+    step.save()
+    data = model_to_dict(step)
+    return JsonResponse(data, status=200)
 
-#     def get_queryset(self):
-#         """
-#         Return list of Goal objects created by Person (owner id specified in URL)
-#         """
-#         id = self.kwargs['pk']
-#         target_person = Person.objects.get(user=request.user)
-#         return Goal.objects.filter(person=target_person)
+# def check_mark(request, pk):
+#     if request.method == "POST":
+#         print('something')
+#         try:
+#             Step = Step.objects.get(Step, pk=pk)
+#             done.done = True
+#             step.save()
+#             print(step)
+#             print(step.done)
+#             return HttpResponse('', status=200)
+#         except Step.DoesNotExist: # There is no product with that identifier in your database. So a 404 response should return.
+#             return HttpResponse('Step not found', status=404)
+#         except Exception: # Other exceptions happened while you trying saving your model. you can add mor specific exception handeling codes here.
+#             return HttpResponse('Internal Error', status=500)
+#     return HttpResponse('', status=200)
 
-#     def get_context_data(self, **kwargs):
-#         """
-#         Add goal owner to context so they can be displayed in the template
-#         """
-#         # Call the base implementation first to get a context
-#         context = super(UserProfileView, self).get_context_data(**kwargs)
-#         # Get the owner object from the "pk" URL parameter and add it to the context
-#         context['person'] = Person.objects.get(user=request.user)
-#         return context
+
+# @login_required
+# def check_mark(request, pk):
+#     if request.method == 'POST':
+#         try:
+#             step = Step.objects.get(Step, pk=pk)
+#             step.done = True
+#             step.save()
+#             return HttpResponse('')
+#     return HttpResponse('Method not allowed', status=405)
+
+# @login_required
+# def check_mark(request, pk):
+#     from core.forms import CheckListForm
+#     from django.views.generic.edit import CreateView
+#     if request.method == "POST":
+#         form = CheckListForm(request.POST)
+#         if form.is_valid():
+#             done = form.save(commit=False)
+#             done.person = Person.objects.get(user=request.user)
+#             done.goal = get_object_or_404(Goal, pk=pk)
+#             done.step = get_object_or_404(Step, pk=pk)
+#             done.save()
+#     else:
+#         form = CheckListForm()
+#     return HttpResponse()
+
+
+# def check_mark(request, pk):
+#     form = CheckListForm(request.POST)
+#     step = step.objects.get(Step, pk=pk)
+#     print('Test')
+#     # first you get your Job model
+#     # step.done = step.objects.get(Step, pk=pk)
+#     try:
+#         step.done = True
+#         # step.save()
+#         return JsonResponse({"success": True})
+#     except Exception as e:
+#         return JsonResponse({"success": False})
+#     return JsonResponse(data)
+
+
+
+
+
+
+# @login_required
+# def check_mark(request, pk):
+#     # from core.forms import CheckListForm
+#     from django.views.generic.edit import CreateView
+#     if request.method == "POST":
+#             step = Step.objects.all()
+#             step.person = Person.objects.get(user=request.user)
+#             step.goal = get_object_or_404(Goal, pk=pk)
+#             step.step = get_object_or_404(Step, pk=pk)
+#             step.done()
+#     # else:
+#     #     form = CheckListForm()
+#     return HttpResponse()

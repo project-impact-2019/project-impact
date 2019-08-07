@@ -13,61 +13,40 @@
         {% endif %}
         {% endfor %}
 </div> 
-<div class="dropdown">
-       <div class="title pointerCursor">Select a goal<i class="fa fa-angle-right"></i></div>
-        <div class="menu pointerCursor hide goals">
-                {% for goal in goals_by_user %}
-                <div class="option goal-description">{{goal.description}}</div>
+
+
+
+
+<div class='goals'>
+        {% for goal in goals_by_user %}
+        <ul>{{ goal.description }}</ul>
+                {% for step in goal.steps.all %}  
+                        <li>{{ step }} 
+                                {% if step.done %}
+                                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% else %}
+                                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% endif %}
+                        </li>
                 {% endfor %}
-        
-        </div>
+
+<form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+        <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
+        <button type="submit"> Submit </button>
+</form>
+{% endfor %}
+
 </div>
+
 <h4 class="title">Add a goal</h4>
 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
         <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
         <button type="submit"> Submit </button>
 </form>
 
-<div class="goal-steps">
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class='goals'>
-{% for goal in goals_by_user %}
-<br>
-<ul> <a href=""></a>{{ goal.description }}</a> </ul>
-{% for step in goal.steps.all %}  
-      <li>{{ step }}</li>
-{% endfor %}
-<form class='new_step' method='post' data-goal={{goal.pk}} action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
-                <button type="submit"> Submit </button>
-</form>
-{% endfor %}
-
-</div>
-
 <div class="chat-board">
-     <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">General Chatroom</a></div>
-     <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Mentor/Mentee Paired Chatrooms</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">General Chatroom</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Mentor/Mentee Paired Chatrooms</a></div>
 </div>
 <div class="forum"></div>
 
@@ -76,5 +55,6 @@
 <div class="admin-pair">
         <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></li></div>
 </div>
+
 {% endif %}
 {% endblock %}

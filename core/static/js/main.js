@@ -31,12 +31,13 @@ document.addEventListener('DOMContentLoaded', function() {
 // Goals variables
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
+const checkBox = qAll('.step-done-checkbox')
+console.log(checkBox)
 
 // Main execution for goals
 
 newGoal.addEventListener('submit', function (e) {
     e.preventDefault();
-    console.log(newGoal)
     $.ajax({
         type: 'POST',
         url: $("#new_goal").attr('action'),
@@ -46,7 +47,6 @@ newGoal.addEventListener('submit', function (e) {
         },
         // dataType: 'json',
         success: function (data) {
-            // console.log('Success')
             // $(".goals").load(" .goals")
             location.reload();
         }
@@ -54,28 +54,6 @@ newGoal.addEventListener('submit', function (e) {
 });
 
 
-newStep.forEach(item => {
-    item.addEventListener('submit', function (e) {
-    e.preventDefault();
-    console.log(item.action)
-    console.log(item.dataset.goal)
-    $.ajax({
-        type: 'POST',
-        url: item.action,
-        data: {
-            'goal': item.dataset.goal,
-            'step': $(item).find('.newStep').val(),
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-        },
-        // dataType: 'json',
-        success: function (data) {
-            // console.log('Success')
-            // $(".goals").load(" .goals")
-            location.reload();
-        }
-    });
-});
-})
 
 // Drop down list menu
 
@@ -136,16 +114,79 @@ function handleTitleChange(e){
 	result.innerHTML = 'The result is: ' + e.target.textContent;
 }
 
-//get elements
-const dropdownTitle = document.querySelector('.dropdown .title');
-const dropdownOptions = document.querySelectorAll('.dropdown .option');
-
-//bind listeners to these elements
-dropdownTitle.addEventListener('click', toggleMenuDisplay);
-dropdownOptions.forEach(option => option.addEventListener('click',handleOptionSelected));
-document.querySelector('.dropdown .title').addEventListener('change',handleTitleChange);
-
 //Trying to select item from goals
 
 const getGoalItem = document.querySelectorAll('.goal-description')
-console.log(getGoalItem)
+// console.log(getGoalItem)
+
+
+newStep.forEach(item => {
+    item.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+        type: 'POST',
+        url: item.action,
+        data: {
+            'goal': item.dataset.goal,
+            'step': $(item).find('.newStep').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        },
+        // dataType: 'json',
+        success: function (data) {
+            // console.log('Success')
+            // $(".goals").load(" .goals")
+            location.reload();
+        }
+    });
+});
+})
+
+
+
+checkBox.forEach(item => {
+    item.addEventListener('change', function (e) {
+        e.preventDefault();
+        fetch(`goal/check_mark/${item.dataset.step}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({ 'done': item.checked }),
+        })
+    })
+})
+
+        // $.ajax({
+        //     type: 'POST',
+        //     url: item.action,
+        //     data: {
+        //         'step': item.dataset.step,
+        //         csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+        //     },
+        //     // dataType: 'json',
+        //     success: function (data) {
+        //         // console.log('success')
+        //         location.reload();
+        //     } 
+        // });
+//     });
+// });
+
+// checkMark.forEach(item => {
+//     item.addEventListener('submit', function (e) {
+//     e.preventDefault();
+//     console.log(item.dataset.step)
+//     console.log(item.dataset.goal)
+//     $.ajax({
+//         type: 'POST',
+//         url: item.action,
+//         data: {
+//             'step': item.dataset.step,
+//             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+//         },
+//         dataType: 'json',
+//         success: function (data) {
+//             console.log('Success')
+            // location.reload();
+//         }
+//     });
+// });
+// })

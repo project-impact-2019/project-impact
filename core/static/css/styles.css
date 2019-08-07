@@ -93,7 +93,7 @@ body {
 .hide {
     max-height: 0 !important;
 }
-
+/* 
 .dropdown{
 	border: 0.1em solid black;
 	width: 10em;
@@ -126,9 +126,9 @@ body {
 	background: rgba(0,0,0,0.2);
 }
 
-.pointerCursor:hover{
+/* .pointerCursor:hover{
 	cursor: pointer;
-}
+} */ */
 
 .rotate-90{
 	transform: rotate(90deg);

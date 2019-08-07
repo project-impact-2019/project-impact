@@ -2,16 +2,19 @@
 
 {% block content %}
 <div class="profile">
-        <h2>Username: {{user}}</h2>
-        <p>Name: {{user.person.first_name}}</p>
-        <p>Role: {{user.person.role}}</p> 
+        <br>
+        <h2><center>Username: {{user}}</center></h2>
+        <h4><center>Name: {{user.person.first_name}}</center></h4>
+        <h5><center>Role: {{user.person.role}}</center></h5> 
         {% for pair in user.person.pairs %}
         {% if user.person.role == 'mentor' %}
-        <p>You are paired with: {{pair.mentee}}</p>
+        <h5><center>You are paired with: {{pair.mentee}}</center></h5>
         {% else %}
-        <p> You are paired with: {{pair.mentor}}</p>
+        <h5><center>You are paired with: {{pair.mentor}}</center></h5>
         {% endif %}
         {% endfor %}
+        <h5><center>Interests:</center></h5>
+
 </div> 
 
 {% for goal in goals_by_user %}

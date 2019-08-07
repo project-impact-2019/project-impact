@@ -41,12 +41,13 @@ hamburger.addEventListener('click', () => {
 // Goals variables
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
+const checkBox = qAll('.step-done-checkbox')
+console.log(checkBox)
 
 // Main execution for goals
 
 newGoal.addEventListener('submit', function (e) {
     e.preventDefault();
-    console.log(newGoal)
     $.ajax({
         type: 'POST',
         url: $("#new_goal").attr('action'),
@@ -56,7 +57,6 @@ newGoal.addEventListener('submit', function (e) {
         },
         // dataType: 'json',
         success: function (data) {
-            // console.log('Success')
             // $(".goals").load(" .goals")
             location.reload();
         }
@@ -64,11 +64,24 @@ newGoal.addEventListener('submit', function (e) {
 });
 
 
+
+
+function handleTitleChange(e){
+	const result = document.getElementById('result');
+
+	result.innerHTML = 'The result is: ' + e.target.textContent;
+}
+
+//Trying to select item from goals
+
+const getGoalItem = document.querySelectorAll('.goal-description')
+// console.log(getGoalItem)
+
+
 newStep.forEach(item => {
     item.addEventListener('submit', function (e) {
     e.preventDefault();
-    console.log(item.action)
-    console.log(item.dataset.goal)
+
     $.ajax({
         type: 'POST',
         url: item.action,
@@ -87,6 +100,19 @@ newStep.forEach(item => {
 });
 })
 
+
+
+checkBox.forEach(item => {
+    item.addEventListener('change', function (e) {
+        e.preventDefault();
+        fetch(`goal/check_mark/${item.dataset.step}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({ 'done': item.checked }),
+        })
+    })
+})
+
+
 const goals = document.querySelectorAll('.goal-div')
 goals.forEach(item => {
     item.addEventListener('click', function (e) {
@@ -101,5 +127,4 @@ goals.forEach(item => {
     });
 
 
-      
 },{}]},{},[1]);

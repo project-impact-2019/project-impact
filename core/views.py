@@ -112,7 +112,7 @@ class MenteeSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user
-        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentee Application', 'There is a new Mentee Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -126,7 +126,7 @@ class MentorSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save().user 
-        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience.', 'projectimpact919@gmail.com',
+        send_mail('New Mentor Application', 'There is a new Mentor Application! Please log into the admin site and review this application at your earliest convenience. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
         ['projectimpact919@gmail.com'], fail_silently=False)
         return redirect('success')
 
@@ -179,10 +179,10 @@ def token(request):
                     print(chatroom.pair)
                     # Send Email Notification When Mentor/Mentee logs into chatroom
                     if request.user.person.role == 'mentor':
-                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                        send_mail('Chatroom Invitation', 'Your mentor logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
                             [pair.mentee.email_address], fail_silently=False)
                     elif request.user.person.role == 'mentee':
-                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible.', 'projectimpact919@gmail.com',
+                        send_mail('Chatroom Invitation', 'Your mentee logged into the chatroom for a meeting. Please login as soon as possible. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
                             [pair.mentor.email_address], fail_silently=False)
     return generateToken(username)
 

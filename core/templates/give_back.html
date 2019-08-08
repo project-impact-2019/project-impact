@@ -1,16 +1,55 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<div class='support'>
-    <div class='support-header'><h2>Looking to contribute to the foster community?</h2></div>
-    <div class='support-content'>
-        <ul>
-            <li><a href='https://nfpaonline.org/foster'>Become a Foster Parent</a>
-            <li><a href='https://www.adoptuskids.org/?r=l'>Adopt</a></li>
-            <li><a href='https://www.togetherwerise.org/donate/'>Donate</a></li>
-            <li><a href='https://casaforchildren.org/'>Become a Court Appointed Special Advocate (CASA)</a></li>
-            <li><a href='https://www.togetherwerise.org/volunteer/'>Volunteer</a></li>
-        </ul>
+
+    <div class='support-header'><h3>Looking for ways to help your community?</h3></div>
+    <div class="card-gallery">
+        <div class ='card'><img src="{% static 'images/support/children1.jpg' %}" alt='foster children'>
+            <div class="card-content">
+                <a href='https://www.ncdhhs.gov/divisions/social-services/nc-kids-adoption-and-foster-care-network/how-foster-and-or-adopt'>Become a Foster Parent in NC</a>
+            </div> 
+        </div>
+        <div class ='card'><img src="{% static 'images/support/children1.jpg' %}" alt='foster children'>
+            <div class="card-content">
+                <a href='https://nfpaonline.org/foster'>Become a Foster Parent</a>
+            </div> 
+        </div>
+        <div class ='card'><img src="{% static 'images/support/children1.jpg' %}" alt='foster children'>
+            <div class="card-content">
+                <a href='https://www.adoptuskids.org/?r=l'>Become a Foster Parent in NC</a>
+            </div> 
+        </div>
+        <div class ='card'><img src="{% static 'images/support/children1.jpg' %}" alt='foster children'>
+            <div class="card-content">
+                <a href='https://www.adoptuskids.org/?r=l'>Adopt</a>
+            </div> 
+        </div>
+        <div class ='card'><img src="{% static 'images/support/children1.jpg' %}" alt='foster children'>
+            <div class="card-content">
+                <a href='https://casaforchildren.org/'>Become a Court Appointed Special Advocate (CASA)</a>
+            </div> 
+        </div>
+        <div class='card'>
+                 <img src="{% static 'images/support/children1.jpg' %}"/>
+            <div class='card-content'>
+                <a href='https://casaforchildren.org/'>Become a Court Appointed Special Advocate (CASA)</a>
+            </div>
+        </div>
+        <div class='card'>
+                <img src="{% static 'images/support/children1.jpg' %}"/>
+            <div class="card-content">
+                <a href='https://www.togetherwerise.org/volunteer/'>Volunteer</a>
+            </div>
+        </div>
+        <div class='card'>
+                <img src="{% static 'images/support/children1.jpg' %}"/>
+            <div class="card-content">
+                <a href='https://www.togetherwerise.org/volunteer/'>Volunteer</a>
+            </div>
+        </div>
+                    
+    
     </div>
-</div>
+
 {% endblock %}

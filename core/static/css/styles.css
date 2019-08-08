@@ -427,4 +427,6 @@ nav{
 
 }
 
-
+summary {
+    outline:none;
+}

@@ -34,6 +34,55 @@
 
                 <summary>{{goal.description}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
+
+<h4 class="title">Add a goal</h4>
+<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
+        <button type="submit"> Submit </button>
+</form>
+
+                {% for step in goal.steps.all %} 
+
+                <p>{{ step }}</p>
+
+                {% endfor %}
+
+                {% else %}
+                <summary>{{goal.description}} <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
+                {% for step in goal.steps.all %}  
+                <p>
+                        {% if step.done %}
+                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% else %}
+                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
+                        {{ step }} 
+                </p>
+                {% endfor %}
+
+                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                <input required type='text' class="newStep" placeholder='Add Step'></input>
+                <button type="step-submit-button"> Submit </button>
+                </form>
+                {% endif %}
+                                        
+
+                </details>
+                 
+                {% endfor %} 
+        </div>
+                
+                <div class='add-goal'>
+                        <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+                                <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
+                                <button class='goal-submit-button' type="submit"> Submit </button>
+                        </form>
+              </div>
+
+
+        
+
+
 <!-- Canvas for goal tracker -->
 <div>
 <canvas id="myChart" width="400" height="100"></canvas>
@@ -80,57 +129,9 @@ var myChart = new Chart(ctx, {
 </div>
 
 
-<h4 class="title">Add a goal</h4>
-<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
-        <button type="submit"> Submit </button>
-</form>
-
-                {% for step in goal.steps.all %} 
-{% comment %}
-Merge and Check Lines 84-90                 
-{% endcomment %}
-
-                <p>{{ step }}</p>
-
-                {% endfor %}
-
-                {% else %}
-                <summary>{{goal.description}} <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
-                {% for step in goal.steps.all %}  
-                <p>
-                        {% if step.done %}
-                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% else %}
-                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% endif %}
-                        {{ step }} 
-                </p>
-                {% endfor %}
-
-                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                <input required type='text' class="newStep" placeholder='Add Step'></input>
-                <button type="step-submit-button"> Submit </button>
-                </form>
-                {% endif %}
-                                        
-
-                </details>
-                 
-                {% endfor %} 
-        </div>
-                
-                <div class='add-goal'>
-                        <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-                                <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
-                                <button class='goal-submit-button' type="submit"> Submit </button>
-                        </form>
-              </div>
 
 
-        <div class="chat-board card">
-
-       
+       <div class="chat-board card">
                 {% for chatroom in chatrooms %}
                 {% for pair in user.person.pairs %}
                 {% if pair == chatroom.pair %}
@@ -141,6 +142,7 @@ Merge and Check Lines 84-90
                         {% endfor %}
                         </div>
                         </div>
+
                 </div>
                 {% endfor %}
                
@@ -160,4 +162,3 @@ Merge and Check Lines 84-90
 </div>
 
 {% endblock %}
-

@@ -5,6 +5,7 @@
 <div class='grid-container profile-wrapper'>
         <div class="profile">
                         <h4>Welcome {{user.person.first_name}}</h4>
+                        <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
                            {% if user.person.role == 'mentor' %}
@@ -38,7 +39,7 @@
                                                 {% endif %}
                                                 {{ step }} 
                                         </p>
-                                {% endfor %}
+                                        {% endfor %}
                 
                                  <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
                                         <input required type='text' class="newStep" placeholder='Add Step'></input>
@@ -46,7 +47,7 @@
                                  </form>
                 </details>
                  
-                {% endfor %} 
+        {% endfor %} 
                 </ul>
                 
                 <div class='add-goal'>
@@ -82,7 +83,7 @@
 </form>
 </div>
 
-{% endfor %}
+
 
 
 

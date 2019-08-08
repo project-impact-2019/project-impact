@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">Create a Mentor/Mentee Pair</h1>
+<h1 class="title">Match a Mentor with a Mentee</h1>
 <div class="pair-form">
 <form action="" method="post">
     {% csrf_token %}
     <table class="table-form">
     {{ form.as_table }}
     </table>
-    <input class="add-pair" type="submit" value="Create Pair">
+    <input class="add-pair" type="submit" value="Create Mentor/Mentee Match">
     <br><br>
   </form>
 </div>
@@ -16,12 +16,12 @@
 
 
 <div class="existing-pairs">
-  <h2>Existing Pairs</h2>
+  <h2>Current Mentor and Mentee Matches:</h2>
     {% for chatroom in chatrooms %}
     <div class="column">
           <div class= 'content mentor-index'> 
           <div class="content">
-              Mentor/Mentee Pair: {{chatroom.pair}}
+              Mentor/Mentee Match: {{chatroom.pair}}
             </p>
           </div>
         </div>

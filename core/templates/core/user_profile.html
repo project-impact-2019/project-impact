@@ -66,6 +66,7 @@
 
 </div> 
 
+
 <!-- Daiane Branch -->
 <h4>List of Goals: </h4>
 {% for goal in goals_by_user %}
@@ -73,11 +74,12 @@
 <div class="goal-div">
 
         
+
         <a class="" href="#">{{goal.description}}</a>
         {% for step in goal.steps.all %}
-        <div class="individual-steps" data-step={{step}}>
-        
+        <div class="individual-steps" data-step={{step}}>    
         </div>
+
         {% endfor %}
        
        
@@ -93,7 +95,7 @@
         <button type="submit"> Submit </button>
 </form>
 
-<!-- Devin Branch -->
+
 <div class='goals'>
         {% for goal in goals_by_user %}
         <ul>{{ goal.description }}</ul>

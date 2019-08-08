@@ -5,22 +5,24 @@
         <br>
         <h2><center>Username: {{user}}</center></h2>
         <h4><center>Name: {{user.person.first_name}}</center></h4>
-        <h5><center>Role: {{user.person.role}}</center></h5> 
+        <h5><center>Role: <button id=profile-button>{{user.person.role}}</button></center></h5> 
         {% for pair in user.person.pairs %}
         {% if user.person.role == 'mentor' %}
-        <h5><center>You are paired with: {{pair.mentee}}</center></h5>
+        <h5><center>You are paired with: <button id=profile-button>{{pair.mentee}}</button></center></h5>
         {% else %}
-        <h5><center>You are paired with: {{pair.mentor}}</center></h5>
+        <h5><center>You are paired with: </button>{{pair.mentor}}</button></center></h5>
         {% endif %}
         {% endfor %}
-        <h5><center>{{user.person.first_name}}'s Interests: </center></h5>
+
+        <h5><center>{{user.person.first_name}}'s Interests: 
         {% for category in user.person.categories.all %}
-        <center>{{ category }}</center>
-        {% endfor %}
+        <button id=profile-button>{{ category }}</button>{% if not forloop.last %},{% endif %}
+        {% endfor %}</center></h5>
+        
 
 </div> 
 
-
+<!-- Daiane Branch -->
 {% for goal in goals_by_user %}
 
 <div class="goal-div">
@@ -45,40 +47,7 @@
 </form>
 
 
-
-
-
-
-<!-- <div class="goal-detail">
-        
-        {% for goal in goals_by_user %}
-        <details>
-        <summary class="option goal-description">{{goal.description}} </summary>
-                {% for step in goal.steps.all %} 
-                <li>{{step}}</li> 
-                {% endfor %}
-
-        </details>
-        {% endfor %}
-
-
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<!-- Devin Branch -->
 <div class='goals'>
         {% for goal in goals_by_user %}
         <ul>{{ goal.description }}</ul>
@@ -100,11 +69,6 @@
 
 </div>
 
-<h4 class="title">Add a goal</h4>
-<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
-        <button type="submit"> Submit </button>
-</form>
 
 <div class="chat-board">
      <h3><center>User Chat Access:</center></h3>

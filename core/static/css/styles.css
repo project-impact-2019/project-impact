@@ -108,20 +108,17 @@ body {
 /* User's Page */
 
 
-
-.goals-list a{
-   font-size: 1.5em;
-}
-
-.profile-wrapper, .profile{
+.profile-wrapper{
     margin: 0 auto;
 }
 
-.goals-list, .steps{
+
+
+.goals-list{
    margin: 0 auto;
 }
 
-.goals-list ul {
+.details li {
     list-style: none
 
 }
@@ -131,7 +128,38 @@ body {
 
 }
 
+.profile{
+    margin-top: 30px;
+}
 
+.goals-list{
+    margin-top: 10px;
+
+}
+
+.newGoal{
+    border-radius: 10px;
+    
+}
+
+.newGoal{
+    width: 250px;
+    text-align: center;
+    height: 50px;
+}
+
+
+.goal-submit-button{
+    background: var(--red);
+    color: var(--white);
+    width: 150px;
+    border-radius: 10px;    
+    padding: 10px;
+}
+
+.step-submit-button{
+    background: var(--red);
+}
 
 
 /* Support Page */
@@ -399,28 +427,3 @@ nav{
 
 }
 
-
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  text-align: left;
-  border: none;
-  outline: none;
-  transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  display: none;
-  overflow: hidden;
-}

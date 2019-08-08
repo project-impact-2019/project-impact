@@ -1,4 +1,7 @@
 // Shorthand function for calling document.querySelector
+
+
+
 function q (selector) {
     return document.querySelector(selector)
 }
@@ -7,6 +10,16 @@ function q (selector) {
 function qAll (selector) {
     return document.querySelectorAll(selector)
 }
+
+
+// $(document).ready(function(){
+//     $('.menu-toggle').click(function() {
+      
+//         $('.site-nav').toggleClass('site-nav--open', 500);
+//         $(this).toggleClass('open');
+        
+//       });
+//     });
 
 const hamburger = q('.burger');
 const nav = q('.nav-links');
@@ -35,11 +48,6 @@ hamburger.addEventListener('click', () => {
 });
     
 });
-
-
-
-
-
 
 
 // Goals variables

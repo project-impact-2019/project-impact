@@ -104,7 +104,6 @@ def search_blog(request):
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
 
-
 # SignUp Views
 class MenteeSignUpView(CreateView):
     """View for Mentee Sign Up"""
@@ -276,11 +275,8 @@ class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
 
-#Goal Views
 
-# class GoalListView(generic.ListView):
-#     """View for Goal List"""
-#     model = Goal
+# Goals and steps
 
 def goal_list_view(request):
     """View for Goal List"""
@@ -343,5 +339,4 @@ def handler404(request, exception, template_name="404.html"):
     response = render_to_response("404.html")
     response.status_code = 404
     return response
-
 

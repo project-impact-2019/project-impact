@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/0c6ba22a8b.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Crimson+Pro&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Red+Hat+Display|Roboto&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js" defer></script>
     <title>Project Impact</title>
@@ -18,9 +18,9 @@
             background-image: url("{% static 'images/passion2.jpg'%}");
             background-size: cover;
             height: 50vh;
-            background-position: center;
-    
+            background-position: center;     
         }
+
     </style>
 </head>
 <body>
@@ -30,17 +30,17 @@
     {% endblock %}
     </header>
     
-    <section class='landing register'>
-        <div class='main'>
+   
+        <div class='div-wrapper main'>
         {% block content %}
 
 
         {% endblock %}
         </div>
-    </section>
+    
   
     {% block footer %}
-     {% include "snippets/footer.html" %}
+    
     {% endblock %}
 
 </body>

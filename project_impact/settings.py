@@ -52,12 +52,11 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_filters',
     'phonenumber_field',
+    'bulma',
 
     #crispy-forms
     'crispy_forms',
 
-    # bulma
-    'bulma',
 
 ]
 

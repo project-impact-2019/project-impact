@@ -20,15 +20,15 @@
  
 </div>
 
-  <div class="tc center avenir">
+  <div class="">
   
   <h2>Search For Resource</h2>
   {% if filter.qs %}
     {% for obj in filter.qs %}
-        <p class ='f3 green fw5 mt3' id="resourceTitle">{{obj.title|title}}</p>
+        <p class =>{{obj.title|title}}</p>
         <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span> 
        
-    <div class= 'b--solid br3 b--moon-gray'>
+    <div class= ''>
     <p id="resourceDescription">{{obj.description }}</p>
     {% endfor %}
   {% else %}

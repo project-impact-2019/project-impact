@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 891b28ae17703435544030746ca6b68a74bd9795
 <div class="">
 
   <form method="GET">
@@ -20,15 +24,15 @@
  
 </div>
 
-  <div class="tc center avenir">
+  <div class="">
   
   <h2>Search For Blog Posts</h2>
   {% if filter.qs %}
     {% for obj in filter.qs %}
-        <p class ='f3 green fw5 mt3' id="blogTitle">{{obj.title|title}}</p>
+        <p class ='' id="blogTitle">{{obj.title|title}}</p>
         <p id="blogAuthor">Author: {{obj.author|title}} | <span>  Entry Date: {{obj.publish_date}}</span>
        
-    <div class= 'b--solid br3 b--moon-gray'>
+    <div class= ''>
     <p id="blogContent">{{obj.content }}</p>
     {% endfor %}
   {% else %}

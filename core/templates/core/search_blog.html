@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class= "">
+
+<div class="">
 
   <form method="GET">
       <div class="">
@@ -11,10 +12,10 @@
               <div>{{ filter.form.content__icontains.label_tag }}</div>
               <div>{{ filter.form.content__icontains }}</div>
 
-              <div class=''>{{ filter.form.author.label_tag }}</div>
+              <div class="">{{ filter.form.author.label_tag }}</div>
               <div>{{ filter.form.author }}</div>
 
-              <button class="" type='submit'>Search</button>
+              <button class="bg-white mt3" type='submit'>Search</button>
       </div>
   </form>
  

@@ -9,9 +9,9 @@
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
                            {% if user.person.role == 'mentor' %}
-                        <p>Click to view your mentee: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}'s Profile</a></p>
+                        <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
                          {% else %}
-                        <p>Click to view your mentor: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></p>
+                        <p>Click to view your mentor's profile: <a href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank">{{pair.mentor}}</a></p>
                         {% endif %}
                         {% endfor %}
                 
@@ -23,7 +23,7 @@
                 
         </div>
 
-        <div class="goals-list"></div>
+        <div class="goals-list">
                <h3> {{user.person.first_name | title}}'s goals:</h3>
                
                {% for goal in goals_by_user %}
@@ -117,8 +117,8 @@ Merge and Check Lines 84-90
 
                 </details>
                  
-        {% endfor %} 
-                </ul>
+                {% endfor %} 
+        </div>
                 
                 <div class='add-goal'>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
@@ -128,42 +128,32 @@ Merge and Check Lines 84-90
               </div>
 
 
+        <div class="chat-board card">
 
-
-<div class="chat-board">
-
-     <section class="section">
-        <div class="container">
-          <div class="columns">
-            {% for chatroom in chatrooms %}
-            {% for pair in user.person.pairs %}
-            {% if pair == chatroom.pair %}
-            <div class="column">
-                        <h3><center>Chatroom Access:</center></h3>
-                        <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
+       
+                {% for chatroom in chatrooms %}
+                {% for pair in user.person.pairs %}
+                {% if pair == chatroom.pair %}
+                <div class="column">
+                                <h3><center>Access Chatroom:</center></h3>
+                                <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
+                        {% endif %}
+                        {% endfor %}
+                        </div>
+                        </div>
                 </div>
-            </div>
-            {% endfor %}
-          </div>
+                {% endfor %}
+               
+
         </div>
-      </section>
-</div>
-<div class="forum"></div>
 
 
-{% if request.user.is_superuser or request.user.is_admin %}
-<div class="admin-functionality">
-        <h3><center>Admin Functionality:</center></h3>
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
-</div>
-
-<br>
-
-</div>
-{% endif %}
+        {% if request.user.is_superuser or request.user.is_admin %}
+                <div class="admin-functionality card clear">
+                        <h3><center>Administration: </center></h3>
+                        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
+                </div>
+        {% endif %}
 
 
 

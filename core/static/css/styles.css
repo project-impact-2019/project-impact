@@ -15,12 +15,13 @@
 }
 
 body {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.2em;
     background-color: var(--body-bg);
 
 }
 
+/* main div to keep background photo in place */
 .main{
     margin: 0 auto;
     display: grid;
@@ -59,9 +60,6 @@ body {
     
 }
 
-/* .buttons a:hover{
-    background: #f28092;
-} */
 
 /* Index Page */
 .header-div{
@@ -107,14 +105,19 @@ body {
 
 /* User's Page */
 
+summary {
+    outline:none;
+}
 
-.profile-wrapper{
+/* .profile-wrapper{
     margin: 0 auto;
+} */
+
+.profile, .goals-list, .add-goal{
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.goals-list{
-   margin: 0 auto;
-}
 
 .details li {
     list-style: none
@@ -159,6 +162,10 @@ body {
     background: var(--red);
 }
 
+.chat-board, .admin{
+    text-align: center;
+    padding: 5em;
+}
 
 /* Support Page */
 
@@ -286,6 +293,16 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /* Navegation styling desktop first */
 
 nav{
@@ -337,6 +354,14 @@ nav{
 .burger{
     display: none;
 }
+
+
+
+
+
+
+
+
 
 
 /* Media Queries */
@@ -425,7 +450,5 @@ nav{
 
 }
 
-summary {
-    outline:none;
-}
+
 

@@ -63,7 +63,7 @@
                 </details>
                  
                 {% endfor %} 
-                </div>
+        </div>
                 
                 <div class='add-goal'>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
@@ -76,79 +76,33 @@
         
 
 
-<!-- Canvas for goal tracker -->
-<div>
-<canvas id="myChart" width="400" height="100"></canvas>
-<script>
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'horizontalBar',
-    data: {
-        labels: ['Goal 1', 'Goal 2', 'Goal 3', 'Goal 4', 'Goal 5', 'Goal 6'],
-        datasets: [{
-            label: '% of goal completed',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
-        }
-    }
-});
-</script>
-
-</div>
-
-
+        <!-- Canvas for goal tracker -->
+        <!-- <div class='canvas'>
+                <canvas id="myChart" width="400" height="100"></canvas>
+        </div> -->
 
 
        <div class="chat-board card">
                 {% for chatroom in chatrooms %}
                 {% for pair in user.person.pairs %}
                 {% if pair == chatroom.pair %}
-                <div class="column">
-                                <h3><center>Access Chatroom:</center></h3>
-                                <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
+               
+                <h3>Access Chatroom:</h3>
+                <div class="buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
                         {% endif %}
                         {% endfor %}
-                        </div>
-                        </div>
-
-                </div>
+                        
                 {% endfor %}
-               
-
         </div>
 
-
-        {% if request.user.is_superuser or request.user.is_admin %}
-                <div class="admin-functionality card clear">
-                        <h3><center>Administration: </center></h3>
-                        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
-                </div>
-        {% endif %}
+        <div class="admin-functionality admin card">
+        {% if request.user.is_superuser or request.user.is_adm %}
+                        <h3>Administration: </h3>
+                        <div class="buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
+               
+       
+        </div>
+        {% endif %}     
 
 
 

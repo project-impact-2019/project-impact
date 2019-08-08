@@ -342,3 +342,12 @@ def handler404(request, exception, template_name="404.html"):
     response.status_code = 404
     return response
 
+@csrf_exempt
+def goal_check_mark(request, pk):
+    goal = Goal.objects.get(pk=pk)
+    body = json.loads(request.body)
+    completed = body['completed']
+    goal.completed = completed
+    goal.save()
+    data = model_to_dict(goal)
+    return JsonResponse(data, status=200)

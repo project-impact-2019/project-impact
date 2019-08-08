@@ -175,8 +175,10 @@ class PairForm(forms.ModelForm):
         slug=self.cleaned_data.get('slug')
         pair=self.cleaned_data.get('pair')
         pair = Pair.objects.create(mentee=mentee, mentor=mentor)
-        pair.mentee.user.is_paired= True
-        pair.mentor.user.is_paired= True
+        mentee.user.is_paired= True
+        mentor.user.is_paired= True
+        mentee.user.save()
+        mentor.user.save()
         pair.save()
         chat = Chat.objects.create(name=name, description=description, slug=slug, pair=pair)
         chat.save()

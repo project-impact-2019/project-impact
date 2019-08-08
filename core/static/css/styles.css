@@ -15,8 +15,8 @@
 }
 
 body {
-    font-family: 'Crimson Pro', serif;
-    line-height: 1.4em;
+    font-family: 'Red Hat Display', sans-serif;
+    line-height: 1.2em;
     background-color: var(--body-bg);
 
 }
@@ -59,6 +59,10 @@ body {
     
 }
 
+.buttons a:hover{
+    background: #f28092;
+}
+
 /* Index Page */
 .header-div{
     text-align: center;
@@ -99,46 +103,50 @@ body {
     color: var(--white);
 }
 
-
 /* Support Page */
 
-.support{
-    display: grid;
-    grid-gap: 30px;
-    margin: 0 20px;
+.card{
+    padding: 2em 1em 1em;  
+    margin: 0 2em;
 }
 
-.support-header h2{
+.card-content{
     text-align: center;
-    margin: 30px 0;
-    padding: 20px;
-    background:#F1EFEF;
-    border-radius: 20px;
+    padding: 2em;
 }
 
-.support-content{
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    background:#F1EFEF;
-    border-radius: 20px;
-}
-
-.support-content ul{
-    grid-column: 2;
-    list-style: none;
-    padding: 20px;
-    font-size: 1.5em;
-}
-
-.support-content a{
+.card-content a{
     color: var(--black);
+    text-decoration: underline;
 }
 
-.support-content a:hover{
-    color: var(--red);
+.card-content a:hover{
+    color: red;
+}
+
+
+.support-header h3{
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 20px;
 }
 
 /* Resources  & Blog List view*/
+
+.profile-page{ 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.support{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+}
+
+
 
 .sidepage-content{
     display: grid;
@@ -196,10 +204,7 @@ body {
     font-size: 1.2em;
 }
 
-/* Forms */
-.forms{
-    margin: 0 auto;
-}
+
 
 .custom-bg{
     background: var(--red);
@@ -207,10 +212,25 @@ body {
 }
 
 
-
-
 /* Profile */
 
+
+
+#profile-button{
+    background: var(--gray);
+    color: var(--white);
+    text-align: center;
+}
+
+
+
+
+
+
+/* Forms */
+.forms{
+    margin: 0 auto;
+}
 
 
 /* Navegation styling desktop first */
@@ -266,11 +286,9 @@ nav{
 }
 
 
-
-
 /* Media Queries */
 
-@media only screen  and (min-width:767px){
+@media (min-width:700px){
    .index-page{
         grid-template-columns: 1fr 1fr;
         grid-gap: 2em;
@@ -280,8 +298,19 @@ nav{
        padding: 15px;
    }
 
-
+   .card-gallery{
+       display: grid;
+       grid-template-columns: repeat(2, 1fr);
+       grid-template-rows: repeat(4, 1fr);
+       grid-gap: 1em;
+       margin: 0 2em;
+      
+   }
+    
+  
+ 
 }
+
 @media only screen and (max-width: 1024px){
     .nav-links{
         width: 60%;
@@ -296,23 +325,9 @@ nav{
     }
 
     .logo{
-        margin-left: 80px;
+        margin-left: 120px;
     }
 
-    /* .burger{
-        position: absolute;
-        cursor: pointer;
-        right: 5%;
-        top: 30%;
-        transform: translate (-5%, 50%);
-        z-index: 1;
-        
-
-    } */
-
-    body{
-        overflow: hidden;
-    } 
 
     .nav-links{
         position: absolute;

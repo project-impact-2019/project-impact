@@ -9,6 +9,9 @@ function qAll (selector) {
     return document.querySelectorAll(selector)
 }
 
+
+
+// Navigation Variables
 const hamburger = q('.burger');
 const nav = q('.nav-links');
 const navLinks = qAll('.nav-links li');
@@ -38,11 +41,6 @@ hamburger.addEventListener('click', () => {
 });
 
 
-
-
-
-
-
 // Goals variables
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
@@ -70,44 +68,6 @@ newGoal.addEventListener('submit', function (e) {
 
 
 
-
-
-const goals = document.querySelectorAll('.goal-div')
-goals.forEach(item => {
-    item.addEventListener('click', function (e) {
-    const individualSteps = item.querySelectorAll('.individual-steps')
-        individualSteps.forEach(step => { 
-            step.innerHTML = `<div> ${step.dataset.step} </div>`
-        });
-
-
-function toggleMenuDisplay(e){
-	const dropdown = e.currentTarget.parentNode;
-	const menu = dropdown.querySelector('.menu');
-	const icon = dropdown.querySelector('.fa-angle-right');
-
-	toggleClass(menu,'hide');
-	toggleClass(icon,'rotate-90');
-}
-
-function handleOptionSelected(e){
-	toggleClass(e.target.parentNode, 'hide');			
-
-	const id = e.target.id;
-	const newValue = e.target.textContent + ' ';
-	const titleElem = document.querySelector('.dropdown .title');
-	const icon = document.querySelector('.dropdown .title .fa');
-
-
-	titleElem.textContent = newValue;
-	titleElem.appendChild(icon);
-	
-	//trigger custom event
-	document.querySelector('.dropdown .title').dispatchEvent(new Event('change'));
-	//setTimeout is used so transition is properly shown
-    setTimeout(() => toggleClass(icon,'rotate-90',0));
-
-}
 
 function handleTitleChange(e){
 	const result = document.getElementById('result');
@@ -154,6 +114,20 @@ checkBox.forEach(item => {
         })
     })
 })
+
+
+const goals = document.querySelectorAll('.goal-div')
+goals.forEach(item => {
+    item.addEventListener('click', function (e) {
+    const individualSteps = item.querySelectorAll('.individual-steps')
+        individualSteps.forEach(step => { 
+            step.innerHTML = `<div> ${step.dataset.step} </div>`
+        });
+
+        return individualSteps
+    });
+
+    });
 
 
 },{}]},{},[1]);

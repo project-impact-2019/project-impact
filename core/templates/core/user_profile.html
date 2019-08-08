@@ -16,6 +16,7 @@
                 {% endif %}     
                 {% endfor %}
 
+
                 <h5>Interests: 
                 {% for category in user.person.categories.all %}
                 <button id=profile-button>{{ category }}</button>{% if not forloop.last %},{% endif %}
@@ -39,6 +40,29 @@
                         </form>
                 </div>
         </div>
+
+<div class="profile">
+        <br>
+        <h2><center>Username: {{user}}</center></h2>
+        <h4><center>Name: {{user.person.first_name}}</center></h4>
+        <h5><center>Role: <button id="profile-button">{{user.person.role}}</button></center></h5> 
+        <h5><center>Email: <button id="profile-button">{{user.person.email_address}}</button></center></h5> 
+        {% for pair in user.person.pairs %}
+        {% if user.person.role == 'mentor' %}
+        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentee}}</button></center></h5>
+        <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentee}}'s Profile</button></center></a></h5>
+        {% else %}
+        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentor}}</button></center></h5>
+        <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></h5>
+        {% endif %}
+        {% endfor %}
+
+        <h5><center>{{user.person.first_name}}'s Interests: 
+        {% for category in user.person.categories.all %}
+        <button id="profile-button">{{ category }}</button>{% if not forloop.last %},{% endif %}
+        {% endfor %}</center></h5>
+        
+
 
         <!-- Daiane Branch -->
         <!-- <h4>List of Goals: </h4>
@@ -84,17 +108,42 @@
 
 
 
-
-
-
-
+<!-- Devin Branch -->
+<div class='goals'>
+        {% for goal in goals_by_user %}
+        <ul>{{ goal.description }}</ul>
+                {% for step in goal.steps.all %}  
+                        <li>{{ step }} 
+                                {% if step.done %}
+                                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% else %}
+                                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% endif %}
+                        </li>
+                {% endfor %}
 
 
 
 <div class="chat-board">
-     <h3><center>User Chat Access:</center></h3>
-     <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">General Chatroom</a></div>
-     <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Mentor/Mentee Paired Chatrooms</a></div>
+
+     <section class="section">
+        <div class="container">
+          <div class="columns">
+            {% for chatroom in chatrooms %}
+            {% for pair in user.person.pairs %}
+            {% if pair == chatroom.pair %}
+            <div class="column">
+                        <h3><center>Chatroom Access:</center></h3>
+                        <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
 </div>
 <div class="forum"></div>
 
@@ -102,8 +151,8 @@
 {% if request.user.is_superuser or request.user.is_admin %}
 <div class="admin-functionality">
         <h3><center>Admin Functionality:</center></h3>
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></div>
-        <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Chat</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Mentor/Mentee Chat</a></div>
 </div>
 
 <br>

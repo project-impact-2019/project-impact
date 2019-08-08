@@ -230,6 +230,14 @@ body {
 
 
 
+#profile-button{
+    background: var(--gray);
+    color: var(--white);
+    text-align: center;
+}
+
+
+
 
 
 

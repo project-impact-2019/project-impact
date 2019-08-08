@@ -104,7 +104,6 @@ def search_blog(request):
     return render(request, 'core/search_blog.html', {'filter': blog_filter})
 
 
-
 # SignUp Views
 class MenteeSignUpView(CreateView):
     """View for Mentee Sign Up"""
@@ -147,10 +146,12 @@ def user_profile(request, user_id):
     """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
+    chatrooms = Chat.objects.all()
     goals_by_user = Goal.objects.filter(person=person)
     context={
         'user': user,
         'goals_by_user': goals_by_user,
+        'chatrooms': chatrooms,
     }
     return render(request, 'core/user_profile.html', context)
    
@@ -276,11 +277,8 @@ class PairListView(generic.ListView):
     """View for Pair List"""
     model = Pair
 
-#Goal Views
 
-# class GoalListView(generic.ListView):
-#     """View for Goal List"""
-#     model = Goal
+# Goals and steps
 
 def goal_list_view(request):
     """View for Goal List"""
@@ -343,5 +341,4 @@ def handler404(request, exception, template_name="404.html"):
     response = render_to_response("404.html")
     response.status_code = 404
     return response
-
 

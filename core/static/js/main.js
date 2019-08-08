@@ -8,6 +8,9 @@ function qAll (selector) {
     return document.querySelectorAll(selector)
 }
 
+
+
+// Navigation Variables
 const hamburger = q('.burger');
 const nav = q('.nav-links');
 const navLinks = qAll('.nav-links li');
@@ -35,11 +38,6 @@ hamburger.addEventListener('click', () => {
 });
     
 });
-
-
-
-
-
 
 
 // Goals variables

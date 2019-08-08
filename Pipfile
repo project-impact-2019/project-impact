@@ -23,6 +23,8 @@ honcho = "*"
 faker = "*"
 django-crispy-forms = "*"
 django-bulma = "*"
+boto3 = "*"
+django-storages = "*"
 
 [requires]
 python_version = "3.7"

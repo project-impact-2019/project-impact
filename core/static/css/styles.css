@@ -425,4 +425,7 @@ nav{
 
 }
 
+summary {
+    outline:none;
+}
 

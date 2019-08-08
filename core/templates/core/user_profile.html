@@ -8,9 +8,9 @@
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
                            {% if user.person.role == 'mentor' %}
-                        <p>Click to view: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}'s Profile</a></p>
+                        <p>Click to view your mentee: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}'s Profile</a></p>
                          {% else %}
-                        <p>Click to view: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></p>
+                        <p>Click to view your mentor: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></p>
                         {% endif %}
                         {% endfor %}
                 

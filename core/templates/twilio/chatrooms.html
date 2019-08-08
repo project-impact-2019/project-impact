@@ -23,6 +23,8 @@
     <div class="container">
       <div class="columns">
         {% for chatroom in chatrooms %}
+        {% for pair in user.person.pairs %}
+        {% if pair == chatroom.pair %}
         <div class="column">
               <div class= 'content mentor-index'> 
               <p class="title is-4">{{chatroom.name}}</p>
@@ -30,8 +32,6 @@
                 <p>
                   {{chatroom.description}} 
                 </p>
-                {% for pair in user.person.pairs %}
-                  {% if pair == chatroom.pair %}
                     <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Join Chatroom</a></div>
                   {% endif %}
                 {% endfor %}

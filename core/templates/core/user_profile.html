@@ -13,7 +13,10 @@
         <h5><center>You are paired with: {{pair.mentor}}</center></h5>
         {% endif %}
         {% endfor %}
-        <h5><center>Interests:</center></h5>
+        <h5><center>{{user.person.first_name}}'s Interests: </center></h5>
+        {% for category in user.person.categories.all %}
+        <center>{{ category }}</center>
+        {% endfor %}
 
 </div> 
 

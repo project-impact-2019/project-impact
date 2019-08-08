@@ -1,7 +1,4 @@
 // Shorthand function for calling document.querySelector
-
-
-
 function q (selector) {
     return document.querySelector(selector)
 }
@@ -12,15 +9,8 @@ function qAll (selector) {
 }
 
 
-// $(document).ready(function(){
-//     $('.menu-toggle').click(function() {
-      
-//         $('.site-nav').toggleClass('site-nav--open', 500);
-//         $(this).toggleClass('open');
-        
-//       });
-//     });
 
+// Navigation Variables
 const hamburger = q('.burger');
 const nav = q('.nav-links');
 const navLinks = qAll('.nav-links li');

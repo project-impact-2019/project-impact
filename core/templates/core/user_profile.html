@@ -24,7 +24,8 @@
 
         <div class="goals-list"></div>
                <h3> {{user.person.first_name | title}}'s goals:</h3>
-        {% for goal in goals_by_user %}
+               
+               {% for goal in goals_by_user %}
 
                 <details>
                         <summary>{{goal.description}}</summary>
@@ -57,30 +58,36 @@
               </div>
 
 
+
 <div class='goals'>
-        {% for goal in goals_by_user %}
-        {% if goal.completed %}
-        <ul><input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
-        {% else %}
-        <input type="checkbox" class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
-        {% endif %}
-
-        {{ goal.description }}</ul>
-        {% for step in goal.steps.all %}  
-                <li>{{ step }} 
-                        {% if step.done %}
-                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% else %}
-                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% endif %}
-                </li>
-                {% endfor %}
-
-<form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-        <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
-        <button type="submit"> Submit </button>
-</form>
-</div>
+                {% for goal in goals_by_user %}
+                {% if goal.completed %}
+                <ul><input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
+                        {{ goal.description }}</ul>
+                        {% for step in goal.steps.all %}  
+                                <li>{{ step }}</li>
+                                {% endfor %}
+                {% else %}
+                <input type="checkbox" class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
+                {{ goal.description }}</ul>
+                {% for step in goal.steps.all %}  
+                        <li>{{ step }} 
+                                {% if step.done %}
+                                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% else %}
+                                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                                {% endif %}
+                        </li>
+                        {% endfor %}
+        
+        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
+                <button type="submit"> Submit </button>
+        </form>
+                {% endif %}
+        
+                
+        </div>
 
 {% endfor %}
 

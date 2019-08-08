@@ -16,16 +16,16 @@
 
 
 <div class="existing-pairs">
-  <h2>Existing Pairs</h2>
-    {% for chatroom in chatrooms %}
-    <div class="column">
-          <div class= 'content mentor-index'> 
-          <div class="content">
-              Mentor/Mentee Pair: {{chatroom.pair}}
-            </p>
+    <h2>Current Mentor and Mentee Matches:</h2>
+      {% for chatroom in chatrooms %}
+      <div class="column">
+            <div class= 'content mentor-index'> 
+            <div class="content">
+                Mentor/Mentee Match: {{chatroom.pair}}
+              </p>
+            </div>
           </div>
-        </div>
-    </div>
-    {% endfor %}
-</div>
+      </div>
+      {% endfor %}
+  </div>
   {% endblock %}

@@ -45,7 +45,8 @@ hamburger.addEventListener('click', () => {
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
 const checkBox = qAll('.step-done-checkbox')
-console.log(checkBox)
+const goalCheckBox = qAll('.goal-done-checkbox')
+
 
 // Main execution for goals
 
@@ -115,6 +116,15 @@ checkBox.forEach(item => {
     })
 })
 
+goalCheckBox.forEach(item => {
+    item.addEventListener('change', function (e) {
+        e.preventDefault();
+        fetch(`goal/goal_check_mark/${item.dataset.goal}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({ 'completed': item.checked }),
+        })
+    })
+})
 
 const goals = document.querySelectorAll('.goal-div')
 goals.forEach(item => {
@@ -130,4 +140,24 @@ goals.forEach(item => {
     });
 
 
+
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+        panel.style.display = "none";
+    } else {
+        panel.style.display = "block";
+    }
+    });
+}
 },{}]},{},[1]);

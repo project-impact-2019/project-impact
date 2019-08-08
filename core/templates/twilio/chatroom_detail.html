@@ -12,16 +12,13 @@
 </head>
 <body>
   <section>
-    <div id="messages"></div>
+    <div id="messages" data-chatroom="{{ chatroom.slug }}"></div>
     <input id="chat-input" type="text" placeholder="say anything" autofocus/>
   </section>
 
   <div class="column sidebar">
     <div class="float-right">
-      <h2 class="title">{{chatroom.name}}</h2>
-      <p class="subtitle">
-        {{chatroom.description}}
-      </p>
+      <h5 class="title">{{chatroom.name}}</h5>
     </div>
   </div>
 

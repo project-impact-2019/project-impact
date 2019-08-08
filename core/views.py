@@ -146,10 +146,12 @@ def user_profile(request, user_id):
     """View for User Profile"""
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
+    chatrooms = Chat.objects.all()
     goals_by_user = Goal.objects.filter(person=person)
     context={
         'user': user,
         'goals_by_user': goals_by_user,
+        'chatrooms': chatrooms,
     }
     return render(request, 'core/user_profile.html', context)
    
@@ -340,3 +342,12 @@ def handler404(request, exception, template_name="404.html"):
     response.status_code = 404
     return response
 
+@csrf_exempt
+def goal_check_mark(request, pk):
+    goal = Goal.objects.get(pk=pk)
+    body = json.loads(request.body)
+    completed = body['completed']
+    goal.completed = completed
+    goal.save()
+    data = model_to_dict(goal)
+    return JsonResponse(data, status=200)

@@ -59,9 +59,9 @@ body {
     
 }
 
-.buttons a:hover{
+/* .buttons a:hover{
     background: #f28092;
-}
+} */
 
 /* Index Page */
 .header-div{
@@ -91,6 +91,7 @@ body {
 
 .index-h3{
     text-align: center;
+    color: var(--red);
 }
 
 
@@ -102,6 +103,64 @@ body {
     background: var(--red);
     color: var(--white);
 }
+
+
+/* User's Page */
+
+
+.profile-wrapper{
+    margin: 0 auto;
+}
+
+
+
+.goals-list{
+   margin: 0 auto;
+}
+
+.details li {
+    list-style: none
+
+}
+
+.steps ul {
+    list-style: none
+
+}
+
+.profile{
+    margin-top: 30px;
+}
+
+.goals-list{
+    margin-top: 10px;
+
+}
+
+.newGoal{
+    border-radius: 10px;
+    
+}
+
+.newGoal{
+    width: 250px;
+    text-align: center;
+    height: 50px;
+}
+
+
+.goal-submit-button{
+    background: var(--red);
+    color: var(--white);
+    width: 150px;
+    border-radius: 10px;    
+    padding: 10px;
+}
+
+.step-submit-button{
+    background: var(--red);
+}
+
 
 /* Support Page */
 
@@ -118,6 +177,7 @@ body {
 .card-content a{
     color: var(--black);
     text-decoration: underline;
+    font-size: 1.4em;
 }
 
 .card-content a:hover{
@@ -215,16 +275,11 @@ body {
 /* Profile */
 
 
-
 #profile-button{
     background: var(--gray);
     color: var(--white);
     text-align: center;
 }
-
-
-
-
 
 
 /* Forms */
@@ -296,6 +351,7 @@ nav{
 
    .mentee-index, .mentor-index{
        padding: 15px;
+
    }
 
    .card-gallery{
@@ -340,7 +396,7 @@ nav{
         align-items: center;
         width: 100%;
         transform: translateX(100%);
-        transition: transform 0.5s ease-in;
+        /* transition: transform 0.5s ease-in; */
        
     }
 
@@ -370,3 +426,5 @@ nav{
   }
 
 }
+
+

@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.db import transaction
+from django.forms import ModelChoiceField
 
 class BlogForm(forms.ModelForm):
 
@@ -106,15 +107,15 @@ class MenteeSignUpForm(UserCreationForm):
         person.save()
         return person
 
-class PairForm(forms.ModelForm):
-    class Meta:
-        model = Pair
-        fields = ('mentee', 'mentor',)
+# class PairForm(forms.ModelForm):
+#     class Meta:
+#         model = Pair
+#         fields = ('mentee', 'mentor',)
 
-    def __init__(self, *args, **kwargs):
-        super(PairForm, self).__init__(*args, **kwargs)
-        self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
-        self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
+#     def __init__(self, *args, **kwargs):
+#         super(PairForm, self).__init__(*args, **kwargs)
+#         self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
+#         self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
 
     
 
@@ -145,5 +146,42 @@ class ChatForm(forms.ModelForm):
     class Meta:
         model = Chat
         fields = ('name', 'description', 'slug', 'pair',)
+
+class PairForm(forms.ModelForm):
+
+    mentor = forms.ModelChoiceField(queryset = Person.objects.filter(role='mentor'))
+    mentee = forms.ModelChoiceField(queryset = Person.objects.filter(role='mentee'))
+    name = forms.CharField(max_length=30)
+    description = forms.CharField(max_length=100)
+    slug = forms.CharField(max_length=50)
+    # pair = forms.ModelChoiceField(queryset = Pair.objects.filter(''))
+
+    class Meta:
+        model = Pair
+        fields = ('mentor', 'mentee', 'name', 'description', 'slug',)
+
+    # def __init__(self, *args, **kwargs):
+    #     super(PairForm, self).__init__(*args, **kwargs)
+    #     self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
+    #     self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
+
+    @transaction.atomic
+    def save(self):
+        pair = super().save(commit=False)
+        mentee = self.cleaned_data.get('mentee')
+        mentor = self.cleaned_data.get('mentor')
+        name=self.cleaned_data.get('name')
+        description=self.cleaned_data.get('description')
+        slug=self.cleaned_data.get('slug')
+        pair=self.cleaned_data.get('pair')
+        pair = Pair.objects.create(mentee=mentee, mentor=mentor)
+        mentee.user.is_paired= True
+        mentor.user.is_paired= True
+        mentee.user.save()
+        mentor.user.save()
+        pair.save()
+        chat = Chat.objects.create(name=name, description=description, slug=slug, pair=pair)
+        chat.save()
+        return pair
         
 

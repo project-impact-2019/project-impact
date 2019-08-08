@@ -2,50 +2,37 @@
 
 {% block content %}
 
-
-<div class="profile">
-        <br>
-        <h2><center>Username: {{user}}</center></h2>
-        <h4><center>Name: {{user.person.first_name}}</center></h4>
-        <h5><center>Role: <button id="profile-button">{{user.person.role}}</button></center></h5> 
-        {% for pair in user.person.pairs %}
-        {% if user.person.role == 'mentor' %}
-        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentee}}</button></center></h5>
-        <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentee}}'s Profile</button></center></a></h5>
-        {% else %}
-        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentor}}</button></center></h5>
-        <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></h5>
-        {% endif %}
-        {% endfor %}
-
-        <h5><center>{{user.person.first_name}}'s Interests: 
-        {% for category in user.person.categories.all %}
-        <button id="profile-button">{{ category }}</button>{% if not forloop.last %},{% endif %}
-        {% endfor %}</center></h5>
-        
-
-</div> 
-
-<!-- Daiane Branch -->
-<h4>List of Goals: </h4>
-{% for goal in goals_by_user %}
-
-<div class="goal-div">
-
-        
-        <a class="" href="#">{{goal.description}}</a>
-        {% for step in goal.steps.all %}
-        <div class="individual-steps" data-step={{step}}>
-        
+<div class='grid-container profile-wrapper'>
+        <div class="profile">
+                        <h4>Welcome {{user.person.first_name}}</h4>
+                        <p>Username: {{user}}</p>
+                        <p>Email: <a href="">{{user.person.email_address}}</a></p> 
+                        {% for pair in user.person.pairs %}
+                           {% if user.person.role == 'mentor' %}
+                        <p>Click to view your mentee: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}'s Profile</a></p>
+                         {% else %}
+                        <p>Click to view your mentor: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></p>
+                        {% endif %}
+                        {% endfor %}
+                
+                       <p>{{user.person.first_name}}'s Interests:
+                        {% for category in user.person.categories.all %}
+                        {{ category }}
+                        {% if not forloop.last %},{% endif %}
+                        {% endfor %}</p>
+                
         </div>
-        {% endfor %}
-       
-       
-              
 
-</div>
-{% endfor %}
+        <div class="goals-list"></div>
+               <h3> {{user.person.first_name | title}}'s goals:</h3>
+               
+               {% for goal in goals_by_user %}
 
+                <details>
+                  
+                {% if goal.completed %}
+
+                <summary>{{goal.description}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
 <!-- Canvas for goal tracker -->
 <div>
@@ -99,34 +86,70 @@ var myChart = new Chart(ctx, {
         <button type="submit"> Submit </button>
 </form>
 
-<!-- Devin Branch -->
-<div class='goals'>
-        {% for goal in goals_by_user %}
-        <ul>{{ goal.description }}</ul>
-                {% for step in goal.steps.all %}  
-                        <li>{{ step }} 
-                                {% if step.done %}
-                                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
-                                {% else %}
-                                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                                {% endif %}
-                        </li>
+                {% for step in goal.steps.all %} 
+{% comment %}
+Merge and Check Lines 84-90                 
+{% endcomment %}
+
+                <p>{{ step }}</p>
+
                 {% endfor %}
 
-<form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-        <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
-        <button type="submit"> Submit </button>
-</form>
-{% endfor %}
+                {% else %}
+                <summary>{{goal.description}} <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
+                {% for step in goal.steps.all %}  
+                <p>
+                        {% if step.done %}
+                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% else %}
+                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
+                        {{ step }} 
+                </p>
+                {% endfor %}
 
-</div>
+                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                <input required type='text' class="newStep" placeholder='Add Step'></input>
+                <button type="step-submit-button"> Submit </button>
+                </form>
+                {% endif %}
+                                        
+
+                </details>
+                 
+        {% endfor %} 
+                </ul>
+                
+                <div class='add-goal'>
+                        <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+                                <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
+                                <button class='goal-submit-button' type="submit"> Submit </button>
+                        </form>
+              </div>
+
 
 
 
 <div class="chat-board">
-     <h3><center>User Chat Access:</center></h3>
-     <div class="buttons index-buttons"><a  href="{% url 'twilio' %}" title="Chat">General Chatroom</a></div>
-     <div class="buttons index-buttons"><a  href="{% url 'chatrooms' %}" title="Chatrooms">Mentor/Mentee Paired Chatrooms</a></div>
+
+     <section class="section">
+        <div class="container">
+          <div class="columns">
+            {% for chatroom in chatrooms %}
+            {% for pair in user.person.pairs %}
+            {% if pair == chatroom.pair %}
+            <div class="column">
+                        <h3><center>Chatroom Access:</center></h3>
+                        <div class="buttons index-buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
 </div>
 <div class="forum"></div>
 
@@ -134,11 +157,17 @@ var myChart = new Chart(ctx, {
 {% if request.user.is_superuser or request.user.is_admin %}
 <div class="admin-functionality">
         <h3><center>Admin Functionality:</center></h3>
-        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Create Pair">Create Pair</a></div>
-        <div class="buttons index-buttons"><a  href="{% url 'create_chat' %}" title="Create Pair">Create Chat</a></div>
+        <div class="buttons index-buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
 </div>
 
 <br>
 
+</div>
 {% endif %}
+
+
+
+</div>
+
 {% endblock %}
+

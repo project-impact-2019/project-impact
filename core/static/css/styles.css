@@ -104,6 +104,36 @@ body {
     color: var(--white);
 }
 
+
+/* User's Page */
+
+
+
+.goals-list a{
+   font-size: 1.5em;
+}
+
+.profile-wrapper, .profile{
+    margin: 0 auto;
+}
+
+.goals-list, .steps{
+   margin: 0 auto;
+}
+
+.goals-list ul {
+    list-style: none
+
+}
+
+.steps ul {
+    list-style: none
+
+}
+
+
+
+
 /* Support Page */
 
 .card{
@@ -215,21 +245,6 @@ body {
 
 
 /* Profile */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #profile-button{

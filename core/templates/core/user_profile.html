@@ -15,62 +15,33 @@
 </div> 
 
 
-{% for goal in goals_by_user %}
-
+<!-- {% for goal in goals_by_user %}
 <div class="goal-div">
-
         <a class="" href="#">{{goal.description}}</a>
         {% for step in goal.steps.all %}
-        <div class="individual-steps" data-step={{step}}>
-        
+        <div class="individual-steps" data-step={{step}}>    
         </div>
-        {% endfor %}
-       
-              
-
+        {% endfor %}             
 </div>
-{% endfor %}
+{% endfor %} -->
 
-
-<h4 class="title">Add a goal</h4>
-<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
-        <button type="submit"> Submit </button>
-</form>
-
-
-
-
-
-
-<!-- <div class="goal-detail">
-        
-        {% for goal in goals_by_user %}
-        <details>
-        <summary class="option goal-description">{{goal.description}} </summary>
-                {% for step in goal.steps.all %} 
-                <li>{{step}}</li> 
+{% for goal in goals_by_user %}
+<!-- <button class="accordion">{{ goal.description }}</button>
+<div class="panel">
+{% for step in goal.steps.all %}  
+  <p>{{ step }}{% if step.done %}
+                <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                {% else %}
+                <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                {% endif %}</p>
                 {% endfor %}
-
-        </details>
-        {% endfor %}
-
-
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                                <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
+                                <button type="submit"> Submit </button>
+                        </form>
+                        {% endfor %}
+</div>
+ -->
 
 
 <div class='goals'>

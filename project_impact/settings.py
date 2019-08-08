@@ -22,7 +22,7 @@ load_dotenv(dontenv_path)
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8to63ay#nc1$#2cv808x_^!ybzn4pdlztvtmxo%_5+_ius)u=$'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 in_production = bool(os.getenv('PRODUCTION'))
@@ -188,6 +188,16 @@ TWILIO_API_SID = os.environ['TWILIO_API_SID']
 TWILIO_API_SECRET = os.environ['TWILIO_API_SECRET']
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#AWS settings
+
+AWSAccessKeyId= os.environ['AWSAccessKeyId']
+AWSSecretKey=os.environ['AWSSecretKey']
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_STORAGE_BUCKET_NAME = 'projectimpact'
+AWS_S3_REGION_NAME = 'eu-west-2'
+
 
 
 

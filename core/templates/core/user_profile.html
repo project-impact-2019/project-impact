@@ -10,10 +10,10 @@
         <h5><center>Role: <button id="profile-button">{{user.person.role}}</button></center></h5> 
         {% for pair in user.person.pairs %}
         {% if user.person.role == 'mentor' %}
-        <h5><center>You are paired with: <button id="profile-button">{{pair.mentee}}</button></center></h5>
+        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentee}}</button></center></h5>
         <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentee}}'s Profile</button></center></a></h5>
         {% else %}
-        <h5><center>You are paired with: <button id="profile-button">{{pair.mentor}}</button></center></h5>
+        <h5><center>You are paired with: <button id="pairProfile-button">{{pair.mentor}}</button></center></h5>
         <h5><center>Click to view: <a  href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank"><button id="pairProfile-button">{{pair.mentor}}'s Profile</button></center></a></h5>
         {% endif %}
         {% endfor %}

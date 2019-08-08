@@ -59,9 +59,9 @@ body {
     
 }
 
-.buttons a:hover{
+/* .buttons a:hover{
     background: #f28092;
-}
+} */
 
 /* Index Page */
 .header-div{
@@ -91,6 +91,7 @@ body {
 
 .index-h3{
     text-align: center;
+    color: var(--red);
 }
 
 
@@ -118,6 +119,7 @@ body {
 .card-content a{
     color: var(--black);
     text-decoration: underline;
+    font-size: 1.4em;
 }
 
 .card-content a:hover{
@@ -310,6 +312,7 @@ nav{
 
    .mentee-index, .mentor-index{
        padding: 15px;
+
    }
 
    .card-gallery{

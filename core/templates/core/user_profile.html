@@ -2,43 +2,6 @@
 
 {% block content %}
 
-<section class='accordion'>
-                {% for goal in goals_by_user %}
-<article class="accordion is-active">
-                <div class="accordion-header toggle">
-                  <p>{{goal.description}}</p>
-                </div>
-                {% for step in goal.steps.all %}
-                <div class="accordion-body">
-                  <div class="accordion-contentindividual-steps" data-step={{step}}></div>
-                   
-                  </div>
-                  {% endfor %}
-                </div>
-</article>
-{% endfor %}
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <div class="profile">
         <h2>Username: {{user}}</h2>
@@ -81,28 +44,18 @@
 
 
 
-
-<!-- <div class="goal-detail">
-        
-        {% for goal in goals_by_user %}
-        <details>
-        <summary class="option goal-description">{{goal.description}} </summary>
-                {% for step in goal.steps.all %} 
-                <li>{{step}}</li> 
-                {% endfor %}
-
-        </details>
-        {% endfor %}
-
-
-</div> -->
-
-
-
-
-
-
-
+<dl class="js-badger-accordion">
+                <dt>
+                    <button class="js-badger-accordion-header">
+                        Header Content
+                    </button>
+                </dt>
+                <dd class="badger-accordion__panel js-badger-accordion-panel">
+                    <div class="js-badger-accordion-panel-inner">
+                        Panel Content
+                    </div>
+                </dd>
+            </dl>
 
 
 

@@ -5,10 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.generic.base import TemplateView
 from core.models import User, Forum, Comment, Category, Resource, BlogPost, Person, Pair, Goal, Chat, Step
-<<<<<<< HEAD
-=======
 import json
->>>>>>> dba650fc04ce87e99f5296edf78517ee0ef67d2f
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
@@ -343,7 +340,3 @@ def handler404(request, exception, template_name="404.html"):
     response.status_code = 404
     return response
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dba650fc04ce87e99f5296edf78517ee0ef67d2f

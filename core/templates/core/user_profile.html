@@ -34,10 +34,7 @@
 
                 <summary>{{goal.description}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
-
-
-
-                {% for step in goal.steps.all %} 
+                {% for step in goal.steps.all %}
 
                 <p>{{ step }}</p>
 
@@ -66,7 +63,7 @@
                 </details>
                  
                 {% endfor %} 
-        </div>
+                </div>
                 
                 <div class='add-goal'>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}

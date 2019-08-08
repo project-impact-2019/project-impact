@@ -44,7 +44,8 @@ hamburger.addEventListener('click', () => {
 const newGoal = q('.new_goal')
 const newStep = qAll('.new_step')
 const checkBox = qAll('.step-done-checkbox')
-console.log(checkBox)
+const goalCheckBox = qAll('.goal-done-checkbox')
+
 
 // Main execution for goals
 
@@ -114,6 +115,15 @@ checkBox.forEach(item => {
     })
 })
 
+goalCheckBox.forEach(item => {
+    item.addEventListener('change', function (e) {
+        e.preventDefault();
+        fetch(`goal/goal_check_mark/${item.dataset.goal}/`, {
+            method: 'PATCH',
+            body: JSON.stringify({ 'completed': item.checked }),
+        })
+    })
+})
 
 const goals = document.querySelectorAll('.goal-div')
 goals.forEach(item => {

@@ -211,6 +211,14 @@ body {
 
 /* Profile */
 
+#profile-button{
+    background: var(--gray);
+    color: var(--white);
+    text-align: center;
+}
+
+
+
 
 
 /* Navegation styling desktop first */

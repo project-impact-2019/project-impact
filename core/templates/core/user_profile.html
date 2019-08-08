@@ -2,11 +2,50 @@
 
 {% block content %}
 
+<div class='grid-container profile-wrapper'>
+                <div class="profile">
+                        
+                        <h4>Welcome {{user.person.first_name}}</h4>
+                        <small>Username: {{user}}</small>
+                        <!-- <h5><center>Role: <button id=profile-button>{{user.person.role}}</button></center></h5>  -->
+                        {% for pair in user.person.pairs %}
+                        {% if user.person.role == 'mentor' %}
+                        <h5>Your mentee: <button id=profile-button><a href="#">{{pair.mentee}}</a></button></h5>
+                        {% else %}
+                        <h5>Your mentor: <button>{{pair.mentor}}</button></h5>
+                        {% endif %}     
+                        {% endfor %}
+        
+        
+                        <h5>Interests: 
+                        {% for category in user.person.categories.all %}
+                        <button id=profile-button>{{ category }}</button>{% if not forloop.last %},{% endif %}
+                        {% endfor %}</h5>
+                        
+        
+                </div>
+
+                {% for goal in goals_by_user %}
+                <div class="goals-list">
+                        <ul>
+                        <li><a class="" href="#">{{goal.description}}</a></ul>  
+                        {% endfor %} 
+                        </ul>
+                        
+                        <div class='add-goal'>
+                                <h4 class="title">Add a new goal</h4>
+                                <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+                                        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
+                                        <button type="submit"> Submit </button>
+                                </form>
+                        </div>
+                </div>
+
 
 <div class="profile">
         <br>
-        <h2><center>Username: {{user}}</center></h2>
-        <h4><center>Name: {{user.person.first_name}}</center></h4>
+        <h4><center>Username: {{user}}</center></h4>
+        <h5><center>Name: {{user}}</center></small>
         <h5><center>Role: <button id="profile-button">{{user.person.role}}</button></center></h5> 
         <h5><center>Email: <button id="profile-button">{{user.person.email_address}}</button></center></h5> 
         {% for pair in user.person.pairs %}
@@ -110,5 +149,7 @@
 
 <br>
 
+</div>
 {% endif %}
 {% endblock %}
+

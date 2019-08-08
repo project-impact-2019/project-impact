@@ -158,7 +158,7 @@ class PairForm(forms.ModelForm):
 
     class Meta:
         model = Pair
-        fields = ('mentee', 'mentor', 'name', 'description', 'slug',)
+        fields = ('mentor', 'mentee', 'name', 'description', 'slug',)
 
     # def __init__(self, *args, **kwargs):
     #     super(PairForm, self).__init__(*args, **kwargs)

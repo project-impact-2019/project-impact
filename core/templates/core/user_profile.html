@@ -35,11 +35,7 @@
                 <summary>{{goal.description}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
 
-<h4 class="title">Add a goal</h4>
-<form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-        <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
-        <button type="submit"> Submit </button>
-</form>
+
 
                 {% for step in goal.steps.all %} 
 

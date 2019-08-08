@@ -70,7 +70,9 @@ $(function() {
     // Get the general chat channel, which is where all the messages are
     // sent in this simple application
     print('Welcome to the chat. Proceed to chat...');
-    chatClient.getChannelByUniqueName('general')
+    const chatroomSlug = $chatWindow.data('chatroom')
+    console.log("chatroom", chatroomSlug)
+    chatClient.getChannelByUniqueName(chatroomSlug)
     .then(function(channel) {
       generalChannel = channel;
       console.log('Found general channel:');
@@ -78,12 +80,12 @@ $(function() {
       setupChannel();
     }).catch(function() {
       // If it doesn't exist, let's create it
-      console.log('Creating general channel');
+      console.log('Creating channel');
       chatClient.createChannel({
-        uniqueName: 'general',
+        uniqueName: chatroomSlug,
         friendlyName: 'General Chat Channel'
       }).then(function(channel) {
-        console.log('Created general channel:');
+        console.log('Created channel:');
         console.log(channel);
         generalChannel = channel;
         setupChannel();
@@ -105,9 +107,9 @@ $(function() {
     // Get Messages for a previously created channel
     generalChannel.getMessages().then(function(messages) {
         const totalMessages = messages.items.length;
-        for (i = 23; i < totalMessages; i++) {
+        for (i = 0; i < totalMessages; i++) {
           const message = messages.items[i];
-          console.log('Chat History ' + message.author, message.body);
+          printMessage('Chat History ' + message.author, message.body);
         }
         console.log('Total Messages:' + totalMessages);
     });

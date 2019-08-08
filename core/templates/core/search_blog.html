@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class= "f4-ns ml5-ns b--solid bw1 bg-blue avenir br3 justify b--dark-blue">
+<div class="">
 
   <form method="GET">
-      <div class="pa4">
+      <div class="">
               <div>{{ filter.form.title__icontains.label_tag }}</div>
               <div>{{ filter.form.title__icontains }}</div>
 
               <div>{{ filter.form.content__icontains.label_tag }}</div>
               <div>{{ filter.form.content__icontains }}</div>
 
-              <div class='mt2'>{{ filter.form.author.label_tag }}</div>
+              <div class="">{{ filter.form.author.label_tag }}</div>
               <div>{{ filter.form.author }}</div>
 
-              <button class="bg-white mt5" type='submit'>Search</button>
+              <button class="bg-white mt3" type='submit'>Search</button>
       </div>
   </form>
  

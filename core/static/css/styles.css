@@ -108,20 +108,17 @@ body {
 /* User's Page */
 
 
-
-.goals-list a{
-   font-size: 1.2em;
-}
-
-.profile-wrapper, .profile{
+.profile-wrapper{
     margin: 0 auto;
 }
 
-.goals-list, .steps{
+
+
+.goals-list{
    margin: 0 auto;
 }
 
-.goals-list ul {
+.details li {
     list-style: none
 
 }
@@ -137,8 +134,32 @@ body {
 
 .goals-list{
     margin-top: 10px;
+
 }
 
+.newGoal{
+    border-radius: 10px;
+    
+}
+
+.newGoal{
+    width: 250px;
+    text-align: center;
+    height: 50px;
+}
+
+
+.goal-submit-button{
+    background: var(--red);
+    color: var(--white);
+    width: 150px;
+    border-radius: 10px;    
+    padding: 10px;
+}
+
+.step-submit-button{
+    background: var(--red);
+}
 
 
 /* Support Page */
@@ -405,3 +426,4 @@ nav{
   }
 
 }
+

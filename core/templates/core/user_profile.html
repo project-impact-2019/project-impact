@@ -28,31 +28,31 @@
 
                 <details>
                         <summary>{{goal.description}}</summary>
-                        <ul>
+                        
                                         {% for step in goal.steps.all %}  
-                                        <li>{{ step }} 
+                                        <p>
                                                 {% if step.done %}
                                                 <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
                                                 {% else %}
                                                 <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
                                                 {% endif %}
-                                        </li>
+                                                {{ step }} 
+                                        </p>
                                 {% endfor %}
-                        </ul>
-                        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                                        <textarea required type='text' class="newStep" placeholder='Add Step'></textarea>
-                                        <button type="submit"> Submit </button>
-                                </form>
+                
+                                 <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                                        <input required type='text' class="newStep" placeholder='Add Step'></input>
+                                        <button type="step-submit-button"> Submit </button>
+                                 </form>
                 </details>
                  
                 {% endfor %} 
                 </ul>
                 
                 <div class='add-goal'>
-                        <h4 class="title">Add a new goal</h4>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-                                <textarea required type='text' class="newGoal" placeholder='Add Goal'></textarea>
-                                <button type="submit"> Submit </button>
+                                <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
+                                <button class='goal-submit-button' type="submit"> Submit </button>
                         </form>
                 </div>
         </div>

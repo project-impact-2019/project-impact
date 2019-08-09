@@ -44,14 +44,14 @@
 
 
 
-                <summary><font color=“green”>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
+                <summary><font color=DarkGreen>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
                 {% if user == request.user%}   
                 <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
                 {% endif %}
 
                 {% for step in goal.steps.all %}
 
-                <font color=“green”><p>- {{ step|title }}</p></font>
+                <font color=DarkGreen><p>- {{ step|title }}</p></font>
                 
                 {% endfor %}
 
@@ -63,7 +63,7 @@
                         {% if user == request.user%}
                         <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
-                        <font color=“green”>{{ step }}</font>
+                        <font color=DarkGreen>{{ step }}</font>
                         {% else %}
                         {% if user == request.user%}
                         <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>

@@ -160,11 +160,6 @@ class PairForm(forms.ModelForm):
         model = Pair
         fields = ('mentor', 'mentee', 'name', 'description', 'slug',)
 
-    # def __init__(self, *args, **kwargs):
-    #     super(PairForm, self).__init__(*args, **kwargs)
-    #     self.fields['mentee'].queryset = Person.objects.filter(role='mentee')
-    #     self.fields['mentor'].queryset = Person.objects.filter(role='mentor')
-
     @transaction.atomic
     def save(self):
         pair = super().save(commit=False)
@@ -183,5 +178,3 @@ class PairForm(forms.ModelForm):
         chat = Chat.objects.create(name=name, description=description, slug=slug, pair=pair)
         chat.save()
         return pair
-        
-

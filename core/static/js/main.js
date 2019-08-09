@@ -112,6 +112,7 @@ checkBox.forEach(item => {
             method: 'PATCH',
             body: JSON.stringify({ 'done': item.checked }),
         })
+        location.reload();
     })
 })
 

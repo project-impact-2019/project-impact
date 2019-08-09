@@ -32,11 +32,11 @@
                   
                 {% if goal.completed %}
 
-                <summary>{{goal.description|title}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
+                <summary><font color=“green”>{{goal.description|title}}</font> <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
                 {% for step in goal.steps.all %}
 
-                <p>{{ step|title }}</p>
+                <font color=“green”><p>- {{ step|title }}</p></font>
 
                 {% endfor %}
 
@@ -46,10 +46,12 @@
                 <p>
                         {% if step.done %}
                         <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        <font color=“green”>{{ step }}</font>
                         {% else %}
                         <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% endif %}
                         {{ step }} 
+                        {% endif %}
+                        
                 </p>
                 {% endfor %}
 
@@ -74,13 +76,16 @@
 
 
         
-
+        <div>
+                <h2>Not sure where to start?</h2>
+        </div>
+        
 
         <!-- Canvas for goal tracker -->
-        <div class='canvas'>
+        <!-- <div class='canvas'>
                 <p>{{user.person.first_name}}'s progress</p>
                 <canvas id="myChart" width="400" height="100"></canvas>
-        </div>
+        </div> -->
 
         
        <div class="chat-board card">

@@ -350,3 +350,5 @@ def goal_check_mark(request, pk):
     goal.save()
     data = model_to_dict(goal)
     return JsonResponse(data, status=200)
+
+

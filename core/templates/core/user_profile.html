@@ -36,12 +36,14 @@
                 {% if goal.completed %}
 
 
-                <summary>{{goal.description|title}} <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
 
+                <summary>{{goal.description|title}}{% if user == request.user%}   <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
+                   {% endif %}
                 {% for step in goal.steps.all %}
 
                 <p>{{ step|title }}</p>
                 <summary><font color=“green”>{{goal.description|title}}</font> <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
+
 
                 {% for step in goal.steps.all %}
 
@@ -50,39 +52,45 @@
                 {% endfor %}
 
                 {% else %}
-                <summary>{{goal.description}} <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
+                <summary>{{goal.description}} {% if user == request.user%}<input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
+                {% endif %}
                 {% for step in goal.steps.all %}  
                 <p>
                         {% if step.done %}
+                        {% if user == request.user%}
                         <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
                         <font color=“green”>{{ step }}</font>
                         {% else %}
+                        {% if user == request.user%}
                         <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
                         {{ step }} 
                         {% endif %}
                         
                 </p>
                 {% endfor %}
-
+                {% if user == request.user%}
                 <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                
                 <input required type='text' class="newStep" placeholder='Add Step'></input>
                 <button type="step-submit-button"> Submit </button>
                 </form>
                 {% endif %}
-                                        
+                {% endif %}                                        
 
                 </details>
                  
                 {% endfor %} 
         </div>
-                
+        {% if user == request.user%}
                 <div class='add-goal'>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
                                 <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                                 <button class='goal-submit-button' type="submit"> Submit </button>
                         </form>
               </div>
-
+        {% endif %} 
 
         
         <div>

@@ -7,17 +7,22 @@
                         <h4>Welcome {{user.person.first_name}}!</h4>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
-                        {% for pair in user.person.pairs %}
+                        
                         {% if user.person.role == 'mentor' %}
-                        <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
-                        {% endif %}
-                        {% endfor %}
+                        <p>View Mentee Profile(s):
+                        {% for pair in user.person.pairs %}
+                        <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
+                        {% endfor %}</p>
+                        {% endif %}  
+
                         {% if user.person.role == 'mentor' %}
                        <p>{{user.person.first_name}}'s Skills and Interests:
                         {% for category in user.person.categories.all %}
                         {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
+
                         {% else %}
+                        
                         <p>{{user.person.first_name}}'s Interests:
                         {% for category in user.person.categories.all %}
                         {{ category }}{% if not forloop.last %},{% endif %}

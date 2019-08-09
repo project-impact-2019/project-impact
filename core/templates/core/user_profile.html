@@ -8,10 +8,8 @@
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
-                           {% if user.person.role == 'mentor' %}
+                        {% if user.person.role == 'mentor' %}
                         <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
-                         {% else %}
-                        <p>Click to view your mentor's profile: <a href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank">{{pair.mentor}}</a></p>
                         {% endif %}
                         {% endfor %}
                 
@@ -20,12 +18,11 @@
                         {{ category }}
                         {% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
+
                 
         </div>
 
         <div class="goals-list">
-               <h3> {{user.person.first_name | title}}'s personal goals:</h3>
-
 
                {% for goal in goals_by_user %}
 
@@ -33,11 +30,17 @@
                   
                 {% if goal.completed %}
 
+
                 <summary>{{goal.description|title}} <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
 
                 {% for step in goal.steps.all %}
 
                 <p>{{ step|title }}</p>
+                <summary><font color=“green”>{{goal.description|title}}</font> <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
+
+                {% for step in goal.steps.all %}
+
+                <font color=“green”><p>- {{ step|title }}</p></font>
 
                 {% endfor %}
 
@@ -47,10 +50,12 @@
                 <p>
                         {% if step.done %}
                         <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        <font color=“green”>{{ step }}</font>
                         {% else %}
                         <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                        {% endif %}
                         {{ step }} 
+                        {% endif %}
+                        
                 </p>
                 {% endfor %}
 
@@ -75,13 +80,16 @@
 
 
         
-
+        <div>
+                <h2>Not sure where to start?</h2>
+        </div>
+        
 
         <!-- Canvas for goal tracker -->
-        <div class='canvas'>
+        <!-- <div class='canvas'>
                 <p>{{user.person.first_name}}'s progress</p>
                 <canvas id="myChart" width="400" height="100"></canvas>
-        </div>
+        </div> -->
 
         
        <div class="chat-board card">

@@ -146,7 +146,7 @@ def user_profile(request, user_id):
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     chatrooms = Chat.objects.all()
-    goals_by_user = Goal.objects.filter(person=person)
+    goals_by_user = Goal.objects.filter(person=user.person)
     context={
         'user': user,
         'goals_by_user': goals_by_user,

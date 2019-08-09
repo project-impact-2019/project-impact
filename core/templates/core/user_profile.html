@@ -12,31 +12,38 @@
                         <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
                         {% endif %}
                         {% endfor %}
-                
-                       <p>{{user.person.first_name}}'s Interests:
+                        {% if user.person.role == 'mentor' %}
+                       <p>{{user.person.first_name}}'s Skills and Interests:
                         {% for category in user.person.categories.all %}
-                        {{ category }}
-                        {% if not forloop.last %},{% endif %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
+                        {% else %}
+                        <p>{{user.person.first_name}}'s Interests:
+                        {% for category in user.person.categories.all %}
+                        {{ category }{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                        {% endif %}
 
                 
         </div>
 
         <div class="goals-list">
 
-               <h3> {{user.person.first_name | title}}'s goals:</h3>
-               
                {% for goal in goals_by_user %}
 
                 <details>
                   
                 {% if goal.completed %}
 
-                <summary><font color=“green”>{{goal.description|title}}</font> 
-                {% if user == request.user%}        
-                <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
-                {% endif %}
-                </summary>
+
+
+                <summary>{{goal.description|title}}{% if user == request.user%}   <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
+                   {% endif %}
+                {% for step in goal.steps.all %}
+
+                <p>{{ step|title }}</p>
+                <summary><font color=“green”>{{goal.description|title}}</font> <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
+
 
                 {% for step in goal.steps.all %}
 
@@ -104,7 +111,7 @@
                 {% if pair == chatroom.pair %}
                
                 <h3>Access Chatroom:</h3>
-                <div class="buttons"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
+                <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Mentor/Mentee Chatroom</a></div>
                         {% endif %}
                         {% endfor %}
                         
@@ -114,7 +121,7 @@
         <div class="admin-functionality admin card">
         {% if request.user.is_superuser or request.user.is_adm %}
                         <h3>Administration: </h3>
-                        <div class="buttons"><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
+                        <div class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
                
        
         </div>

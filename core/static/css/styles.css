@@ -386,12 +386,22 @@ nav{
 @media (min-width:700px){
    .index-page{
         grid-template-columns: 1fr 1fr;
-        grid-gap: 2em;
+        grid-gap: 1em;
+        line-height: 2em;
+        grid-template-rows: 1fr 80px;
    }
 
    .mentee-index, .mentor-index{
        padding: 15px;
 
+   }
+
+   .bA{
+       grid-row: 2/3;
+   }
+
+   .index-buttons{
+       align-self: start;
    }
 
    .card-gallery{
@@ -411,7 +421,7 @@ nav{
     .nav-links{
         width: 60%;
     }
-
+    
 }
 
 @media only screen and (max-width: 767px) {

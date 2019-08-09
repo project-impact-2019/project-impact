@@ -159,7 +159,7 @@ summary::-webkit-details-marker {
 }
 
 details {
-   
+    
     text-align: left;
     margin: 1rem auto;
     padding: 0 1rem;
@@ -169,7 +169,7 @@ details {
     border: 1px solid #78909C;
     border-radius: 6px;
     background-color: #ECEFF1;
-    color: #263238;
+    color: red;
     transition: background-color .15s;
     
     > :last-child {
@@ -201,6 +201,7 @@ details {
   }
   
   summary {
+    outline: none;
     padding: 1rem 2em 1rem 0;
     display: block;
     position: relative;
@@ -289,6 +290,9 @@ details {
 
 .profile{
     font-size: .9em;
+    border: 1px solid silver;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .profile h4{

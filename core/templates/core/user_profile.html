@@ -32,11 +32,11 @@
                   
                 {% if goal.completed %}
 
-                <summary>{{goal.description}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
+                <summary>{{goal.description|title}} <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
 
                 {% for step in goal.steps.all %}
 
-                <p>{{ step }}</p>
+                <p>{{ step|title }}</p>
 
                 {% endfor %}
 

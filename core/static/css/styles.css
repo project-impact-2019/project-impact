@@ -15,12 +15,13 @@
 }
 
 body {
-    font-family: 'Red Hat Display', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.2em;
     background-color: var(--body-bg);
 
 }
 
+/* main div to keep background photo in place */
 .main{
     margin: 0 auto;
     display: grid;
@@ -59,9 +60,6 @@ body {
     
 }
 
-/* .buttons a:hover{
-    background: #f28092;
-} */
 
 /* Index Page */
 .header-div{
@@ -107,17 +105,22 @@ body {
 
 /* User's Page */
 
+summary {
+    outline:none;
+}
 
-.profile-wrapper{
+/* .profile-wrapper{
     margin: 0 auto;
+} */
+
+.profile, .goals-list, .add-goal{
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.goals-list{
-   margin: 0 auto;
-}
 
 .details li {
-    list-style: none
+    list-style: none;
 
 }
 
@@ -128,6 +131,8 @@ body {
 
 .profile{
     margin-top: 30px;
+    border-bottom: 1px solid silver;
+    padding-bottom: 10px;
 }
 
 .goals-list{
@@ -159,6 +164,23 @@ body {
     background: var(--red);
 }
 
+.chat-board, .admin{
+    text-align: center;
+    padding: 5em;
+}
+
+.canvas{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+.canvas p{
+    margin-top: 10px;
+}
+
 
 /* Support Page */
 
@@ -188,7 +210,9 @@ body {
     margin: 20px 0;
     padding: 10px;
     border-radius: 20px;
+
 }
+
 
 /* Resources  & Blog List view*/
 
@@ -286,6 +310,16 @@ body {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 /* Navegation styling desktop first */
 
 nav{
@@ -339,17 +373,35 @@ nav{
 }
 
 
+
+
+
+
+
+
+
+
 /* Media Queries */
 
 @media (min-width:700px){
    .index-page{
         grid-template-columns: 1fr 1fr;
-        grid-gap: 2em;
+        grid-gap: 1em;
+        line-height: 2em;
+        grid-template-rows: 1fr 80px;
    }
 
    .mentee-index, .mentor-index{
        padding: 15px;
 
+   }
+
+   .bA{
+       grid-row: 2/3;
+   }
+
+   .index-buttons{
+       align-self: start;
    }
 
    .card-gallery{
@@ -369,7 +421,7 @@ nav{
     .nav-links{
         width: 60%;
     }
-
+    
 }
 
 @media only screen and (max-width: 767px) {
@@ -425,7 +477,5 @@ nav{
 
 }
 
-summary {
-    outline:none;
-}
+
 

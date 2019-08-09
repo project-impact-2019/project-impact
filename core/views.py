@@ -147,10 +147,23 @@ def user_profile(request, user_id):
     person = Person.objects.get(user=request.user)
     chatrooms = Chat.objects.all()
     goals_by_user = Goal.objects.filter(person=user.person)
+    goal_percentages = {}
+
+    for goal in goals_by_user:
+        total_goals = goal.steps.count()
+        if total_goals:
+            completed_goals = goal.steps.filter(done = True).count()
+            percentage = int((completed_goals / total_goals) * 100)
+        else: 
+            percentage = 0
+        goal.percent_done = percentage
+
+
     context={
         'user': user,
         'goals_by_user': goals_by_user,
         'chatrooms': chatrooms,
+        'goal_percentages': goal_percentages,
     }
     return render(request, 'core/user_profile.html', context)
    
@@ -283,6 +296,7 @@ def goal_list_view(request):
     """View for Goal List"""
     person = Person.objects.get(user=request.user)
     goals_by_user = Goal.objects.filter(person=person)
+    # complete_steps = Step.objects.filter(Step.done)
     context={
         'goals_by_user': goals_by_user,
     }
@@ -324,8 +338,6 @@ def add_new_step(request, pk):
 @csrf_exempt
 def check_mark(request, pk):
     step = Step.objects.get(pk=pk)
-    # step.done = request.data['done']
-    # breakpoint()
     body = json.loads(request.body)
     done = body['done']
     step.done = done

@@ -114,63 +114,18 @@ body {
     text-align: center;
 }
 
-/* summary input{
-   margin-left: 20px;
-
-}
-
-details[open] summary {
-    font-size: 0.8em;
-
-}
-
-details summary p {
-   font-size: .8;
-   
-   
-   
-}
-
-summary {
-    outline:none;
-    font-size: .9em;
-    background: lightgray;
-    padding: 20px;
-    border-radius: 20px;
-    border: 1px solid black;
-    margin-bottom: 5px;
-    text-align: center;
-    width: 400px;
-    vertical-align: top;
-    color: var(--white);
-}
-
-summary::-webkit-details-marker {
-    display: none
-  }
-
-details[open] summary {
-    background: darkgrey;
-    color: #333;
-} */
-
-
-summary::-webkit-details-marker {
-    display: none
-}
-
 details {
     
     text-align: left;
     margin: 1rem auto;
     padding: 0 1rem;
-    width: 35em;
+    width: 25em;
     max-width: calc(100% - 2rem);
     position: relative;
     border: 1px solid #78909C;
     border-radius: 6px;
     background-color: #ECEFF1;
-    color: red;
+    color: var(--black);
     transition: background-color .15s;
     
     > :last-child {
@@ -264,24 +219,6 @@ details {
     }
   }
 
-/* summary:after {
-    background: var(--black); 
-    border-radius: 5px; 
-    content: "+"; 
-    color: #fff; 
-    float: left; 
-    font-size: 1.5em; 
-    font-weight: bold; 
-    margin: -5px 10px 0 0; 
-    padding: 1px; 
-    text-align: center; 
-    width: 20px;
-  }
-
-  details[open] summary:after {
-    content: "-";
-  } */
-
 
 
 .profile, .goals-list, .add-goal{
@@ -349,6 +286,7 @@ details {
 .chat-board, .admin{
     text-align: center;
     padding: 5em;
+
 }
 
 .canvas{

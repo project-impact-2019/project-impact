@@ -172,7 +172,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
                         labels: ['Goal 1', 'Goal 2', 'Goal 3', 'Goal 4', 'Goal 5', 'Goal 6'],
                         datasets: [{
                         label: '% of goal completed',
-                        data: [12, 19, 3, 5, 2, 3],
+                        data: [100, 25, 100, 33, 0, 75],
                         backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)',
@@ -196,7 +196,8 @@ var ctx = document.getElementById('myChart').getContext('2d');
                         scales: {
                         yAxes: [{
                                 ticks: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                max: 100
                                 }
                         }]
                         }

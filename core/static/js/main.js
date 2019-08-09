@@ -142,6 +142,8 @@ goals.forEach(item => {
 
 
 
+
+
 var acc = document.getElementsByClassName("accordion");
 var i;
 
@@ -161,6 +163,8 @@ for (i = 0; i < acc.length; i++) {
     });
 }
 
+
+// Progress bar
 var ctx = document.getElementById('myChart').getContext('2d');
                 var myChart = new Chart(ctx, {
                 type: 'horizontalBar',

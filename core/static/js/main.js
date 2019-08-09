@@ -117,7 +117,7 @@ checkBox.forEach(item => {
 
 goalCheckBox.forEach(item => {
     item.addEventListener('change', function (e) {
-        // e.preventDefault();
+        e.preventDefault();
         fetch(`goal/goal_check_mark/${item.dataset.goal}/`, {
             method: 'PATCH',
             body: JSON.stringify({ 'completed': item.checked }),
@@ -133,7 +133,6 @@ goals.forEach(item => {
         individualSteps.forEach(step => { 
             step.innerHTML = `<div> ${step.dataset.step} </div>`
         });
-
         return individualSteps
     });
 

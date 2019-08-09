@@ -140,7 +140,6 @@ def success(request):
     view = 'success'
     return render(request, 'successful_submission.html')
 
-
 @login_required
 def user_profile(request, user_id):
     """View for User Profile"""

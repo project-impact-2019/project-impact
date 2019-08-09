@@ -15,7 +15,7 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Quicksand', sans-serif;
     line-height: 1.2em;
     background-color: var(--body-bg);
 
@@ -90,6 +90,7 @@ body {
 .index-h3{
     text-align: center;
     color: var(--red);
+    padding-bottom: 20px;
 }
 
 
@@ -103,21 +104,201 @@ body {
 }
 
 
+.test{
+    margin-top: 20px;
+}
+
 /* User's Page */
+
+.goals-list h3{
+    text-align: center;
+}
+
+/* summary input{
+   margin-left: 20px;
+
+}
+
+details[open] summary {
+    font-size: 0.8em;
+
+}
+
+details summary p {
+   font-size: .8;
+   
+   
+   
+}
 
 summary {
     outline:none;
+    font-size: .9em;
+    background: lightgray;
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    text-align: center;
+    width: 400px;
+    vertical-align: top;
+    color: var(--white);
 }
 
-/* .profile-wrapper{
-    margin: 0 auto;
+summary::-webkit-details-marker {
+    display: none
+  }
+
+details[open] summary {
+    background: darkgrey;
+    color: #333;
 } */
+
+summary::-webkit-details-marker {
+    display: none
+}
+
+details {
+    
+    text-align: left;
+    margin: 1rem auto;
+    padding: 0 1rem;
+    width: 35em;
+    max-width: calc(100% - 2rem);
+    position: relative;
+    border: 1px solid #78909C;
+    border-radius: 6px;
+    background-color: #ECEFF1;
+    color: red;
+    transition: background-color .15s;
+    
+    > :last-child {
+      margin-bottom: 1rem;
+    }
+    
+    &::before {
+      width: 100%;
+      height: 100%;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      border-radius: inherit;
+      opacity: .15;
+      box-shadow: 0 .25em .5em #263238;
+      pointer-events: none;
+      transition: opacity .2s;
+      z-index: -1;
+    }
+    
+    &[open] {
+      background-color: #FFF;
+      
+      &::before {
+        opacity: .6;
+      }
+    }
+  }
+  
+  summary {
+    outline: none;
+    padding: 1rem 2em 1rem 0;
+    display: block;
+    position: relative;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    
+    &::before,
+    &::after {
+      width: .75em;
+      height: 2px;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      content: '';
+      background-color: currentColor;
+      text-align: right;
+      transform: translateY(-50%);
+      transition: transform .2s ease-in-out;
+    }
+    
+    &::after {
+      transform: translateY(-50%) rotate(90deg);
+      
+      [open] & {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+    
+    &::-webkit-details-marker {
+      display: none;
+    }
+  }
+  
+  p {
+    margin: 0 0 1em;
+    line-height: 1.5;
+    font-size: .9em;
+  }
+  
+  ul {
+    margin: 0 0 1em;
+    padding: 0 0 0 1em;
+  }
+  
+  li:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
+  
+  code {
+    padding: 0.2em;
+    border-radius: 3px;
+    background-color: #E0E0E0;
+    
+    pre > & {
+      display: block;
+      padding: 1em;
+      margin: 0;
+    }
+  }
+
+/* summary:after {
+    background: var(--black); 
+    border-radius: 5px; 
+    content: "+"; 
+    color: #fff; 
+    float: left; 
+    font-size: 1.5em; 
+    font-weight: bold; 
+    margin: -5px 10px 0 0; 
+    padding: 1px; 
+    text-align: center; 
+    width: 20px;
+  }
+
+  details[open] summary:after {
+    content: "-";
+  } */
+
+
 
 .profile, .goals-list, .add-goal{
     margin-left: auto;
     margin-right: auto;
 }
 
+.profile{
+    font-size: .9em;
+    border: 1px solid silver;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.profile h4{
+    padding-bottom: 20px;
+    text-align: center;
+}
 
 .details li {
     list-style: none;

@@ -8,10 +8,8 @@
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
-                           {% if user.person.role == 'mentor' %}
+                        {% if user.person.role == 'mentor' %}
                         <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
-                         {% else %}
-                        <p>Click to view your mentor's profile: <a href="{% url 'profile' user_id=pair.mentor.id %}" title="Profile" target="_blank">{{pair.mentor}}</a></p>
                         {% endif %}
                         {% endfor %}
                 
@@ -20,10 +18,12 @@
                         {{ category }}
                         {% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
+
                 
         </div>
 
         <div class="goals-list">
+
                <h3> {{user.person.first_name | title}}'s goals:</h3>
                
                {% for goal in goals_by_user %}

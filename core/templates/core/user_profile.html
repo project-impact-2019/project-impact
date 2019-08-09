@@ -12,12 +12,17 @@
                         <p>Click your mentee's profile: <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}</a></p>
                         {% endif %}
                         {% endfor %}
-                
-                       <p>{{user.person.first_name}}'s Interests:
+                        {% if user.person.role == 'mentor' %}
+                       <p>{{user.person.first_name}}'s Skills and Interests:
                         {% for category in user.person.categories.all %}
-                        {{ category }}
-                        {% if not forloop.last %},{% endif %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
+                        {% else %}
+                        <p>{{user.person.first_name}}'s Interests:
+                        {% for category in user.person.categories.all %}
+                        {{ category }{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                        {% endif %}
 
                 
         </div>

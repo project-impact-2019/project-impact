@@ -20,7 +20,7 @@
                         {% else %}
                         <p>{{user.person.first_name}}'s Interests:
                         {% for category in user.person.categories.all %}
-                        {{ category }{% if not forloop.last %},{% endif %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}
                         {% endif %}
 
@@ -28,6 +28,8 @@
         </div>
 
         <div class="goals-list">
+
+                <h3> {{user.person.first_name | title}}'s goals:</h3>
 
                {% for goal in goals_by_user %}
 
@@ -37,24 +39,21 @@
 
 
 
-                <summary>{{goal.description|title}}{% if user == request.user%}   <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
-                   {% endif %}
-                {% for step in goal.steps.all %}
-
-                <p>{{ step|title }}</p>
-                <summary><font color=“green”>{{goal.description|title}}</font> <input type="checkbox" checked=checked class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>
-
+                <summary><font color=“green”>{{goal.description|title}}</font>
+                {% if user == request.user%}   
+                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
+                {% endif %}
 
                 {% for step in goal.steps.all %}
 
                 <font color=“green”><p>- {{ step|title }}</p></font>
-
+                
                 {% endfor %}
 
-                {% else %}
-                <summary>{{goal.description}} {% if user == request.user%}<input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary> 
-                {% endif %}
-                {% for step in goal.steps.all %}  
+                {% else %}      
+                <summary>{{goal.description}} <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
+                {% for step in goal.steps.all %}
+
                 <p>
                         {% if step.done %}
                         {% if user == request.user%}

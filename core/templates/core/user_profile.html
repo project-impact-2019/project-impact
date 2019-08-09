@@ -4,7 +4,7 @@
 
 <div class='grid-container profile-wrapper'>
         <div class="profile">
-                        <h4>Welcome {{user.person.first_name}}</h4>
+                        <h4>Welcome {{user.person.first_name}}!</h4>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         {% for pair in user.person.pairs %}
@@ -77,11 +77,12 @@
 
 
         <!-- Canvas for goal tracker -->
-        <!-- <div class='canvas'>
+        <div class='canvas'>
+                <p>{{user.person.first_name}}'s progress</p>
                 <canvas id="myChart" width="400" height="100"></canvas>
-        </div> -->
+        </div>
 
-
+        
        <div class="chat-board card">
                 {% for chatroom in chatrooms %}
                 {% for pair in user.person.pairs %}

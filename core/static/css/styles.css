@@ -120,7 +120,7 @@ summary {
 
 
 .details li {
-    list-style: none
+    list-style: none;
 
 }
 
@@ -131,6 +131,8 @@ summary {
 
 .profile{
     margin-top: 30px;
+    border-bottom: 1px solid silver;
+    padding-bottom: 10px;
 }
 
 .goals-list{
@@ -167,6 +169,19 @@ summary {
     padding: 5em;
 }
 
+.canvas{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+.canvas p{
+    margin-top: 10px;
+}
+
+
 /* Support Page */
 
 .card{
@@ -195,7 +210,9 @@ summary {
     margin: 20px 0;
     padding: 10px;
     border-radius: 20px;
+
 }
+
 
 /* Resources  & Blog List view*/
 

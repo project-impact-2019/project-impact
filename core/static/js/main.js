@@ -139,6 +139,9 @@ goals.forEach(item => {
 
     });
 
+// const goalPercentage = document.querySelectorAll('.goal-percentage')
+//     goalPer.forEach(item => {
+
 
 
 // Progress bar
@@ -180,3 +183,4 @@ var ctx = document.getElementById('myChart').getContext('2d');
                         }
                 }
                 });
+

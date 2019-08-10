@@ -27,17 +27,15 @@
                 
         </div>
 
-        <div class="goals-list">
+        <div class="goals-list sideA">
 
-                <h3> {{user.person.first_name | title}}'s goals:</h3>
-
+                <h3>What are your goals?</h3>
+                
                {% for goal in goals_by_user %}
 
                 <details>
                   
                 {% if goal.completed %}
-
-
 
                 <summary><font color=“#086E06”>{{goal.description|title}}</font>
                 {% if user == request.user%}   
@@ -57,12 +55,12 @@
                 <p>
                         {% if step.done %}
                         {% if user == request.user%}
-                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                       <input class='checkbox' type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
                         <font color=“#086E06">{{ step }}</font>
                         {% else %}
                         {% if user == request.user%}
-                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        <input class='checkbox' type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
                         {{ step }} 
                         {% endif %}
@@ -70,11 +68,12 @@
                 </p>
                 {% endfor %}
                 {% if user == request.user%}
-                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
                 
-                <input required type='text' class="newStep" placeholder='Add Step'></input>
-                <button type="step-submit-button"> Submit </button>
-                </form>
+                        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                        <input required type='text' class="step-input" placeholder='Add a new step'></input>
+                        <button class='step-submit-button'type="submit"> Submit </button>
+                        </form>
+                
                 {% endif %}
                 {% endif %}                                        
 
@@ -92,8 +91,35 @@
         {% endif %} 
 
         
-        <div>
-                <h2>Not sure where to start?</h2>
+        <div class= "goals-list sideB">
+                <h3>Not sure where to start?</h3>
+                <details>
+                <summary>Job</summary>
+                <ol class='example-list'>
+                    <li> placeholder</li>
+                    <li> placeholder</li>
+                    <li> placeholder</li>
+                    <li> placeholder</li>
+                </ol>
+                </details>
+                <details>
+                <summary>Job</summary>
+                <ol class='example-list'>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                </ol>
+                </details>
+                <details>
+                <summary>Job</summary>
+                <ol class='example-list'>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                        <li> placeholder</li>
+                </ol>
+                </details>
         </div>
         
 

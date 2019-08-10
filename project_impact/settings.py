@@ -35,6 +35,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Our app. 
+    'core',
+    
     # Third-party apps
     'registration',
 
@@ -45,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Personal apps 
-    'core', 
+     
 
 
     # Third-party apps

@@ -136,9 +136,9 @@
                 <canvas id="myChart" width="400" height="100"></canvas>
         </div>
 
-        
+        {% if user.person.pairs %}
        <div class="chat-board card">
-                <h3>Chatroom(s):</h3>
+               <h3>Chatroom(s):</h3>
                 {% for chatroom in chatrooms %}
                         {% for pair in user.person.pairs %}
                         {% if pair == chatroom.pair %}
@@ -149,9 +149,11 @@
                         
                 {% endfor %}
         </div>
+        {% endif %}
 
-        <div class="admin-functionality admin card">
         {% if request.user.is_superuser or request.user.is_adm %}
+        <div class="admin-functionality admin card">
+        
                         <h3>Administration: </h3>
                         <div class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
                

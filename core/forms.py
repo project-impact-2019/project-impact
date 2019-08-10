@@ -153,12 +153,12 @@ class PairForm(forms.ModelForm):
     mentee = forms.ModelChoiceField(queryset = Person.objects.filter(role='mentee'))
     name = forms.CharField(max_length=30)
     description = forms.CharField(max_length=100)
-    slug = forms.CharField(max_length=50)
+    chat_id = forms.CharField(max_length=50)
     # pair = forms.ModelChoiceField(queryset = Pair.objects.filter(''))
 
     class Meta:
         model = Pair
-        fields = ('mentor', 'mentee', 'name', 'description', 'slug',)
+        fields = ('mentor', 'mentee', 'name', 'description', 'chat_id',)
 
     @transaction.atomic
     def save(self):
@@ -167,7 +167,7 @@ class PairForm(forms.ModelForm):
         mentor = self.cleaned_data.get('mentor')
         name=self.cleaned_data.get('name')
         description=self.cleaned_data.get('description')
-        slug=self.cleaned_data.get('slug')
+        slug=self.cleaned_data.get('chat_id')
         pair=self.cleaned_data.get('pair')
         pair = Pair.objects.create(mentee=mentee, mentor=mentor)
         mentee.user.is_paired= True

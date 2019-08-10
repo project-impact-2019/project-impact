@@ -1,11 +1,6 @@
 <nav>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
-        </div>
         <div class='logo'><a href="{% url 'index' %}" title='Home'>Project Impact</a></div>
-        <ul class='nav-links'>
+            <ul class='nav-links'>
                 <li><a href="{% url 'index' %}" title='Home'>Home</a></li>
                 {% if request.user.is_authenticated %}
                 <li><a  href="{% url 'auth_logout' %}" title="Log out">Logout</a></li>
@@ -13,9 +8,13 @@
                 {% else %}
                 <li><a href="{% url 'auth_login' %}" title="Login">Login</a></li>
                 {% endif %}
-                <li><a href="{% url 'give_back' %}" title="give_back"> Support</a></li>
+                <li><a href="{% url 'give_back' %}" title="give_back"> Give back</a></li>
                 <li><a href="{% url 'resource' %}" title="resource">Resources</a></li>
                 {% comment %}<li><a href="{% url 'blog' %}" title="blog posts">Blogs</a></li>{% endcomment %}
-        </ul>
-    
-</nav>
+            </ul>
+        <div class="burger">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </div>
+     </nav>

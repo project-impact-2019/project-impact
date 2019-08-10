@@ -30,9 +30,9 @@ body {
 
 }
 .grid-container{
-    width: 96%;
+    max-width: 100%;
     font-size: 1.2em;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     display: grid;
     grid-gap: 20px;
@@ -357,6 +357,15 @@ details {
     margin-left: 1.2em;
 }
 
+.sub-title{
+    text-align: center;
+}
+
+.add-goal h4{
+    text-align: center;
+    margin-bottom: .8em;
+}
+
 
 
 /* Support Page */
@@ -469,7 +478,6 @@ details {
 }
 
 
-
 .custom-bg{
     background: var(--red);
     color: var(--white);
@@ -545,9 +553,6 @@ nav{
 
 
 
-
-
-
 /* Media Queries */
 
 @media (min-width:750px){
@@ -581,29 +586,57 @@ nav{
    }
 
    .profile-wrapper{
-       grid-template-columns: 250px 1fr 250px;
-       grid-template-rows: 300px 1fr 250px;
+    
+       grid-template-columns: 1fr 1fr;
+       grid-template-rows: 250px 1fr 250px 250px 250px;
+       grid-gap: 2em;
    }
-
-
+    
    .profile{
-       margin-top: 30px;
+       grid-column: 1/3;
    }
-   .sideA, .sideB{
+
+   .chat-board{
+       grid-column: 2/3;
        
+   }
+
+   .admin{
+       grid-column: 1/3;
+   }
+
+
+   .add-goal{
+       grid-column: 1/2;
+       grid-row: 3/4;
+       margin-top: 3em;
+       margin-bottom: 3em;
+       text-align: center;
+
+   }
+
+
+   .sideA, .sideB{
        border-top: none;
    }
 
-  
-   .add-goal{
-       margin-top: 3em;
-       margin-bottom: 3em;
-
-   }   
+   /* .sideB{
+       grid-column: 3/4;
+       grid-row: 1/2;
+   } */
  
-    .chat-board{
-        grid-column: 3/4;
-    }
+   
+
+
+   
+
+   
+
+
+
+
+
+
 
 
 

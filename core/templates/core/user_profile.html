@@ -32,10 +32,10 @@
                 
         </div>
 
-              <div class="goals-list sideA">
+        <div class="goals-list">
 
-                <h3>What are your goals?</h3>
-                
+                <h3> {{user.person.first_name | title}}'s goals:</h3>
+
                {% for goal in goals_by_user %}
 
                 <details>
@@ -43,17 +43,15 @@
                 {% if goal.completed %}
 
 
-                <summary><font color=“#086E06”>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
 
+                <summary><font color=DarkGreen>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
                 {% if user == request.user%}   
                 <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
                 {% endif %}
 
                 {% for step in goal.steps.all %}
 
-
-                <font color=“#086E06”><p>- {{ step|title }}</p></font>
-
+                <font color=DarkGreen><p>- {{ step|title }}</p></font>
                 
                 {% endfor %}
 
@@ -63,15 +61,12 @@
                 <p class='goals{{goal.pk}}'>
                         {% if step.done %}
                         {% if user == request.user%}
-                       <input class='checkbox' type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
-
-
-                        <font color=“#086E06”>{{ step }}</font>
-
+                        <font color=DarkGreen>{{ step }}</font>
                         {% else %}
                         {% if user == request.user%}
-                        <input class='checkbox' type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
                         {{ step }} 
                         {% endif %}
@@ -79,12 +74,11 @@
                 </p>
                 {% endfor %}
                 {% if user == request.user%}
+                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
                 
-                        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                        <input required type='text' class="step-input" placeholder='Add a new step'></input>
-                        <button class='step-submit-button'type="submit"> Submit </button>
-                        </form>
-                
+                <input required type='text' class="newStep" placeholder='Add Step'></input>
+                <button type="step-submit-button"> Submit </button>
+                </form>
                 {% endif %}
                 {% endif %}                                        
 

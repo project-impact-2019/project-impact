@@ -135,8 +135,18 @@ body {
 .goals-list h3{
     text-align: center;
     color: var(--red);
+    padding-bottom: .5em;
 }
 
+.sideB p{
+   text-align: center; 
+}
+
+.sideB{
+    border-top: 1px solid silver;
+    padding-top: 20px;
+    margin-bottom:30px;
+}
 
 
 details {
@@ -145,11 +155,11 @@ details {
     margin: 1rem auto;
     padding: 0 1rem;
     width: 25em;
-    max-width: calc(100% - 2rem);
+    /* max-width: calc(100% - 2rem); */
     position: relative;
     border: 1px solid #78909C;
     border-radius: 6px;
-    background-color: #ECEFF1;
+    background-color: #e3afbc;
     color: var(--black);
     transition: background-color .15s;
     
@@ -217,7 +227,7 @@ details {
     }
   }
   
-
+  
   p {
     margin: 0 0 1em;
     line-height: 1.5;
@@ -225,18 +235,6 @@ details {
   }
   
   
-  code {
-    padding: 0.2em;
-    border-radius: 3px;
-    background-color: #E0E0E0;
-    
-    pre > & {
-      display: block;
-      padding: 1em;
-      margin: 0;
-    }
-  }
-
 .example-list{
     padding: .2em;
 }
@@ -285,7 +283,6 @@ details {
 
 }
 
-
 .newGoal{
     width: 250px;
     text-align: center;
@@ -304,14 +301,23 @@ details {
 }
 
 .step-submit-button{
-    border: 2px solid var(--red);
+    border: 2px solid #0772ba;
     background: #ECEFF1;
-    color: var(--red);
+    color: #0772ba;
     padding: 5px;
     width: 100px;
     margin-bottom: 15px;
     border-radius: 10px;
 
+}
+
+.add-goal{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.subtitle{
+    text-align: center;
 }
 
 .goal-done-checkbox{
@@ -347,6 +353,9 @@ details {
     margin-top: 20px;
 }
 
+.detail-score{
+    margin-left: 1.2em;
+}
 
 
 
@@ -539,13 +548,9 @@ nav{
 
 
 
-
-
-
-
 /* Media Queries */
 
-@media (min-width:700px){
+@media (min-width:750px){
    .index-page{
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
@@ -574,9 +579,36 @@ nav{
        margin: 0 2em;
       
    }
-    
+
+   .profile-wrapper{
+       grid-template-columns: 250px 1fr 250px;
+       grid-template-rows: 300px 1fr 250px;
+   }
+
+
+   .profile{
+       margin-top: 30px;
+   }
+   .sideA, .sideB{
+       
+       border-top: none;
+   }
+
   
+   .add-goal{
+       margin-top: 3em;
+       margin-bottom: 3em;
+
+   }   
  
+    .chat-board{
+        grid-column: 3/4;
+    }
+
+
+
+
+
 }
 
 @media only screen and (max-width: 1024px){

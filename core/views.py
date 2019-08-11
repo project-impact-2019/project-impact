@@ -81,7 +81,6 @@ def add_new_blog(request):
 class ResourceListView(generic.ListView):
     """View for Resource List"""
     model = Resource
-    paginate_by = 5
 
 class ResourceDetailView(generic.DetailView):
     """View for Resource Details"""

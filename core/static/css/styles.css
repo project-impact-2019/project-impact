@@ -27,8 +27,8 @@ body {
     display: grid;
     grid-gap: 20px;
     
-
 }
+
 .grid-container{
     max-width: 100%;
     font-size: 1.2em;
@@ -64,6 +64,7 @@ body {
 /* Index Page */
 
 .registration{
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 150px;
     text-align: center;
@@ -76,9 +77,30 @@ body {
     width: 150px;
     border-radius: 20px;
     letter-spacing: .1em;
-    color: var(white);
+    color: var(--white);
 
 }
+
+.registration_p{
+    max-width: 80%;
+    margin: 70px auto;
+    font-size: 3em;
+
+}
+
+.email{
+    max-width: 80%;
+    margin: 50px auto;
+    font-size: 1.2em;
+}
+
+.b-email{
+    color: var(--white);
+    width: 200px;
+    border-radius: 10px;
+}
+
+
 
 .header-paragraph{
     width: 80%;
@@ -251,7 +273,7 @@ details {
     margin-left: .5em;
 }
 
-.profile, .goals-list, .add-goal{
+.profile, .goals-list, .add-goal, .visitor{
     margin-left: auto;
     margin-right: auto;
 }
@@ -276,6 +298,17 @@ details {
     line-height: 1em;
     background: #FFF;
     margin-top:20px;
+    height: 500px;
+    text-align: center;
+}
+
+.photo-holder{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 2px solid silver;
+    margin-bottom: 1em;
+   
 }
 
 .details li {
@@ -318,10 +351,10 @@ details {
     margin: 1em;
 }
 
-.step-submit-button{
-    border: 2px solid #0772ba;
-    background: #ECEFF1;
-    color: #0772ba;
+.step-button{
+    border: 2px solid var(--red);
+    background: #FFF0F5;
+    color: var(--red);
     padding: 5px;
     width: 100px;
     margin-bottom: 15px;
@@ -329,7 +362,13 @@ details {
 
 }
 
-.add-goal{
+.newStep{
+    border-radius: 20px;
+    padding:10px;
+    text-align: center;
+}
+
+.add-goal, .visitor{
     margin-left: auto;
     margin-right: auto;
 }
@@ -352,6 +391,10 @@ details {
     text-align: center;
     padding: 5em;
 
+}
+
+.admin{
+    margin-bottom: 1em;
 }
 
 .canvas{
@@ -382,6 +425,10 @@ details {
 .add-goal h5{
     text-align: center;
     margin-bottom: 1em;
+}
+
+.add-goal{
+    text-align: center;
 }
 
 /* Administrator page */
@@ -606,7 +653,7 @@ nav{
 
 /* Media Queries */
 
-@media (min-width:750px){
+@media (min-width:1000px){
    .index-page{
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
@@ -638,54 +685,56 @@ nav{
    }
 
    .profile-wrapper{
-    
-       grid-template-columns: 1fr 1fr;
-       grid-template-rows: 250px 1fr 250px 250px 250px;
-       grid-gap: 1em;
+
+       max-width: 90%;
+       grid-template-columns: 1fr 1fr 1fr;
+       grid-template-rows: 50px 1fr 250px 250px;
+       grid-gap: 2em;
    }
     
    .profile{
        grid-column: 1/2;
+       grid-row: 2;
    }
 
-   .goal-list{
-       grid-column: 1/2;
-    
+   .goals-list{
+       grid-row:2;
+       
    }
 
    .add-goal, .visitor{
-    margin-top: 20px;
-    padding-bottom: 52px;
-    padding-top: 25px;
+       grid-row:3;
+
+   }
+
+   .add-goal, .visitor{
+   
     background: #FFF;
+    text-align: center;
     
   }
    
    .sideB{
-    margin-top:-10px;
-    grid-column: 2/3;
+
+    grid-column: 3/4;
+    grid-row: 2;
+    margin-top:-9px;
     
-}
-   
+ }
 
-   .chat-board{
-       grid-column: 1/3;
-    
-   
-   }
-   
-   .admin{
-       grid-column: 1/3;
-   }
+ .chat-board{
+     grid-row:3/4;
+     grid-column: 3/4;
+ }
 
-
-   .add-goal{
-       grid-column: 2/3;
-       /* margin-top: 3em;
-       margin-bottom: 3em; */
-       text-align: center;
-       align-self: baseline;
-   }
+ .admin{
+     grid-column: 1/4;
+     grid-row: 4/5;
+     padding:20px;
+     height: 200px;
+     margin-right: 10px;
+     margin-left:-10px;
+ }
 
 
    .sideA, .sideB{
@@ -694,15 +743,6 @@ nav{
    }
 
   
- 
-   
-
-
-
-
-
-
-
 
 
 }
@@ -736,6 +776,7 @@ nav{
         align-items: center;
         width: 100%;
         transform: translateX(100%);
+        z-index: 9999;
         /* transition: transform 0.5s ease-in; */
        
     }

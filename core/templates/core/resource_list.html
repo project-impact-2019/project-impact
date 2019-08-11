@@ -23,7 +23,8 @@
     {% else %}
       <p>There are no articles to show at the moment! :(.</p>
     {% endif %}
-  </div>
+    </div>
+  
 
 
     {% if resource_list %}
@@ -96,10 +97,11 @@
       {% else %}
         <p>There are no articles to show at the moment! :(.</p>
       {% endif %}
-    </div>
+      </div>
   
-  {% if resource_list %}
-    <div class="sidepage-list">
+      
+      {% if resource_list %}
+      <div class="sidepage-list">
         <ul>
           <div class='category-header'><h3>Food Resource(s)</h3></div>
           {% for resource in resource_list %}
@@ -114,6 +116,7 @@
           <p>There are no articles to show at the moment! :(.</p>
         {% endif %}
       </div>
+ 
 
 
       {% if resource_list %}
@@ -171,7 +174,7 @@
           </div>
 </div>  
 <div class="buttons">
-  <a href="{% url 'search_resource'%}" title="Search">Search for a Resource</a>
+  <a href="{% url 'search_resource'%}" title="Search">Resource Filter</a>
 </div>
 <br>
 {% endblock %}

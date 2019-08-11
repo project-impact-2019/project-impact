@@ -178,3 +178,9 @@ class PairForm(forms.ModelForm):
         chat = Chat.objects.create(name=name, description=description, slug=slug, pair=pair)
         chat.save()
         return pair
+
+class UploadAvatarForm(forms.ModelForm):
+
+    class Meta:
+        model = Person
+        fields = ('upload',)

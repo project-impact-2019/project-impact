@@ -373,3 +373,33 @@ def about_us(request):
     template_name = 'core/about_us.html' 
 
     return render(request, 'core/about_us.html')
+
+# @login_required
+# def edit_profile(request, user_id=None):
+#     """View for User Profile"""
+#     if user_id == None: user_id = request.user.id
+#     user = User.objects.get(pk=user_id)
+#     person = Person.objects.get(user=request.user)
+
+
+
+#     context={
+#         'user': user,
+#     }
+#     return render(request, 'core/edit_profile.html', context)
+
+@login_required
+def edit_profile(request):
+    """View for Adding New Blog Entry"""
+    person = Person.objects.get(user=request.user)
+    from core.forms import UploadAvatarForm
+    from django.views.generic.edit import CreateView
+    if request.method == "POST":
+        form = UploadAvatarForm(request.POST)
+        if form.is_valid():
+            upload = form.save(commit=False)
+            upload.save()
+            return redirect('profile')
+    else:
+        form = UploadAvatarForm()
+    return render(request, 'core/edit_profile.html', {'form': form})

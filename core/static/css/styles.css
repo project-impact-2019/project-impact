@@ -88,6 +88,15 @@ body {
 
 }
 
+.password_fail{
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: -30px;
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--red);
+}
+
 .email{
     max-width: 80%;
     margin: 50px auto;
@@ -457,7 +466,7 @@ details {
 .add-pair{
     margin-top: 1em;
     color: var(--white);
-   border-radius: 10px;
+    border-radius: 10px;
 
 }
 
@@ -471,6 +480,8 @@ details {
 
 .card img{
     border-radius: 20px;
+    width: 100%;
+    height: 350px;
 }
 
 .card-content{

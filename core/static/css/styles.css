@@ -612,6 +612,14 @@ details {
     color: var(--white);
 }
 
+.category-header{
+    text-align: center;
+    margin: 10px 0;
+    padding: 20px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
 
 /* Profile */
 

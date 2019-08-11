@@ -319,10 +319,10 @@ details {
     line-height: 1em;
     background: #FFF;
     margin-top:20px;
-    /* height: 600px; */
+    height: 500px;
     text-align: center;
     /* width: 300px; */
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 .photo-holder{

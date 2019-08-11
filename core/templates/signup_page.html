@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block header %}
+   {% include "snippets/navsearchbar.html" %}
+{% endblock %}
+
+{% block content %}
+<div class='index-page'>
+        <div class= 'content mentor-index'> 
+            <h3 class='index-h3'> Become a mentor</h3>
+               <p>
+                There are many ways you can give back to the community, but the most valuable thing you can do is give your time. Becoming a mentor not only creates a gateway of growth, but it also creates a bond with someone who needs guidance. We’ve all struggled through something alone and have wished we had someone who could guide us in the right direction. Why not be there for someone and make an impact in their life? Create an impact by clicking to be a mentor. 
+               </p>
+        </div>
+        <div class="buttons index-buttons bA">
+                <a class="link-button" href="{% url 'mentor_signup' %}">Sign up as Mentor </a> 
+        </div>
+        <div class="content mentee-index">
+              <div class='text'>
+                    <h3 class='index-h3'> Find a mentor</h3>
+                    <p>
+                    Having a mentor is a crucial part of life especially if you haven’t found the right support. Feeling like you are alone and/or lost are common feelings however you don’t have to go through this journey unguided. Find a mentor with common interest to help you achieve	 the goals you need help with. Creating a bond that could last a life time is just one click away. 
+                    </p>
+              </div>
+       </div>
+       <div class="buttons index-buttons bB">
+            <a class="link-button" href="{% url 'mentee_signup' %}">Sign up as Mentee</a>
+       </div>
+     </div>
+{% endblock %}

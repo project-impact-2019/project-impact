@@ -35,7 +35,7 @@
 
        {% if user == request.user%}
         <div class='add-goal'>
-                <h5>Create your goals</h5>
+                <h5>Create a goal</h5>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
                         <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                         <button class='goal-submit-button' type="submit"> Submit </button>
@@ -107,7 +107,7 @@
                 {% endfor %} 
                 </div>
         
-
+        
               <div class= "goals-list sideB">
                 <h3>Not sure where to start?</h3>
                  <p class='sub-title'>Suggested Goals:</p>

@@ -45,6 +45,10 @@ def give_back(request):
     view = 'give_back'
     return render(request, 'give_back.html')
 
+def signup_page(request):
+    """View for How to Give Back to Foster Children Aging Out of System"""
+    view = 'signup_page'
+    return render(request, 'signup_page.html')
 
 #BlogPost Model
 class BlogPostListView(generic.ListView):

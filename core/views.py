@@ -364,3 +364,7 @@ def goal_check_mark(request, pk):
     return JsonResponse(data, status=200)
 
 
+def about_us(request):
+    template_name = 'core/about_us.html' 
+
+    return render(request, 'core/about_us.html')

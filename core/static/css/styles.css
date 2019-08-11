@@ -27,8 +27,8 @@ body {
     display: grid;
     grid-gap: 20px;
     
-
 }
+
 .grid-container{
     max-width: 100%;
     font-size: 1.2em;
@@ -64,6 +64,7 @@ body {
 /* Index Page */
 
 .registration{
+    max-width: 80%;
     margin: 0 auto;
     margin-top: 150px;
     text-align: center;
@@ -76,9 +77,30 @@ body {
     width: 150px;
     border-radius: 20px;
     letter-spacing: .1em;
-    color: var(white);
+    color: var(--white);
 
 }
+
+.registration_p{
+    max-width: 80%;
+    margin: 70px auto;
+    font-size: 3em;
+
+}
+
+.email{
+    max-width: 80%;
+    margin: 50px auto;
+    font-size: 1.2em;
+}
+
+.b-email{
+    color: var(--white);
+    width: 200px;
+    border-radius: 10px;
+}
+
+
 
 .header-paragraph{
     width: 80%;

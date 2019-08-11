@@ -18,6 +18,7 @@ body {
     font-family: 'Quicksand', sans-serif;
     line-height: 1.2em;
     background-color: var(--body-bg);
+    max-width: 100%;
 
 }
 
@@ -30,9 +31,9 @@ body {
 }
 
 .grid-container{
-    max-width: 100%;
-    font-size: 1.2em;
-    /* max-width: 1200px; */
+    /* max-width: 100%; */
+    font-size: 1em;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-gap: 20px;
@@ -68,13 +69,13 @@ body {
     margin: 0 auto;
     margin-top: 150px;
     text-align: center;
-    font-size: 2em;
+    font-size: 1.2em;
 }
 
 .login-button{
     background: var(--red);
     padding: 15px;
-    width: 150px;
+    width: 5em;
     border-radius: 20px;
     letter-spacing: .1em;
     color: var(--white);
@@ -84,14 +85,14 @@ body {
 .registration_p{
     max-width: 80%;
     margin: 70px auto;
-    font-size: 3em;
+    
 
 }
 
 .email{
     max-width: 80%;
     margin: 50px auto;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .b-email{
@@ -100,12 +101,11 @@ body {
     border-radius: 10px;
 }
 
-
-
 .header-paragraph{
     width: 80%;
     margin: 0 auto;
     text-align: justify;
+    font-size: 1.1em;
 }
 
 
@@ -115,6 +115,7 @@ body {
 
 .header-div h2{
     margin-bottom: 20px;
+    font-size: 1.6em;
 }
 
 .index-page{
@@ -123,11 +124,17 @@ body {
     padding-bottom: 30px;
     margin: 0 20px;
     display: grid;
+    font-size: 1em;
 
 }
 
 .index-buttons{
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bA{
+    margin-bottom: 25px;
 }
 
 .mentor-index, .mentee-index{
@@ -142,6 +149,7 @@ body {
     text-align: center;
     color: var(--red);
     padding-bottom: 20px;
+    font-size: 1.2em;
 }
 
 
@@ -152,14 +160,17 @@ body {
     display: grid;
     background: var(--red);
     color: var(--white);
+    margin-top: 2em;
 }
 
 
-.test{
-    margin-top: 20px;
-}
 
 /* User's Page */
+
+.profile-wrapper{
+    max-width: 90%;
+   
+}
 
 .goals-list h3{
     text-align: center;
@@ -183,7 +194,7 @@ details {
     text-align: left;
     margin: 1rem auto;
     padding: 0 1rem;
-    width: 25em;
+    width: 18em;
     /* max-width: calc(100% - 2rem); */
     position: relative;
     border: 1px solid #78909C;
@@ -276,7 +287,8 @@ details {
 .profile, .goals-list, .add-goal, .visitor{
     margin-left: auto;
     margin-right: auto;
-}
+    max-width: 90%;
+}  
 
 .profile, .visitor, .add-goal{
     font-size: .9em;
@@ -288,18 +300,20 @@ details {
 }
 
 .profile h4{
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     text-align: center;
     color: var(--red);
 }
 
 .profile{
-    padding-bottom: 20px;
+    padding: 20px;
     line-height: 1em;
     background: #FFF;
     margin-top:20px;
-    height: 500px;
+    /* height: 600px; */
     text-align: center;
+    /* width: 300px; */
+    white-space: nowrap;
 }
 
 .photo-holder{
@@ -324,12 +338,17 @@ details {
 .add-goal h5{
     padding-bottom: 20px;
     padding-top: 10px;
+
 }
 
+.add-goal{
+    width: 300px;
+}
 
 
 .goals-list{
     margin-top: 10px;
+
 
 }
 
@@ -393,9 +412,9 @@ details {
 
 }
 
-.admin{
-    margin-bottom: 1em;
-}
+/* .admin{
+    padding-bottom: 2em;
+} */
 
 .canvas{
     text-align: center;
@@ -494,6 +513,7 @@ details {
     margin: 20px 0;
     padding: 10px;
     border-radius: 20px;
+    font-size: 1.2em;
 
 }
 
@@ -653,8 +673,34 @@ nav{
 
 /* Media Queries */
 
-@media (min-width:1000px){
-   .index-page{
+
+@media only screen and (min-width:644px){
+   details{
+       width:25em;
+   }
+
+   .profile, .chat-board, .admin{
+     width: 400px;
+   }
+
+   .add-goal{
+       width: 400px;
+       padding: 20px;
+   }
+   
+   .profile{
+       margin-top: 2em;
+   }
+
+
+}
+
+@media only screen and (min-width: 1400px){
+    .nav-links{
+        width: 60%;
+    }
+
+    .index-page{
         grid-template-columns: 1fr 1fr;
         grid-gap: 1em;
         line-height: 2em;
@@ -742,19 +788,13 @@ nav{
     
    }
 
-  
 
-
-}
-
-@media only screen and (max-width: 1024px){
-    .nav-links{
-        width: 60%;
-    }
     
 }
 
 @media only screen and (max-width: 767px) {
+
+  
 
     .image{
         display: hidden;

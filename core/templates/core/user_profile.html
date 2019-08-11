@@ -13,14 +13,14 @@
                         {% if user.person.role == 'mentor' %}
                         <p>View Mentee Profile(s):
                         {% for pair in user.person.pairs %}
-                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
+                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee|linebreaks}}{% if not forloop.last %}{% endif %}</a>
                         {% endfor %}</p>
                         {% endif %}  
 
                         {% if user.person.role == 'mentor' %}
                        <p>{{user.person.first_name}}'s Skills and Interests:
                         {% for category in user.person.categories.all %}
-                        {{ category }}{% if not forloop.last %},{% endif %}
+                        {{ category|linebreaks}}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
 
                         {% else %}

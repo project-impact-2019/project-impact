@@ -326,8 +326,8 @@ details {
 }
 
 .photo-holder{
-    height: 200px;
-    width: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 2px solid silver;
     margin-bottom: 1em;
@@ -350,7 +350,7 @@ details {
 
 }
 
-.add-goal{
+.add-goal, .profile{
     width: 300px;
 }
 
@@ -384,7 +384,7 @@ details {
     background: #FFF0F5;
     color: var(--red);
     padding: 5px;
-    width: 100px;
+    width: 80px;
     margin-bottom: 15px;
     border-radius: 10px;
 
@@ -392,7 +392,7 @@ details {
 
 .newStep{
     border-radius: 20px;
-    padding:10px;
+    padding: 8px;
     text-align: center;
 }
 
@@ -500,7 +500,7 @@ details {
 .card img{
     border-radius: 20px;
     width: 100%;
-    height: 350px;
+    height: 250px;
 }
 
 .card-content{
@@ -511,7 +511,7 @@ details {
 .card-content a{
     color: var(--black);
     text-decoration: underline;
-    font-size: 1.4em;
+    font-size: 1.1em;
 }
 
 /* .card-content a:hover{
@@ -524,13 +524,13 @@ details {
     margin: 20px 0;
     padding: 10px;
     border-radius: 20px;
-    font-size: 1.2em;
+    font-size: 1.5em;
 
 }
 
 .support-header p{
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 
@@ -689,6 +689,42 @@ nav{
 }
 
 
+/* About Us */
+
+.about-wrapper{
+    margin: auto 0;
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.about-img img{
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: 1px solid silver;
+    margin: 1em 0;
+    
+    
+}
+
+.group-img img{
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    border: 1px solid silver;
+}
+
+.about-details{
+    font-family: 'Quicksand', sans-serif;
+    text-align: justify;
+    padding: 1em;
+}
+
+.members{
+    margin-top: 2em;
+
+}
+
 
 /* Media Queries */
 
@@ -709,7 +745,134 @@ nav{
    
    .profile{
        margin-top: 2em;
+       font-size: 1.2em;
    }
+
+   .card img{
+       height: 350px;
+   }
+
+   /* .logo{
+       margin-left: -10px;
+   } */
+
+
+}
+
+@media only screen and (max-width: 1400px) and (min-width: 950px){
+    
+    /* home page */
+    .index-page{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em;
+        line-height: 2em;
+        grid-template-rows: 1fr 80px;
+   }
+
+   .bA{
+    grid-row: 2/3;
+    }
+    
+    .mentee-index, .mentor-index{
+        padding: 15px;
+ 
+    }
+
+    .index-buttons{
+        align-self: start;
+        border-radius:15px;
+    }
+
+
+     /* User profile */
+    .profile-wrapper{
+        grid-template-columns: 1fr 1fr;
+        margin: 0 auto;
+        grid-template-rows: 50px 1fr 1fr 250px 250px;
+    }
+
+    details{
+        width: 22em;
+    }
+
+    .add-goal, .profile{
+        width: 380px;
+    }
+
+    .sideB{
+        border: none;
+        grid-row: 3/4;
+        
+    }
+
+    .profile{
+        grid-column: 1/2;
+        grid-row: 2/3;
+        margin-top: -1em;
+        /* height: 500px; */
+        font-size: 1.1em;
+        
+    }
+
+    .add-goal{
+        grid-row: 3/4;
+        height:250px;
+        margin-top: 5em;
+    }
+
+    .goals-list{
+        grid-column: 2/3;
+        margin-top: 3em;
+    }
+
+    .chat-board{
+        grid-column: 1/3;
+        grid-row: 4/5;
+    }
+
+    .admin{
+        grid-column: 1/3;
+        grid-row: 5/6;
+        
+    }
+
+    .chat-board, .admin{
+        width: 50em;;
+    }
+
+    .photo-holder{
+        height: 150px;
+        width: 150px;
+
+    }
+
+    .card-gallery{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1em;
+        max-width: 80%;
+        margin: 0 auto;
+       
+    }
+
+    /* about-us */
+
+    .about-wrapper{
+        display: grid;
+    }
+
+    .group{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 5em;
+    }
+
+    .needscenter{
+        font-size: 1.5em;
+    }
+
+
 
 
 }
@@ -725,6 +888,19 @@ nav{
         line-height: 2em;
         grid-template-rows: 1fr 80px;
    }
+    
+    .grid-container p{
+        font-size: 1.2em;
+    }
+
+    .header-paragraph{
+        font-size: 1.4em;
+    }
+
+    .header-div h2{
+        font-size: 2em;
+    }
+
 
    .mentee-index, .mentor-index{
        padding: 15px;
@@ -760,6 +936,7 @@ nav{
    .profile{
        grid-column: 1/2;
        grid-row: 2;
+       margin-top: -.1em;
    }
 
    .goals-list{
@@ -790,6 +967,7 @@ nav{
  .chat-board{
      grid-row:3/4;
      grid-column: 3/4;
+     width:400px;
  }
 
  .admin{
@@ -797,8 +975,9 @@ nav{
      grid-row: 4/5;
      padding:20px;
      height: 200px;
-     margin-right: 10px;
-     margin-left:-10px;
+     margin-right: auto;
+     margin-left: auto;
+     width:98%;
  }
 
 
@@ -806,21 +985,34 @@ nav{
        border-top: none;
     
    }
+   
+    .about-wrapper{
+        display: grid;
+    }
 
+    .group{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 5em;
+    }
+
+   
 
     
 }
 
+
+/* navegation queries */
+
 @media only screen and (max-width: 767px) {
-
-  
-
+    
     .image{
         display: hidden;
     }
 
     .logo{
-        margin-left: 120px;
+        margin-left: 80px;
+        font-size:1.6em;
     }
 
 
@@ -867,11 +1059,41 @@ nav{
 
 }
 
+/* navegation */
+@media only screen and (max-width: 1400px) and (min-width: 768px){
+   .nav-links{
+       font-size: .7em;
+       letter-spacing: 0;
+       width: 70%;
+       
+   }
 
-/* About Us */
+   .logo{
+       font-size: 1.5em;
+   }
 
-.needscenter {
-    text-align: center;
+   .grid-container p{
+       font-size: 1.1em;
+   }
+
+
 }
+
+/* @media only screen and (max-width: 1200px) and (min-width:774 px){
+
+    .card-gallery{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1em;
+        max-width: 80%;
+        margin: 0 auto;
+       
+    }
+} */
+
+
+
+
 
 

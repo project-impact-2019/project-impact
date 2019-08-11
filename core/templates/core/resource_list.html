@@ -7,12 +7,12 @@
 {% block content %}
 <div class="sidepage-content">
   <div class='sidepage-header'><h2>List of resources</h2></div>
-    {% if resource_list %}
+  {% if resource_list %}
       <div class="sidepage-list">
       <ul>
         {% for resource in resource_list %}
           <li>
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}{{resource.category}}</a> 
           </li>
         {% endfor %}
       </ul>

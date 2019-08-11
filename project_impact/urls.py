@@ -29,6 +29,9 @@ urlpatterns = [
     path('', RedirectView.as_view(url='/index/', permanent=True)),
     path('profile/<int:user_id>', core_views.user_profile, name='profile'),
     
+    # About Us
+    path('about_us', core_views.about_us, name='about_us'),
+    
     # How to Give Back to Foster Community
     path('giveback/', core_views.give_back, name='give_back'),
     

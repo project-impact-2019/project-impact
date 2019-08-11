@@ -89,6 +89,15 @@ body {
 
 }
 
+.password_fail{
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: -30px;
+    text-align: center;
+    font-size: 0.75em;
+    color: var(--red);
+}
+
 .email{
     max-width: 80%;
     margin: 50px auto;
@@ -310,10 +319,10 @@ details {
     line-height: 1em;
     background: #FFF;
     margin-top:20px;
-    /* height: 600px; */
+    height: 500px;
     text-align: center;
-    width: 300px;
-    white-space: nowrap;
+    /* width: 300px; */
+    /* white-space: nowrap; */
 }
 
 .photo-holder{
@@ -476,7 +485,7 @@ details {
 .add-pair{
     margin-top: 1em;
     color: var(--white);
-   border-radius: 10px;
+    border-radius: 10px;
 
 }
 
@@ -490,6 +499,8 @@ details {
 
 .card img{
     border-radius: 20px;
+    width: 100%;
+    height: 250px;
 }
 
 .card-content{
@@ -500,7 +511,7 @@ details {
 .card-content a{
     color: var(--black);
     text-decoration: underline;
-    font-size: 1.4em;
+    font-size: 1.1em;
 }
 
 /* .card-content a:hover{
@@ -513,13 +524,13 @@ details {
     margin: 20px 0;
     padding: 10px;
     border-radius: 20px;
-    font-size: 1.2em;
+    font-size: 1.5em;
 
 }
 
 .support-header p{
     text-align: center;
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 
@@ -601,6 +612,14 @@ details {
     color: var(--white);
 }
 
+.category-header{
+    text-align: center;
+    margin: 10px 0;
+    padding: 20px;
+    background:#F1EFEF;
+    border-radius: 20px;
+}
+
 
 /* Profile */
 
@@ -672,8 +691,38 @@ nav{
 
 /* About Us */
 
-.needscenter {
+.about-wrapper{
+    margin: auto 0;
     text-align: center;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.about-img img{
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    border: 1px solid silver;
+    margin: 1em 0;
+    
+    
+}
+
+.group-img img{
+    border-radius: 50%;
+    width: 350px;
+    height: 350px;
+    border: 1px solid silver;
+}
+
+.about-details{
+    font-family: 'Quicksand', sans-serif;
+    text-align: justify;
+    padding: 1em;
+}
+
+.members{
+    margin-top: 2em;
+
 }
 
 
@@ -699,11 +748,43 @@ nav{
        font-size: 1.2em;
    }
 
+   .card img{
+       height: 350px;
+   }
+
+   /* .logo{
+       margin-left: -10px;
+   } */
+
 
 }
 
 @media only screen and (max-width: 1400px) and (min-width: 950px){
     
+    /* home page */
+    .index-page{
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1em;
+        line-height: 2em;
+        grid-template-rows: 1fr 80px;
+   }
+
+   .bA{
+    grid-row: 2/3;
+    }
+    
+    .mentee-index, .mentor-index{
+        padding: 15px;
+ 
+    }
+
+    .index-buttons{
+        align-self: start;
+        border-radius:15px;
+    }
+
+
+     /* User profile */
     .profile-wrapper{
         grid-template-columns: 1fr 1fr;
         margin: 0 auto;
@@ -765,6 +846,32 @@ nav{
 
     }
 
+    .card-gallery{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1em;
+        max-width: 80%;
+        margin: 0 auto;
+       
+    }
+
+    /* about-us */
+
+    .about-wrapper{
+        display: grid;
+    }
+
+    .group{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 5em;
+    }
+
+    .needscenter{
+        font-size: 1.5em;
+    }
+
 
 
 
@@ -781,6 +888,19 @@ nav{
         line-height: 2em;
         grid-template-rows: 1fr 80px;
    }
+    
+    .grid-container p{
+        font-size: 1.2em;
+    }
+
+    .header-paragraph{
+        font-size: 1.4em;
+    }
+
+    .header-div h2{
+        font-size: 2em;
+    }
+
 
    .mentee-index, .mentor-index{
        padding: 15px;
@@ -865,7 +985,18 @@ nav{
        border-top: none;
     
    }
+   
+    .about-wrapper{
+        display: grid;
+    }
 
+    .group{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 5em;
+    }
+
+   
 
     
 }
@@ -880,7 +1011,8 @@ nav{
     }
 
     .logo{
-        margin-left: 120px;
+        margin-left: 80px;
+        font-size:1.6em;
     }
 
 
@@ -940,10 +1072,25 @@ nav{
        font-size: 1.5em;
    }
 
+   .grid-container p{
+       font-size: 1.1em;
+   }
+
 
 }
 
+/* @media only screen and (max-width: 1200px) and (min-width:774 px){
 
+    .card-gallery{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-gap: 1em;
+        max-width: 80%;
+        margin: 0 auto;
+       
+    }
+} */
 
 
 

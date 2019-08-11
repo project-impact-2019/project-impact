@@ -6,20 +6,169 @@
 
 {% block content %}
 <div class="sidepage-content">
-  <div class='sidepage-header'><h2>List of resources</h2></div>
+  <div class='sidepage-header'><h2>Resource Guide</h2></div>
+
   {% if resource_list %}
-      <div class="sidepage-list">
+  <div class="sidepage-list">
+    <ul>
+      <div class='category-header'><h3>Career Resource(s)</h3></div>
+      {% for resource in resource_list %}
+        {% if resource.category.name == 'Career' %}
+        <li>
+          <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+    {% else %}
+      <p>There are no articles to show at the moment! :(.</p>
+    {% endif %}
+  </div>
+
+
+    {% if resource_list %}
+    <div class="sidepage-list">
       <ul>
+        <div class='category-header'><h3>Clothing Resource(s)</h3></div>
         {% for resource in resource_list %}
+          {% if resource.category.name == 'Clothing' %}
           <li>
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}{{resource.category}}</a> 
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
           </li>
+          {% endif %}
         {% endfor %}
       </ul>
       {% else %}
         <p>There are no articles to show at the moment! :(.</p>
       {% endif %}
     </div>
+
+  
+    {% if resource_list %}
+    <div class="sidepage-list">
+      <ul>
+        <div class='category-header'><h3>Education Resource(s)</h3></div>
+        {% for resource in resource_list %}
+          {% if resource.category.name == 'Education' %}
+          <li>
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>There are no articles to show at the moment! :(.</p>
+      {% endif %}
+    </div>
+
+
+    {% if resource_list %}
+    <div class="sidepage-list">
+      <ul>
+        <div class='category-header'><h3>Employment Resource(s)</h3></div>
+        {% for resource in resource_list %}
+          {% if resource.category.name == 'Employment' %}
+          <li>
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>There are no articles to show at the moment! :(.</p>
+      {% endif %}
+    </div>
+
+
+
+    {% if resource_list %}
+    <div class="sidepage-list">
+      <ul>
+        <div class='category-header'><h3>Financial Resource(s)</h3></div>
+        {% for resource in resource_list %}
+          {% if resource.category.name == 'Finance' %}
+          <li>
+            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>There are no articles to show at the moment! :(.</p>
+      {% endif %}
+    </div>
+  
+  {% if resource_list %}
+    <div class="sidepage-list">
+        <ul>
+          <div class='category-header'><h3>Food Resource(s)</h3></div>
+          {% for resource in resource_list %}
+            {% if resource.category.name == 'Food' %}
+            <li>
+              <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+            </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+        {% else %}
+          <p>There are no articles to show at the moment! :(.</p>
+        {% endif %}
+      </div>
+
+
+      {% if resource_list %}
+      <div class="sidepage-list">
+          <ul>
+            <div class='category-header'><h3>Health / Mental Health Resource(s)</h3></div>
+            {% for resource in resource_list %}
+              {% if resource.category.name == 'Health' %}
+              <li>
+                <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+          {% else %}
+            <p>There are no articles to show at the moment! :(.</p>
+          {% endif %}
+        </div>
+
+
+        {% if resource_list %}
+        <div class="sidepage-list">
+            <ul>
+              <div class='category-header'><h3>Independent Living Resource(s)</h3></div>
+              {% for resource in resource_list %}
+                {% if resource.category.name == 'Independent Living' %}
+                <li>
+                  <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+                </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% else %}
+              <p>There are no articles to show at the moment! :(.</p>
+            {% endif %}
+          </div>
+
+
+
+        {% if resource_list %}
+        <div class="sidepage-list">
+            <ul>
+              <div class='category-header'><h3>Support Resource(s)</h3></div>
+              {% for resource in resource_list %}
+                {% if resource.category.name == 'Support' %}
+                <li>
+                  <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
+                </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            {% else %}
+              <p>There are no articles to show at the moment! :(.</p>
+            {% endif %}
+          </div>
 </div>  
 <div class="buttons">
   <a href="{% url 'search_resource'%}" title="Search">Search for a Resource</a>

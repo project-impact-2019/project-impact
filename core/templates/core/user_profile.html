@@ -13,7 +13,7 @@
                         {% if user.person.role == 'mentor' %}
                         <p>View Mentee Profile(s):
                         {% for pair in user.person.pairs %}
-                        <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
+                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
                         {% endfor %}</p>
                         {% endif %}  
 
@@ -37,7 +37,7 @@
 
        {% if user == request.user%}
         <div class='add-goal'>
-                <h5>Create your goals</h5>
+                <h5>Create a goal</h5>
                         <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
                         <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                         <button class='goal-submit-button' type="submit"> Submit </button>
@@ -64,7 +64,7 @@
                 
                 {% if goal.completed %}
 
-                <summary><font color=DarkGreen>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
+                <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
                 {% if user == request.user%}   
                 <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
                 {% endif %}
@@ -107,7 +107,7 @@
                         {% endfor %} 
                 </div>
         
-
+        
               <div class= "goals-list sideB">
                 <h3>Not sure where to start?</h3>
                  <p class='sub-title'>Suggested Goals:</p>

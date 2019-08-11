@@ -27,7 +27,9 @@ urlpatterns = [
     # Index
     path('', core_views.index, name='index'), 
     path('', RedirectView.as_view(url='/index/', permanent=True)),
-    path('profile/<int:user_id>', core_views.user_profile, name='profile'),
+    path('sign_up/', core_views.signup_page, name='signup_page'),
+    path('profile/', core_views.user_profile, name='profile'),
+    path('profile/<int:user_id>/', core_views.user_profile, name='profile-view'),
     
     # About Us
     path('about_us', core_views.about_us, name='about_us'),

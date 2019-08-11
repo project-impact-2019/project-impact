@@ -15,10 +15,10 @@
     
         <p> &nbsp; {% trans form.password.label_tag %} &nbsp; {{ form.password }}</p>
     
-       <p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password? </br>
-        <a href="{{ register_url }}">Need an account</a>?{% endblocktrans %}</p>
+       <p>{% blocktrans %}<a href="{{ auth_pwd_reset_url }}">Forgot</a> your password? {% endblocktrans %}</br>
+        Not a Member?<a href="{% url 'signup_page' %}"> Sign up Now.</a></p>
 
-    <input class='login-button' type="submit" value="{% trans "login" %}" />
+    <input class='login-button' type="submit" value="{% trans 'login' %}" />
     <input class= 'login-button'type="hidden" name="next" value="{{ next }}" />
     </form>
 </div>

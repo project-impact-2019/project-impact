@@ -18,11 +18,11 @@ class BlogForm(forms.ModelForm):
 class MentorSignUpForm(UserCreationForm):
     
 
-    categories = forms.ModelMultipleChoiceField(
+    skills = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=True,
-        help_text='Please select the categories you are interesting in mentoring.'
+        help_text='Please select the skills you are interesting in mentoring.'
     )
 
     # email_address = forms.EmailField(max_length=254, help_text='Please enter a valid email address.')
@@ -62,18 +62,18 @@ class MentorSignUpForm(UserCreationForm):
         user.set_password(password)
         user.save()
         person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
-        person.categories.add(*self.cleaned_data.get('categories'))
+        person.categories.add(*self.cleaned_data.get('skills'))
         person.role = 'mentor'
         person.save()
         return person
 
 class MenteeSignUpForm(UserCreationForm):
 
-    categories = forms.ModelMultipleChoiceField(
+    interests = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         required=True,
-        help_text='Please select the categories you would like help with from a Mentor.'
+        help_text='Please select the areas you are interested in getting help with.'
     )
 
     email_address = forms.EmailField(max_length=254, help_text='Please enter a valid email address.')
@@ -102,7 +102,7 @@ class MenteeSignUpForm(UserCreationForm):
         user.set_password(password)
         user.save()
         person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
-        person.categories.add(*self.cleaned_data.get('categories'))
+        person.categories.add(*self.cleaned_data.get('interests'))
         person.role = 'mentee'
         person.save()
         return person

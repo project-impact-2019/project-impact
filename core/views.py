@@ -351,13 +351,13 @@ def check_mark(request, pk):
     return JsonResponse(data, status=200)
 
 
-
 def handler404(request, exception, template_name="404.html"):
     """View for Custom 404 Page"""
     response = render_to_response("404.html")
     response.status_code = 404
     return response
 
+    
 @csrf_exempt
 def goal_check_mark(request, pk):
     goal = Goal.objects.get(pk=pk)
@@ -369,3 +369,7 @@ def goal_check_mark(request, pk):
     return JsonResponse(data, status=200)
 
 
+def about_us(request):
+    template_name = 'core/about_us.html' 
+
+    return render(request, 'core/about_us.html')

@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
 <div class='grid-container profile-wrapper'>
         <div class="profile">
                         <h4>Welcome {{user.person.first_name}}!</h4>
+                        <img  class='photo-holder'src="{% static 'images/otterprofile.jpg' %}"/>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         
@@ -49,17 +51,15 @@
 
 
         <div class="goals-list">
-
                 <h3> What goals do you have? </h3>
                 {% if goals_by_user %}
-                 <p class='sub-title'>Goals in progress...</p>
+                 <p class='sub-title'>Goals in progress:</p>
                 {% else %}
                  <p class='sub-title'><font color='red'>You currently have no goals!</font></p>
                 {% endif %}
-
+               
 
                 {% for goal in goals_by_user %}
-
                 <details>
                 
                 {% if goal.completed %}
@@ -92,19 +92,19 @@
                         {% endif %}
                         
                 </p>
-                {% endfor %}
-                {% if user == request.user%}
-                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                
-                <input required type='text' class="newStep" placeholder='Add Step'></input>
-                <button type="step-submit-button"> Submit </button>
-                </form>
-                {% endif %}
-                {% endif %}                                        
+                        {% endfor %}
+                        {% if user == request.user%}
+                        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
+                        
+                        <input required type='text' class="newStep" placeholder='Add Step'></input>
+                        <button class='step-button' type="step-submit-button"> Submit </button>
+                        </form>
+                        {% endif %}
+                        {% endif %}                                        
 
-                </details>
-                
-                {% endfor %} 
+                        </details>
+                        
+                        {% endfor %} 
                 </div>
         
         
@@ -181,4 +181,8 @@
 
 </div>
 
+{% endblock %}
+
+{% block footer %}
+    {% include "snippets/footer.html" %}
 {% endblock %}

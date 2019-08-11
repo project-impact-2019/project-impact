@@ -11,7 +11,7 @@
                         {% if user.person.role == 'mentor' %}
                         <p>View Mentee Profile(s):
                         {% for pair in user.person.pairs %}
-                        <a href="{% url 'profile' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
+                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
                         {% endfor %}</p>
                         {% endif %}  
 
@@ -64,7 +64,7 @@
                 
                 {% if goal.completed %}
 
-                <summary><font color=DarkGreen>{{goal.description|title}} - {{goal.percent_done}}% Completed </font>
+                <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
                 {% if user == request.user%}   
                 <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
                 {% endif %}

@@ -70,6 +70,7 @@ class User(AbstractUser):
                 send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
                 [self.email_address], fail_silently=False)
         if self.is_superuser: self.is_active=True
+        if self.is_superuser: self.is_paired=True
         super(User, self).save(*args, **kwargs)
 
 

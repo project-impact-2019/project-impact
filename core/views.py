@@ -141,8 +141,9 @@ def success(request):
     return render(request, 'successful_submission.html')
 
 @login_required
-def user_profile(request, user_id):
+def user_profile(request, user_id=None):
     """View for User Profile"""
+    if user_id == None: user_id = request.user.id
     user = User.objects.get(pk=user_id)
     person = Person.objects.get(user=request.user)
     chatrooms = Chat.objects.all()

@@ -165,7 +165,7 @@ STATICFILES_DIRS = [
 
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = False
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'profile'
 
 # Configure Django App for Heroku.
 import django_heroku

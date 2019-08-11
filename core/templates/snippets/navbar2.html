@@ -4,7 +4,7 @@
             <li><a href="{% url 'index' %}" title='Home'>Home</a></li>
             {% if request.user.is_authenticated %}
             <li><a  href="{% url 'auth_logout' %}" title="Log out">Logout</a></li>
-            <li><a  href="{% url 'profile' user_id=user.id %}" title="{{user.person.first_name}}'s Profile"> {{user.person.first_name}}'s Profile</a></li>
+            <li><a  href="{% url 'profile-view' user_id=user.id %}" title="{{user.person.first_name}}'s Profile"> {{user.person.first_name}}'s Profile</a></li>
             {% else %}
             <li><a href="{% url 'auth_login' %}" title="Login">Login</a></li>
             {% endif %}
@@ -32,7 +32,7 @@
     <li><a href="{% url 'index' %}" title='Home'>Home</a></li>
     {% if request.user.is_authenticated %}
     <li><a  href="{% url 'auth_logout' %}" title="Log out">Logout</a></li>
-    <li><a  href="{% url 'profile' user_id=user.id %}" title="Profile">User Profile</a></li>
+    <li><a  href="{% url 'profile-view' user_id=user.id %}" title="Profile">User Profile</a></li>
     {% else %}
     <li><a href="{% url 'auth_login' %}" title="Login">Login</a></li>
     {% endif %}

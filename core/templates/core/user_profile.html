@@ -56,7 +56,7 @@
                
 
                 {% for goal in goals_by_user %}
-                <details>
+                <details >
                 
                 {% if goal.completed %}
 
@@ -72,7 +72,7 @@
                 {% endfor %}
 
                 {% else %}      
-                <summary>{{goal.description}} - {{goal.percent_done}}% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
+                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
                 {% for step in goal.steps.all %}
                 <p class='goals{{goal.pk}}'>
                         {% if step.done %}

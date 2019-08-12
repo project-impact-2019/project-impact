@@ -27,7 +27,7 @@
   {% if filter.qs %}
     {% for obj in filter.qs %}
         <p class =>{{obj.title|title}}</p>
-        <p id="resourceURL">Website: {{obj.url_address}} | <span>  Posted Date: {{obj.date_posted}}</span> 
+        <p id="resourceURL">Website: <a href={{obj.url_address}}>{{obj.url_address}}</a> | <span>  Posted Date: {{obj.date_posted}}</span> 
        
     <div class= ''>
     <p id="resourceDescription">{{obj.description }}</p>

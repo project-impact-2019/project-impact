@@ -6,7 +6,7 @@
 <div class='grid-container profile-wrapper'>
         <div class="profile">
                         <h4>Welcome {{user.person.first_name}}!</h4>
-                        <img  class='photo-holder'src="{% static 'images/otterprofile.jpg' %}"/>
+                        <img class='photo-holder'src="{{ user.person.upload.url }}"/>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         
@@ -32,6 +32,7 @@
                         {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
                         {% endif %}
+                        <a href="{% url 'update-photo' %}">Edit Profile Picture</a>
 
                 
         </div>

@@ -18,17 +18,19 @@
                         {% endif %}  
 
                         {% if user.person.role == 'mentor' %}
-                       <p>{{user.person.first_name}}'s Skills and Interests:
+                       <p>{{user.person.first_name}}'s Skills and Interests:</p>
+                       <p>
                         {% for category in user.person.categories.all %}
                         {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
 
                         {% else %}
                         
-                        <p>{{user.person.first_name}}'s Interests:
+                        <p>{{user.person.first_name}}'s Interests:</p>
+                        <p>
                         {% for category in user.person.categories.all %}
                         {{ category }}{% if not forloop.last %},{% endif %}
-                        {% endfor %}
+                        {% endfor %}</p>
                         {% endif %}
 
                 

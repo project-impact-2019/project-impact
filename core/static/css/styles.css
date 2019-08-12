@@ -189,7 +189,11 @@ blockquote {
 }
 
 .custom-form{
-    margin: 20px 50px;
+    max-width: 80%;
+    margin: 0 auto;
+    margin-top: 150px;
+    text-align: center;
+    font-size: 1.2em;
 }
 
 .signup{

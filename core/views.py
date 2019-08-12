@@ -378,7 +378,7 @@ def update_photo(request):
     user = Person.objects.get(user=request.user)
     from core.forms import UpdatePhotoForm
     if request.method == "POST":
-        form = UpdatePhotoForm(request.POST, instance=request.user.person)
+        form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user.person)
         if form.is_valid():
             person = form.save(commit=False)
             person.save()

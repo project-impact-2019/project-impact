@@ -1,6 +1,6 @@
 {% load static %}
 <nav>
-    <div class='logo'><a href="{% url 'index' %}" title='Home'><img class='navbarimage' src="{% static "images/offlogo.png" %}">Project Impact</a></div>
+    <div class='logo'><a href="{% url 'index' %}" title='Home'><img class='navbarimage' src="{% static "images/logofinal.png" %}">Project Impact</a></div>
         <ul class='nav-links'>
             <li><a href="{% url 'index' %}" title='Home'>Home</a></li>
             {% if request.user.is_authenticated %}

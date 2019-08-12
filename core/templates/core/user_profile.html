@@ -20,7 +20,7 @@
                         {% if user.person.role == 'mentor' %}
                        <p>{{user.person.first_name}}'s Skills and Interests:
                         {% for category in user.person.categories.all %}
-                        {{ category|linebreaks}}{% if not forloop.last %},{% endif %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
 
                         {% else %}

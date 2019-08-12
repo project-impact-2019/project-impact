@@ -2,13 +2,13 @@
 
 {% block content %}
 
- <h3 class='resource'>Resources Guide</h3>
+ <h3 class="resource">Resources Guide</h3>
 
 <div class="resources-content">
 
   {% if resource_list %}
   <div class="resources-list card">
-    <div class='category-header'><h4>Career Resource(s)</h4></div>
+  <h4 class='category-header'>Career Resources</h4>
     <ul class='resources-links'>
        {% for resource in resource_list %}
         {% if resource.category.name == 'Career' %}
@@ -27,7 +27,7 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Clothing Resource(s)</h4></div>
+        <h4 class='category-header'>Clothing Resource(s)</h4>
           <ul class='resources-links'>
             {% for resource in resource_list %}
               {% if resource.category.name == 'Clothing' %}
@@ -45,7 +45,7 @@
   
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Education Resource(s)</h4></div>
+        <h4 class='category-header'>Education Resource(s)</h4>
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Education' %}
@@ -63,7 +63,7 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Employment Resource(s)</h4></div>
+        <h4 class='category-header'>Employment Resource(s)</h4>
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Employment' %}
@@ -82,7 +82,7 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-      <div class='category-header'><h4>Financial Resource(s)</h4></div>
+      <h4 class='category-header'>Financial Resource(s)</h4>
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Finance' %}
@@ -100,7 +100,7 @@
       
       {% if resource_list %}
       <div class="resources-list card">
-        <div class='category-header'><h4>Food Resource(s)</h4></div>
+        <h4 class='category-header'>Food Resource(s)</h4>
         <ul class='resources-links'>
           {% for resource in resource_list %}
             {% if resource.category.name == 'Food' %}
@@ -119,7 +119,7 @@
 
       {% if resource_list %}
       <div class="resources-list card">
-          <div class='category-header'><h4>Health / Mental Health Resource(s)</h4></div>
+          <h4 class='category-header'>Health / Mental Health Resource(s)</h4>
           <ul class='resources-links'>
             {% for resource in resource_list %}
               {% if resource.category.name == 'Health' %}
@@ -137,7 +137,7 @@
 
         {% if resource_list %}
         <div class="resources-list card">
-            <div class='category-header'><h4>Independent Living Resource(s)</h4></div>
+            <h4 class='category-header'>Independent Living Resource(s)</h4>
             <ul class='resources-links'>
               {% for resource in resource_list %}
                 {% if resource.category.name == 'Independent Living' %}
@@ -156,7 +156,7 @@
 
         {% if resource_list %}
         <div class="resources-list card">
-            <div class='category-header'><h4>Support Resource(s)</h4></div>
+            <h4 class='category-header'><Support Resource(s)</h4>
             <ul class='resources-links'>
               {% for resource in resource_list %}
                 {% if resource.category.name == 'Support' %}

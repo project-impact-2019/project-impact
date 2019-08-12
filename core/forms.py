@@ -64,6 +64,7 @@ class MentorSignUpForm(UserCreationForm):
         person = Person.objects.create(user=user, date_of_birth=date_of_birth, first_name=first_name, family_name=family_name, email_address=email_address)
         person.categories.add(*self.cleaned_data.get('skills'))
         person.role = 'mentor'
+        person.upload = 'static/default_avatar.png'
         person.save()
         return person
 

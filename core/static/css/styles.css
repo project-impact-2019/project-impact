@@ -320,7 +320,7 @@ details {
     line-height: 1em;
     background: #FFF;
     margin-top:20px;
-    height: 500px;
+    height: auto;
     text-align: center;
     /* width: 300px; */
     /* white-space: nowrap; */
@@ -538,7 +538,7 @@ details {
 
 /* Resources  & Blog List view*/
 
-.profile-page{ 
+/* .profile-page{ 
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -548,78 +548,80 @@ details {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr))
+} */
+
+/* Resources */
+
+.resource{
+   text-align: center;
+   margin: 30px auto;
+
+
 }
 
-
-
-.sidepage-content{
-    display: grid;
-    grid-gap: 30px;
-    margin: 0 20px;
-
-}
-
-.sidepage-header h2{
+.category-header h4{
     text-align: center;
-    margin: 30px 0;
-    padding: 20px;
-    background:#F1EFEF;
-    border-radius: 20px;
-}
-
-.sidepage-list{
-    display: grid;
-    grid-template-columns: 80px 1fr 80px;
-    background:#F1EFEF;
-    border-radius: 20px;
-}
-
-.sidepage-list ul{
-    grid-column: 2;
-    list-style: none;
-    padding: 20px;
-    font-size: 1.5em;
-}
-
-.sidepage-list ul{
-    grid-column: 2;
-    list-style: none;
-    padding: 20px;
-    font-size: 1.5em;
-}
-
-.sidepage-list a{
-    color: var(--black);
-}
-
-.sidepage-list a:hover{
     color: var(--red);
+    margin-top: -5px;
 }
 
-.sidepage-detail{
-    display: grid;
-    grid-gap: 2px;
-    margin: 20px 20px;
-    text-align: justify;
-
+.resources-links{
+    list-style: none;
+    padding: 2em;
+    
 }
 
-.sidepage-detail p{
+.resources-links a{
+    color: var(--black);
     font-size: 1.2em;
 }
 
-
-.custom-bg{
-    background: var(--red);
-    color: var(--white);
+.resources-list{
+    margin-bottom: 15px;
 }
 
-.category-header{
-    text-align: center;
-    margin: 10px 0;
-    padding: 20px;
-    background:#F1EFEF;
+.resources-button{
+    width: 200px;
     border-radius: 20px;
+    padding: 1em;
+}
+
+.resources-detail{
+    margin: 50px 20px;
+    font-size: 1.5em;
+    text-align: justify;
+}
+
+.resources-detail h3{
+    text-align: center;
+    color: var(--red);
+    margin-bottom: 1em;
+}
+
+.resources-search{
+    margin: 20px 20px;
+    font-size: 1.2em;
+    padding: 30px;
+
+}
+
+.search-button{
+    color: var(--white);
+    margin-top: 30px;
+    border-radius: 10px;
+}
+
+.resources-results{
+   justify-content: center;
+   margin: 10px 30px;
+   font-size: 1.1em;
+}
+
+.search-header{
+    text-align: center;
+    margin-bottom: 30px;
+    text-decoration: underline;
+    color: var(--red);
 }
 
 
@@ -748,7 +750,8 @@ nav{
    .profile{
        margin-top: 2em;
        font-size: 1.2em;
-       height: auto;
+        height: auto;
+
    }
 
    .card img{
@@ -762,6 +765,7 @@ nav{
    /* .logo{
        margin-left: -10px;
    } */
+    
 
 
 }
@@ -811,8 +815,6 @@ nav{
         border: none;
         grid-row: 3/4;
         grid-column: 1/2;
-
-        
     }
 
     .profile{
@@ -828,7 +830,6 @@ nav{
        align-self: flex-end;
        border: 1px solid silver;
        background: #FFF;
-    
 
     
     }
@@ -884,6 +885,25 @@ nav{
         font-size: 1.5em;
     }
 
+    /* resources */
+
+    .resources-content{
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       grid-gap: 2em;
+    }
+
+    .resources-detail{
+        margin: 50px 100px;
+      
+    }
+
+    .resources-results, .resources-search{
+        margin: 30px 100px;
+
+    }
+    
+    
 
 
 
@@ -953,8 +973,8 @@ nav{
    .profile{
        grid-column: 1/2;
        grid-row: 2;
-       margin-top: -.1em;
-       font-size: 1.1em;
+       margin-top: 1em;
+       font-size: 1.2em;
    }
 
    .goals-list{
@@ -1014,6 +1034,27 @@ nav{
         display: grid;
         grid-template-columns: 1fr 1fr;
         margin-top: 5em;
+    }
+
+    .resources-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2em;
+    }
+
+    .resources-detail{
+        margin: 50px 100px;
+      
+    }
+
+    .resources-results, .resources-search{
+        margin: 30px 120px;
+
+    }
+
+    .search-button{
+        width: 200px;
+        padding: 15px;
     }
 
    

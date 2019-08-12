@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class= "">
+<div class= "resources-search card">
 
   <form method="GET">
       <div class="">
@@ -14,15 +14,16 @@
               <div class="">{{ filter.form.category.label_tag }}</div>
               <div>{{ filter.form.category }}</div>
 
-              <button class="buttons" type='submit'>Filter</button>
+              <button class="buttons search-button" type='submit'>Filter</button>
       </div>
   </form>
  
 </div>
 
-  <div class="">
-  
-  <h2>Search For Resource</h2>
+
+<h3 class='search-header'>Search For Resource</h3>
+  <div class="resources-results card">
+
   {% if filter.qs %}
     {% for obj in filter.qs %}
         <p class =>{{obj.title|title}}</p>

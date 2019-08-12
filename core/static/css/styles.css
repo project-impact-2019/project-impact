@@ -139,8 +139,8 @@ blockquote {
     font-size: 1.1em;
     max-width: 100%;
     margin: 0 auto;
-    /* display: grid; */
-    /* grid-gap: 20px; */
+    display: grid;
+    grid-gap: 20px;
     
 } 
 

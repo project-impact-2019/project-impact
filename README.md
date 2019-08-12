@@ -1,6 +1,9 @@
 # Project Impact
 The goal of Project Impact is to provide an online platform for mentors to connect with foster children aging out of the system in order to help them navigate through life.
 
+## Project Impact Website
+https://project-impact.herokuapp.com/
+
 ## Creating a Github Repository
 - On Github, click "New" to create a repository
 - Name the repository and click "Create Repository"

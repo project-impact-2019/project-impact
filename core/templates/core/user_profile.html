@@ -56,6 +56,7 @@
                
 
                 {% for goal in goals_by_user %}
+
                 <details class='goal-details'>
                 
                 {% if goal.completed %}
@@ -72,7 +73,7 @@
                 {% endfor %}
 
                 {% else %}      
-                <summary>{{goal.description}} - {{goal.percent_done}}% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
+                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
                 {% for step in goal.steps.all %}
                 <p class='goals{{goal.pk}}'>
                         {% if step.done %}
@@ -143,7 +144,7 @@
                                 <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                                 <button class='goal-submit-button' type="submit"> Submit </button>
                         </form>
-                       <!-- </div> -->
+
                         {% endif %}
 
                         {% if user.person.pairs %}
@@ -169,18 +170,19 @@
        </div>
 
 
-        {% if request.user.is_superuser or request.user.is_adm %}
-        <div class="admin-functionality admin card">
-        
-                <h3>Administration: </h3>
-                <button class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></button>
+                {% if request.user.is_superuser or request.user.is_adm %}
+                <div class="admin-functionality admin card">
+
+                        <h3>Administration: </h3>
+                        <button class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></button>
 
 
-        </div>
-        {% endif %}     
-        
+                </div>
+                {% endif %}
 
-
+                
+             
+      
 </div>
 
 {% endblock %}

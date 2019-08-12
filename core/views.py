@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
-from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm
+from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm, UpdatePhotoForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -372,3 +372,19 @@ def about_us(request):
     template_name = 'core/about_us.html' 
 
     return render(request, 'core/about_us.html')
+
+@login_required
+def update_photo(request):
+    user = Person.objects.get(user=request.user)
+    from core.forms import UpdatePhotoForm
+    if request.method == "POST":
+        form = UpdatePhotoForm(request.POST, request.FILES, instance=request.user.person)
+        if form.is_valid():
+            person = form.save(commit=False)
+            person.save()
+            print(person.upload)
+            form.save()
+        return redirect('profile')
+    else:
+        form = UpdatePhotoForm(instance=request.user.person)
+    return render(request, 'core/edit_profile.html', {'form': form})

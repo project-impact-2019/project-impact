@@ -614,6 +614,16 @@ blockquote {
 
 }
 
+.resourceTitle{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+ #resourceDescription{
+     font-style: italic;
+ }
+
+
 .category-header{
     text-align: center;
     color: var(--red);

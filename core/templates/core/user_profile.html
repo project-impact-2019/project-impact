@@ -44,23 +44,6 @@
             
         </div>
 
-<<<<<<< HEAD
-        <a href="#opening">Open the detail</a>
-       {% if user == request.user%}
-        <div class='add-goal'>
-                <h5>Create a goal</h5>
-                        <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-                        <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
-                        <button class='goal-submit-button' type="submit"> Submit </button>
-                </form>
-        </div>
-        {% else %}
-        <div class='visitor'>
-                <p><font color='red'> You can't add goals to this list.</font></p>
-        </div>
-        {% endif %}
-=======
->>>>>>> f1ca3078f37b1f479e5c2a5ba549f741004f9b93
 
 
         <div class="goals-list">

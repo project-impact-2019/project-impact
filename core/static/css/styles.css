@@ -143,7 +143,7 @@ blockquote {
     font-size: 1.1em;
     max-width: 100%;
     margin: 0 auto;
-    display: grid; 
+    display: grid;
     grid-gap: 20px;
     
 } 
@@ -609,6 +609,16 @@ blockquote {
     background-color: transparent;
 
 }
+
+.resourceTitle{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+ #resourceDescription{
+     font-style: italic;
+ }
+
 
 .category-header{
     text-align: center;

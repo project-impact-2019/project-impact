@@ -112,8 +112,17 @@ checkBox.forEach(item => {
         fetch(`goal/check_mark/${item.dataset.step}/`, {
             method: 'PATCH',
             body: JSON.stringify({ 'done': item.checked }),
+        }).then(function () {
+            const $item = $(item)
+            const $goalCheckboxes = $item.closest('details').find('.step-done-checkbox')
+            const total = $goalCheckboxes.length
+            const checkedTotal = $goalCheckboxes.filter(function () {                
+                return this.checked;
+            }).length
+            const percentDone = Math.round(checkedTotal/total * 100)
+            $item.closest('details').find('.percent-done').text(percentDone)
         })
-        location.reload();
+        // location.reload();
     })
 })
 
@@ -125,6 +134,7 @@ goalCheckBox.forEach(item => {
             body: JSON.stringify({ 'completed': item.checked }),
         })
         location.reload();
+
     })
 })
 
@@ -185,4 +195,12 @@ var ctx = document.getElementById('myChart').getContext('2d');
                 }
                 });
 
+
+function openTarget() {
+    var hash = location.hash.substring(1);
+    if(hash) var details = document.getElementById(hash);
+    if(details && details.tagName.toLowerCase() === 'details') details.open = true;
+    }
+    window.addEventListener('hashchange', openTarget);
+    openTarget();
 },{}]},{},[1]);

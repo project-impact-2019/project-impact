@@ -56,7 +56,7 @@
                
 
                 {% for goal in goals_by_user %}
-                <details>
+                <details class='goal-details'>
                 
                 {% if goal.completed %}
 
@@ -104,10 +104,10 @@
        </div>
         
         
-        <div class= "sideB">
+        <div class= "list-chat-goal">
                 <h3>Not sure where to start?</h3>
                  <p class='sub-title'>Suggested Goals:</p>
-                <details>
+                <details class='example-details'>
                 <summary>Apply for a job</summary>
                 <ol class='example-list'>
                     <li> Determine type of job I want to apply for</li>
@@ -116,7 +116,7 @@
                     <li> Contact employers to inquire about application process</li>
                 </ol>
                 </details>
-                <details>
+                <details class='example-details'>
                 <summary>Open a bank account</summary>
                 <ol class='example-list'>
                         <li> Choose a bank</li>
@@ -125,7 +125,7 @@
                         <li> Check to see if bank account is setup</li>
                 </ol>
                 </details>
-                <details>
+                <details class='example-details'>
                 <summary>Find an apartment</summary>
                 <ol class='example-list'>
                         <li> Create a budget</li>
@@ -137,74 +137,47 @@
                
 
                 {% if user == request.user%}
-                <div class='add-goal'>
-                        <h5>Create a goal</h5>
+                <div class='goal-chat'>
+                        <h5 class='goal-chat-header'>Create a goal</h5>
                                 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
                                 <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                                 <button class='goal-submit-button' type="submit"> Submit </button>
                         </form>
-                </div>
-                {% else %}
-                <div class='visitor'>
-                        <p><font color='red'> You can't add goals to this list.</font></p>
-                </div>
-                {% endif %}
+                       <!-- </div> -->
+                        {% endif %}
 
-                {% if user.person.pairs %}
-                <div class="chat-board">
-                     <h3>Chatroom(s):</h3>
-                             {% for chatroom in chatrooms %}
-                                     {% for pair in user.person.pairs %}
-                                     {% if pair == chatroom.pair %}
-                     
-                             <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">{{pair.mentor}} and {{pair.mentee}}</a></div>
-                                     {% endif %}
-                                     {% endfor %}
-                                     
-                             {% endfor %}
-                     </div>
-                   {% endif %}
-
-                <!-- Canvas for goal tracker -->
-                <!-- <div class='canvas'>
-                        <p>{{user.person.first_name}}'s progress</p>
-                        <canvas id="myChart" width="400" height="100"></canvas>
-                </div> -->
-       </div>
-
-
-           <!-- {% if user.person.pairs %}
-           <div class="chat-board card">
-                <h3>Chatroom(s):</h3>
+                        {% if user.person.pairs %}
+                
+                        <h5 class='goal-chat-header'>Chatrooms:</h5>
                         {% for chatroom in chatrooms %}
                                 {% for pair in user.person.pairs %}
                                 {% if pair == chatroom.pair %}
-                                        {% if user.person.role == 'mentor' %}
-                
-                        <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentee}}</a></div>
-                                        {% endif %}
-                                        {% if user.person.role == 'mentee' %}
-                
-                        <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentor}}</a></div>
-                                        {% endif %}
+                                {% if user.person.role == 'mentor' %}
+
+                                <button class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentee}}</a></button>
+                                {% endif %}
+                                {% if user.person.role == 'mentee' %}
+
+                                <button class="buttons user-button"><a  href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentor}}</a></button>
+                                {% endif %}
                                 {% endif %}
                                 {% endfor %}
                                 
                         {% endfor %}
                 </div>
-              {% endif %} -->
+                {% endif %}
+       </div>
 
 
-
-                {% if request.user.is_superuser or request.user.is_adm %}
-                <div class="admin-functionality admin card">
-                
-                                <h3>Administration: </h3>
-                                <div class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
-                
+        {% if request.user.is_superuser or request.user.is_adm %}
+        <div class="admin-functionality admin card">
         
-                </div>
-                {% endif %}     
+                <h3>Administration: </h3>
+                <button class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></button>
+
+
+        </div>
+        {% endif %}     
         
 
 

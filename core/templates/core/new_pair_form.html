@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <div class= adm-wrapper>
@@ -6,30 +7,30 @@
   <h3 class="title">Match a Mentor with a Mentee</h3>
   <div class="pair-form card">
   <form action="" method="post">
+      
       {% csrf_token %}
       <table class="table-form">
-      {{ form.as_table }}
+      
+      {{ form|crispy }}
       </table>
+      <div class="center-button">
       <input class="buttons add-pair" type="submit" value="Match">
-      <br><br>
+      </div>
     </form>
   </div>
 
-
-
-  <div class="existing-pairs">
-    <h4>Current Mentor and Mentee Matches:</h4>
-      {% for chatroom in chatrooms %}
-      <div class="column card">
-            <div class= 'content mentor-index'> 
-            <div class="content">
-                Mentor/Mentee Match: {{chatroom.pair}}
-                <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">{{chatroom.pair}} Chatroom</a></div>
-              </p>
-            </div>
-          </div>
-      </div>
-      {% endfor %}
+  <div class="existing-pairs card">
+      <h4>Current Mentor and Mentee Matches:</h4>
+        {% for chatroom in chatrooms %}
+    
+          <div class="pair-content">
+                <p>Mentor/Mentee Match: {{chatroom.pair}}</p>
+                <button class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">{{chatroom.pair}} Chatroom</a></button>
+         </div>
+        
+         
+  </div>
+         {% endfor %}
 
 
 

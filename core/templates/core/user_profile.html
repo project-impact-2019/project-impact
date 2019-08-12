@@ -27,191 +27,184 @@
                         {% if user.person.role == 'mentor' %}
                         <p>{{user.person.first_name}}'s Skills and Interests:</p>
                         <p>
-                                {% for category in user.person.categories.all %}
-                                {{ category }}{% if not forloop.last %},{% endif %}
-                                {% endfor %}</p>
-                                
-                                {% else %}
-                                
-                                <p>{{user.person.first_name}}'s Interests:</p>
-                                <p>
-                                        {% for category in user.person.categories.all %}
-                                        {{ category }}{% if not forloop.last %},{% endif %}
-                                        
-                                        {% endfor %}</p>
-                                        {% endif %}
-                                        
-                                        
-                                </div>
-                                
-                                <div class="goals-list">
-                                        <h3> What goals do you have? </h3>
-                                        {% if goals_by_user %}
-                                        <p class='sub-title'>Goals in progress:</p>
-                                        {% else %}
-                                        <p class='sub-title'><font color='red'>You haven't created a goal yet.</font></p>
-                                        {% endif %}
-                                        {% for goal in goals_by_user %}
-                                        <details >
-                                                {% if goal.completed %}               
-                                                <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
-                                                        {% if user == request.user%}   
-                                                        <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/>
-                                                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
-                                                                {% csrf_token %}
-                                                                <button>X</button>
-                                                        </form>
-                                                </summary>
-                                                {% endif %}
-                                                
-                                                {% for step in goal.steps.all %}
-                                                
-                                                <font color=DarkGreen><p>- {{ step|title }}</p></font>
-                                                {% if user == request.user%}
-                                                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                                                        {% csrf_token %}
-                                                        <button>X</button>
-                                                </form>
-                                                {% endif %}
-                                                {% endfor %}
-                                                
-                                                {% else %}      
-                                                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed 
-                                                        {% if user == request.user%}
-                                                        <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
-                                                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
-                                                                {% csrf_token %}
-                                                                <button>X</button>
-                                                        </form>
-                                                        {% endif %}
-                                                </summary>           
-                                                {% for step in goal.steps.all %}
-                                                <p class='goals{{goal.pk}}'>
-                                                        {% if step.done %}
-                                                        {% if user == request.user%}
-                                                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
-                                                        {% endif %}
-                                                        <font color=DarkGreen>{{ step }}</font>
-                                                        {% if user == request.user%}
-                                                        <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                                                                        {% csrf_token %}
-                                                                        <button>X</button>
-                                                        </form>
-                                                        {% endif %}
-                                                        {% else %}
-                                                        {% if user == request.user%}
-                                                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
-                                                        {% endif %}
-                                                        {{ step }} 
-                                                        {% if user == request.user%}
-                                                        <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                                                                        {% csrf_token %}
-                                                                        <button>X</button>
-                                                        </form>
-                                                        {% endif %}
-                                                        {% endif %}
-                                                        
-                                                </p>
-                                                {% endfor %}
-                                                {% if user == request.user%}
-                                                <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
-                                                        
-                                                        <input required type='text' class="newStep" placeholder='Add Step'></input>
-                                                        <button class='step-button' type="step-submit-button"> Submit </button>
-                                                </form>
-                                                {% endif %}
-                                                {% endif %}                                        
-                                                
-                                        </details>
-                                        
-                                        {% endfor %} 
-                                </div>
-                                
-                                
-                                <div class= "sideB">
-                                        <h3>Not sure where to start?</h3>
-                                        <p class='sub-title'>Suggested Goals:</p>
-                                        <details>
-                                                <summary>Apply for a job</summary>
-                                                <ol class='example-list'>
-                                                        <li> Determine type of job I want to apply for</li>
-                                                        <li> Research companies in the field I want to apply for</li>
-                                                        <li> Write a resume</li>
-                                                        <li> Contact employers to inquire about application process</li>
-                                                </ol>
-                                        </details>
-                                        <details>
-                                                <summary>Open a bank account</summary>
-                                                <ol class='example-list'>
-                                                        <li> Choose a bank</li>
-                                                        <li> Prepare documents</li>
-                                                        <li> Open the account at the bank</li>
-                                                        <li> Check to see if bank account is setup</li>
-                                                </ol>
-                                        </details>
-                                        <details>
-                                                <summary>Find an apartment</summary>
-                                                <ol class='example-list'>
-                                                        <li> Create a budget</li>
-                                                        <li> Create a list of desires/needs in an apartment</li>
-                                                        <li> Determine location for ideal apartment</li>
-                                                        <li> Research apartments in the desired location</li>
-                                                </ol>
-                                        </details>
-                                        
-                                        
-                                        {% if user == request.user%}
-                                        <div class='add-goal'>
-                                                <h5>Create a goal</h5>
-                                                <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
-                                                        <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
-                                                        <button class='goal-submit-button' type="submit"> Submit </button>
-                                                </form>
-                                        </div>
-                                        {% else %}
-                                        <div class='visitor'>
-                                                <p><font color='red'> You can't add goals to this list.</font></p>
-                                        </div>
-                                        {% endif %}
-                                        
-                                        {% if user.person.pairs %}
-                                        <div class="chat-board">
-                                                <h3>Chatroom(s):</h3>
-                                                {% for chatroom in chatrooms %}
-                                                {% for pair in user.person.pairs %}
-                                                {% if pair == chatroom.pair %}
-                                                {% if user.person.role == 'mentor' %}
-                                                <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentee}}</a></div>
-                                                {% endif %}
-                                                {% if user.person.role == 'mentee' %}
-                                                <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentor}}</a></div>
-                                                {% endif %}
-                                                {% endif %}
-                                                {% endfor %}
-                                                
-                                                {% endfor %}
-                                        </div>
-                                        {% endif %}
-                                        
-                                </div>
-                                
-                                
-                                {% if request.user.is_superuser or request.user.is_adm %}
-                                <div class="admin-functionality admin card">
-                                        
-                                        <h3>Administration: </h3>
-                                        <div class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></div>
-                                        
-                                        
-                                </div>
-                                {% endif %}     
-                                
-                                
-                                
-                        </div>
+
+                        {% for category in user.person.categories.all %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
+
+                        {% endfor %}</p>
+                        {% endif %}
+                       
+            
+        </div>
+
+
+
+        <div class="goals-list">
+                <h3> What goals do you have? </h3>
+                {% if goals_by_user %}
+                 <p class='sub-title'>Goals in progress:</p>
+                {% else %}
+                 <p class='sub-title'><font color='red'>You haven't created a goal yet.</font></p>
+                {% endif %}
+               
+
+                {% for goal in goals_by_user %}
+
+                <details class='goal-details'>
+                
+                {% if goal.completed %}
+
+                <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
+                {% if user == request.user%}   
+                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/>  
+                <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
+                        {% csrf_token %}
+                        <button>X</button>
+                </form>
+                </summary>
+                {% endif %}
+
+                {% for step in goal.steps.all %}
+
+                <font color=DarkGreen><p>- {{ step|title }}</p></font>
+                {% if user == request.user%}
+                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
+                                {% csrf_token %}
+                                <button>X</button>
+                </form>
+                {% endif %}
+                {% endfor %}
+
+                {% else %}      
+                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
+                        {% if user == request.user%}
+                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
+                                        {% csrf_token %}
+                                        <button>X</button>
+                        </form>
+                        {% endif %}
+                </summary>           
+                {% for step in goal.steps.all %}
+                <p class='goals{{goal.pk}}'>
+                        {% if step.done %}
+                        {% if user == request.user%}
+                        <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
+                        <font color=DarkGreen>{{ step }}</font>
+                        {% if user == request.user%}
+                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
+                        {% csrf_token %}
+                        <button>X</button>
+                </form>
+                {% endif %}
+                        {% else %}
+                        {% if user == request.user%}
+                        <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
+                        {% endif %}
+                        {{ step }} 
+                        {% if user == request.user%}
+                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
+                                {% csrf_token %}
+                                <button>X</button>
+                </form>
+                {% endif %}
+                        {% endif %}
                         
-                        {% endblock %}
+                </p>
+                        {% endfor %}
+                        {% if user == request.user%}
+                        <form class='new_step' method='post' data-goal='{{goal.pk}}' action="{% url 'add_step' goal.pk %}">{% csrf_token %}
                         
-                        {% block footer %}
-                        {% include "snippets/footer.html" %}
-                        {% endblock %}
+                        <input required type='text' class="newStep" placeholder='Add Step'></input>
+                        <button class='step-button' type="step-submit-button"> Submit </button>
+                        </form>
+                        {% endif %}
+                        {% endif %}                                        
+
+                        </details>
+                        
+                        {% endfor %} 
+       </div>
+        
+        
+        <div class= "list-chat-goal">
+                <h3>Not sure where to start?</h3>
+                 <p class='sub-title'>Suggested Goals:</p>
+                <details class='example-details'>
+                <summary>Apply for a job</summary>
+                <ol class='example-list'>
+                    <li> Determine type of job I want to apply for</li>
+                    <li> Research companies in the field I want to apply for</li>
+                    <li> Write a resume</li>
+                    <li> Contact employers to inquire about application process</li>
+                </ol>
+                </details>
+                <details class='example-details'>
+                <summary>Open a bank account</summary>
+                <ol class='example-list'>
+                        <li> Choose a bank</li>
+                        <li> Prepare documents</li>
+                        <li> Open the account at the bank</li>
+                        <li> Check to see if bank account is setup</li>
+                </ol>
+                </details>
+                <details class='example-details'>
+                <summary>Find an apartment</summary>
+                <ol class='example-list'>
+                        <li> Create a budget</li>
+                        <li> Create a list of desires/needs in an apartment</li>
+                        <li> Determine location for ideal apartment</li>
+                        <li> Research apartments in the desired location</li>
+                </ol>
+                </details>
+               
+
+                {% if user == request.user%}
+                <div class='goal-chat'>
+                        <h5 class='goal-chat-header'>Create a goal</h5>
+                                <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
+                                <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
+                                <button class='goal-submit-button' type="submit"> Submit </button>
+                        </form>
+
+                        {% endif %}
+
+                        {% if user.person.pairs %}
+                
+                        <h5 class='goal-chat-header'>Chatrooms:</h5>
+                        {% for chatroom in chatrooms %}
+                                {% for pair in user.person.pairs %}
+                                {% if pair == chatroom.pair %}
+                                {% if user.person.role == 'mentor' %}
+
+                                <button class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentee}}</a></button>
+                                {% endif %}
+                                {% if user.person.role == 'mentee' %}
+
+                                <button class="buttons user-button"><a  href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentor}}</a></button>
+                                {% endif %}
+                                {% endif %}
+                                {% endfor %}
+                                
+                        {% endfor %}
+                </div>
+                {% endif %}
+       </div>
+
+                {% if request.user.is_superuser or request.user.is_adm %}
+                <div class="admin-functionality admin card">
+
+                        <h3>Administration: </h3>
+                        <button class="buttons user-button "><a  href="{% url 'create_pair' %}" title="Match Mentors:Mentees">Match Mentors/Mentees</a></button>
+
+
+                </div>
+                {% endif %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+    {% include "snippets/footer.html" %}
+{% endblock %}
+

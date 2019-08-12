@@ -382,6 +382,7 @@ def update_photo(request):
         if form.is_valid():
             person = form.save(commit=False)
             person.save()
+            print(person.upload)
             form.save()
         return redirect('profile')
     else:

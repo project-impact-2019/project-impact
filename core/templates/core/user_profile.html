@@ -6,7 +6,8 @@
 <div class='grid-container profile-wrapper'>
         <div class="profile">
                         <h4>Welcome {{user.person.first_name}}!</h4>
-                        <img  class='photo-holder'src="{% static 'images/otterprofile.jpg' %}"/>
+                        <img class='photo-holder'src="{{ user.person.upload.url }}"/>
+                        <p><a href="{% url 'update-photo' %}">Edit Profile Picture</a></p>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         
@@ -18,18 +19,22 @@
                         {% endif %}  
 
                         {% if user.person.role == 'mentor' %}
-                       <p>{{user.person.first_name}}'s Skills and Interests:
+                       <p>{{user.person.first_name}}'s Skills and Interests:</p>
+                       <p>
                         {% for category in user.person.categories.all %}
-                        {{ category|linebreaks}}{% if not forloop.last %},{% endif %}
+                        {{ category }}{% if not forloop.last %},{% endif %}
                         {% endfor %}</p>
 
                         {% else %}
                         
-                        <p>{{user.person.first_name}}'s Interests:
+                        <p>{{user.person.first_name}}'s Interests:</p>
+                        <p>
                         {% for category in user.person.categories.all %}
                         {{ category }}{% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                        {% endif %}          
+                        {% endfor %}</p>
+                        {% endif %}
+                        
+
                 
         </div>
 

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class='forms'>
+<h1 class="title">Update Your Profile Picture</h1>
+<div class="form-row">
+<form action="{% url 'update-photo' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table-form">
+    {{ form|crispy }}
+    </table>
+    <input type="submit" class="btn btn-lg custom-bg">
+    <br><br>
+  </form>
+</div>
+</div>
+  {% endblock %}

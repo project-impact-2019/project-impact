@@ -750,7 +750,7 @@ nav{
    .profile{
        margin-top: 2em;
        font-size: 1.2em;
-       /* height: 600px; */
+       height: auto;
    }
 
    .card img{

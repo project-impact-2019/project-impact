@@ -13,7 +13,7 @@
                         {% if user.person.role == 'mentor' %}
                         <p>View Mentee Profile(s):
                         {% for pair in user.person.pairs %}
-                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee}}{% if not forloop.last %},{% endif %}</a>
+                        <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee|linebreaks}}{% if not forloop.last %}{% endif %}</a>
                         {% endfor %}</p>
                         {% endif %}  
 

@@ -2,19 +2,25 @@
 
 {% block content %}
 
- <h3 class='resource'>Resources Guide</h3>
+ <h3 class="resource">Resources Guide</h3>
+
+</div>  
+<div class="buttons resources-button">
+  <a href="{% url 'search_resource'%}" title="Search">Resource Filter</a>
+</div>
+<br>
 
 <div class="resources-content">
 
   {% if resource_list %}
   <div class="resources-list card">
-    <div class='category-header'><h4>Career Resource(s)</h4></div>
+
+  <h4 class='category-header'>Career Resources</h4>
+
     <ul class='resources-links'>
        {% for resource in resource_list %}
         {% if resource.category.name == 'Career' %}
-        <li>
-          <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-        </li>
+        <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
         {% endif %}
       {% endfor %}
     </ul>
@@ -27,13 +33,12 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Clothing Resource(s)</h4></div>
+
+        <h4 class='category-header'>Clothing Resource(s)</h4>
           <ul class='resources-links'>
             {% for resource in resource_list %}
               {% if resource.category.name == 'Clothing' %}
-              <li>
-                <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-              </li>
+              <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
               {% endif %}
             {% endfor %}
           </ul>
@@ -45,13 +50,13 @@
   
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Education Resource(s)</h4></div>
+
+        <h4 class='category-header'>Education Resource(s)</h4>
+
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Education' %}
-          <li>
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-          </li>
+          <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
           {% endif %}
         {% endfor %}
       </ul>
@@ -63,13 +68,15 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-        <div class='category-header'><h4>Employment Resource(s)</h4></div>
+
+        <h4 class='category-header'>Employment Resource(s)</h4>
+
+        <div class='category-header'><h4>Employment Resources</h4></div>
+
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Employment' %}
-          <li>
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-          </li>
+          <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
           {% endif %}
         {% endfor %}
       </ul>
@@ -82,13 +89,12 @@
 
     {% if resource_list %}
     <div class="resources-list card">
-      <div class='category-header'><h4>Financial Resource(s)</h4></div>
+
+      <h4 class='category-header'>Financial Resource(s)</h4>
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Finance' %}
-          <li>
-            <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-          </li>
+          <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
           {% endif %}
         {% endfor %}
       </ul>
@@ -100,13 +106,13 @@
       
       {% if resource_list %}
       <div class="resources-list card">
-        <div class='category-header'><h4>Food Resource(s)</h4></div>
+
+        <h4 class='category-header'>Food Resource(s)</h4>
+
         <ul class='resources-links'>
           {% for resource in resource_list %}
             {% if resource.category.name == 'Food' %}
-            <li>
-              <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-            </li>
+            <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
             {% endif %}
           {% endfor %}
         </ul>
@@ -119,13 +125,13 @@
 
       {% if resource_list %}
       <div class="resources-list card">
-          <div class='category-header'><h4>Health / Mental Health Resource(s)</h4></div>
+
+          <h4 class='category-header'>Health / Mental Health Resource(s)</h4>
+
           <ul class='resources-links'>
             {% for resource in resource_list %}
               {% if resource.category.name == 'Health' %}
-              <li>
-                <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-              </li>
+              <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
               {% endif %}
             {% endfor %}
           </ul>
@@ -137,13 +143,13 @@
 
         {% if resource_list %}
         <div class="resources-list card">
-            <div class='category-header'><h4>Independent Living Resource(s)</h4></div>
+
+            <h4 class='category-header'>Independent Living Resource(s)</h4>
+
             <ul class='resources-links'>
               {% for resource in resource_list %}
                 {% if resource.category.name == 'Independent Living' %}
-                <li>
-                  <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-                </li>
+                <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -156,13 +162,13 @@
 
         {% if resource_list %}
         <div class="resources-list card">
-            <div class='category-header'><h4>Support Resource(s)</h4></div>
+
+            <h4 class='category-header'><Support Resource(s)</h4>
+
             <ul class='resources-links'>
               {% for resource in resource_list %}
                 {% if resource.category.name == 'Support' %}
-                <li>
-                  <a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a> 
-                </li>
+                <p><u><a href="{{ resource.get_absolute_url }}">{{ resource.title }}</a></u></p>
                 {% endif %}
               {% endfor %}
             </ul>
@@ -173,9 +179,5 @@
 
       
   
-</div>  
-<div class="buttons resources-button">
-  <a href="{% url 'search_resource'%}" title="Search">Resource Filter</a>
-</div>
-<br>
+
 {% endblock %}

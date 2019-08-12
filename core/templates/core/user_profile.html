@@ -169,35 +169,7 @@
                      </div>
                    {% endif %}
 
-                <!-- Canvas for goal tracker -->
-                <!-- <div class='canvas'>
-                        <p>{{user.person.first_name}}'s progress</p>
-                        <canvas id="myChart" width="400" height="100"></canvas>
-                </div> -->
        </div>
-
-
-           <!-- {% if user.person.pairs %}
-           <div class="chat-board card">
-                <h3>Chatroom(s):</h3>
-                        {% for chatroom in chatrooms %}
-                                {% for pair in user.person.pairs %}
-                                {% if pair == chatroom.pair %}
-                                        {% if user.person.role == 'mentor' %}
-                
-                        <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentee}}</a></div>
-                                        {% endif %}
-                                        {% if user.person.role == 'mentee' %}
-                
-                        <div class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">Chat with {{pair.mentor}}</a></div>
-                                        {% endif %}
-                                {% endif %}
-                                {% endfor %}
-                                
-                        {% endfor %}
-                </div>
-              {% endif %} -->
-
 
 
                 {% if request.user.is_superuser or request.user.is_adm %}

@@ -97,7 +97,7 @@ class Person(models.Model):
     email_address = models.EmailField(max_length=254, help_text='Please enter a valid email address.')
     categories = models.ManyToManyField(Category)
     role = models.CharField(max_length=100,  choices=USER_TYPE_CHOICES)
-    upload = models.FileField(default='/core/static/images/default_avatar.png')
+    upload = models.FileField(default='static/default_avatar.png')
 
     def __str__(self):
       """Returns human-readable representation of the model instance."""

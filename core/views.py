@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
 from django.views.generic import CreateView
 from core.filters import BlogPostFilter, ResourceFilter
-from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm
+from core.forms import MenteeSignUpForm, MentorSignUpForm, GoalForm, CheckListForm, UpdatePhotoForm
 from django.contrib.auth import get_user_model
 from django.core.mail import send_mail
 from django.http import HttpResponse
@@ -373,32 +373,17 @@ def about_us(request):
 
     return render(request, 'core/about_us.html')
 
-# @login_required
-# def edit_profile(request, user_id=None):
-#     """View for User Profile"""
-#     if user_id == None: user_id = request.user.id
-#     user = User.objects.get(pk=user_id)
-#     person = Person.objects.get(user=request.user)
-
-
-
-#     context={
-#         'user': user,
-#     }
-#     return render(request, 'core/edit_profile.html', context)
-
 @login_required
-def edit_profile(request):
-    """View for Adding New Blog Entry"""
-    person = Person.objects.get(user=request.user)
-    from core.forms import UploadAvatarForm
-    from django.views.generic.edit import CreateView
+def update_photo(request):
+    user = Person.objects.get(user=request.user)
+    from core.forms import UpdatePhotoForm
     if request.method == "POST":
-        form = UploadAvatarForm(request.POST)
+        form = UpdatePhotoForm(request.POST, instance=request.user.person)
         if form.is_valid():
-            upload = form.save(commit=False)
-            upload.save()
-            return redirect('profile')
+            person = form.save(commit=False)
+            person.save()
+            form.save()
+        return redirect('profile')
     else:
-        form = UploadAvatarForm()
+        form = UpdatePhotoForm(instance=request.user.person)
     return render(request, 'core/edit_profile.html', {'form': form})

@@ -179,7 +179,7 @@ class PairForm(forms.ModelForm):
         chat.save()
         return pair
 
-class UploadAvatarForm(forms.ModelForm):
+class UpdatePhotoForm(forms.ModelForm):
 
     class Meta:
         model = Person

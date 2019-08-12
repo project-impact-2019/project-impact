@@ -323,7 +323,7 @@ details {
     height: auto;
     text-align: center;
     /* width: 300px; */
-    /* white-space: nowrap; */
+    white-space: nowrap;
 }
 
 .photo-holder{

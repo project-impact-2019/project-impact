@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
-{% block header %}
-   {% include "snippets/navsearchbar.html" %}
-{% endblock %}
+
 
 {% block content %}
-<div class='sidepage-detail'>
-    <h1>{{ resource.title }}</h1>
-    <p>{{ resource.date_posted }}</p></br>
+
+<div class='resources-detail card'>
+    <h3>{{ resource.title }}</h3>
     <p class='fs'> {{ resource.description|linebreaksbr }}</p>
-    <a href="{{resource.url_address}}">More Details...</a>
-  </div>
+    <a href="{{resource.url_address}}">More information</a>
+</div>
+
 {% endblock %}

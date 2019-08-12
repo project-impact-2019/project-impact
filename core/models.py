@@ -122,7 +122,7 @@ class Pair(models.Model):
 class Chat(models.Model):
     """ Model representing the chat functionality for a pair """
     name = models.CharField(max_length=30)
-    description = models.CharField(max_length=100)
+    description = models.CharField(max_length=100, default='chatroom')
     slug = models.CharField(max_length=50)
     pair = models.ForeignKey(Pair, on_delete=models.CASCADE)
 

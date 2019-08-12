@@ -153,13 +153,12 @@ class PairForm(forms.ModelForm):
     mentor = forms.ModelChoiceField(queryset = Person.objects.filter(role='mentor'))
     mentee = forms.ModelChoiceField(queryset = Person.objects.filter(role='mentee'))
     name = forms.CharField(max_length=30)
-    description = forms.CharField(max_length=100)
-    chat_id = forms.CharField(max_length=50)
+    chat_id = forms.CharField(max_length=50, help_text='Enter name of mentor underscore name of mentee for Chat id (Ex: mentor01_mentee01).')
     # pair = forms.ModelChoiceField(queryset = Pair.objects.filter(''))
 
     class Meta:
         model = Pair
-        fields = ('mentor', 'mentee', 'name', 'description', 'chat_id',)
+        fields = ('mentor', 'mentee', 'name', 'chat_id',)
 
     @transaction.atomic
     def save(self):
@@ -167,7 +166,6 @@ class PairForm(forms.ModelForm):
         mentee = self.cleaned_data.get('mentee')
         mentor = self.cleaned_data.get('mentor')
         name=self.cleaned_data.get('name')
-        description=self.cleaned_data.get('description')
         slug=self.cleaned_data.get('chat_id')
         pair=self.cleaned_data.get('pair')
         pair = Pair.objects.create(mentee=mentee, mentor=mentor)
@@ -176,7 +174,7 @@ class PairForm(forms.ModelForm):
         mentee.user.save()
         mentor.user.save()
         pair.save()
-        chat = Chat.objects.create(name=name, description=description, slug=slug, pair=pair)
+        chat = Chat.objects.create(name=name, slug=slug, pair=pair)
         chat.save()
         return pair
 

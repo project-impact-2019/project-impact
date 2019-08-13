@@ -1221,3 +1221,28 @@ nav{
        
     }
 } */
+
+/* .goal-line {
+    display: flex;
+    align-items: center;
+}*/
+
+.delete-button {
+    background-color: var(--red);
+    /* height: 14px; */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* padding: 1px 1px; */
+    /* text-align: center; */
+    /* text-decoration: none;
+    display: inline-block; */
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-left: 33%;
+    cursor: pointer;
+}

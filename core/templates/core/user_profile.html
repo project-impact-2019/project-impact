@@ -56,33 +56,18 @@
 
                 <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
                 {% if user == request.user%}   
-                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/>  
-                <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
-                        {% csrf_token %}
-                        <button>X</button>
-                </form>
+                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/> 
                 </summary>
                 {% endif %}
 
                 {% for step in goal.steps.all %}
 
                 <font color=DarkGreen><p>- {{ step|title }}</p></font>
-                {% if user == request.user%}
-                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                                {% csrf_token %}
-                                <button>X</button>
-                </form>
-                {% endif %}
                 {% endfor %}
 
                 {% else %}      
                 <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
-                        {% if user == request.user%}
-                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
-                                        {% csrf_token %}
-                                        <button>X</button>
-                        </form>
-                        {% endif %}
+                        
                 </summary>           
                 {% for step in goal.steps.all %}
                 <p class='goals{{goal.pk}}'>
@@ -91,23 +76,11 @@
                         <input type="checkbox" checked=checked class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
                         <font color=DarkGreen>{{ step }}</font>
-                        {% if user == request.user%}
-                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                        {% csrf_token %}
-                        <button>X</button>
-                </form>
-                {% endif %}
                         {% else %}
                         {% if user == request.user%}
                         <input type="checkbox" class='step-done-checkbox' data-step='{{step.pk}}'/>
                         {% endif %}
                         {{ step }} 
-                        {% if user == request.user%}
-                <form action = "{% url 'delete_step' step.pk %}" method = "POST">
-                                {% csrf_token %}
-                                <button>X</button>
-                </form>
-                {% endif %}
                         {% endif %}
                         
                 </p>
@@ -120,7 +93,12 @@
                         </form>
                         {% endif %}
                         {% endif %}                                        
-
+                        {% if user == request.user%}
+                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
+                                        {% csrf_token %}
+                                        <button class='delete-button'>Remove Goal</button>
+                        </form>
+                        {% endif %}
                         </details>
                         
                         {% endfor %} 

@@ -194,7 +194,7 @@ blockquote {
 }
 
 .custom-form{
-    margin: 20px 50px;
+    margin: 0 auto;
 }
 
 .signup{
@@ -438,6 +438,8 @@ blockquote {
 }
 
 .goal-chat-header{
+    margin: 0 auto;
+    text-align: center;
     padding-bottom: 20px;
     padding-top: 20px;
     color: var(--red);
@@ -500,7 +502,7 @@ blockquote {
     width: 250px;
     padding:20px;
     align-self: center;
-    margin: 10px 0;
+    margin: 10px 50px 10px 40px;
 
 }
 
@@ -531,6 +533,7 @@ blockquote {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
 }
 
 .adm-wrapper h3{
@@ -626,6 +629,12 @@ blockquote {
     margin-top: 30px;
     color: var(--red);
 
+}
+
+.resource_card{
+    padding: 2em 1em 1em;  
+    margin: 0 2em;
+    border-radius: 10px;
 }
 
 .resourceTitle{
@@ -803,8 +812,9 @@ nav{
     text-align: justify;
     padding: 1em;
     border: 1px solid silver;
-    width: 250px;
-    border-radius: 20px;    
+    width: 500px;
+    border-radius: 20px;  
+    margin: 0 auto;  
 }
 
 .members{
@@ -852,6 +862,10 @@ nav{
         margin-top: 1em;
     }
 
+    .logo a{
+        color: var(--white);
+        text-decoration: none;
+    }
    /* .logo{
        margin-left: -10px;
    } */
@@ -962,7 +976,9 @@ nav{
 
     .needscenter{
         font-size: 1.5em;
+        text-align: center;
     }
+
 
     /* resources */
 
@@ -1135,10 +1151,23 @@ nav{
     }
 
     .logo{
-        margin-left: 80px;
-        font-size:1.6em;
+        margin-left: 13%;
+        font-size: 1.3em;
     }
 
+    .group-img img {
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+        border: 1px solid silver;
+    }
+
+    .about-details {
+        /* max-width: 600px; */
+        margin-left: 5%;
+        margin-right: 5%; 
+        width: auto;
+    }
 
     .nav-links{
         position: absolute;
@@ -1215,3 +1244,32 @@ nav{
        
     }
 } */
+
+/* .goal-line {
+    display: flex;
+    align-items: center;
+}*/
+
+.delete-button {
+    background-color: var(--red);
+    /* height: 14px; */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    /* padding: 1px 1px; */
+    /* text-align: center; */
+    /* text-decoration: none;
+    display: inline-block; */
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-left: 33%;
+    cursor: pointer;
+}
+
+.navbarimage {
+    max-width: 20%;
+}

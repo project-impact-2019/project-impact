@@ -2,10 +2,10 @@
 
 {% block content %}
 
- <h3 class="resource">Resources Guide</h3>
+ <h3 class="resource">Resource Guide</h3>
 
  <button class="buttons resources-button">
-    <a href="{% url 'search_resource'%}" title="Search">Resources Filter</a>
+    <a href="{% url 'search_resource'%}" title="Search">Resource Filter</a>
 </button>
 
 <div class="resources-content">
@@ -100,7 +100,7 @@
       {% if resource_list %}
       <div class="resources-list card">
 
-        <h4 class='category-header'>Food Resources</h4>
+        <h4 class='category-header'>Food</h4>
 
         <ul class='resources-links'>
           {% for resource in resource_list %}

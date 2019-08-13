@@ -75,6 +75,8 @@ urlpatterns = [
     path('goal/add_step/<int:pk>', core_views.add_new_step, name='add_step'),
     path('profile/goal/check_mark/<int:pk>/', core_views.check_mark, name='check_mark'),
     path('profile/goal/goal_check_mark/<int:pk>/', core_views.goal_check_mark, name='goal_check_mark'),
+    path('delete_goal/<int:pk>', core_views.delete_goal, name='delete_goal'),
+    path('delete_step/<int:pk>', core_views.delete_step, name='delete_step'),
   
    
     # Chat app

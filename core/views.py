@@ -388,3 +388,47 @@ def update_photo(request):
     else:
         form = UpdatePhotoForm(instance=request.user.person)
     return render(request, 'core/edit_profile.html', {'form': form})
+
+@login_required
+def delete_goal(request,pk):
+    goal = get_object_or_404(Goal, pk=pk)
+    if request.method == 'POST':
+        goal.delete()
+    return redirect('profile')
+  
+    context = {
+       'goal': goal,
+    }
+    return HttpResponse()
+
+@login_required
+def delete_step(request,pk):
+    step = get_object_or_404(Step, pk=pk)
+    if request.method == 'POST':
+        step.delete()
+    return redirect('profile')
+  
+    context = {
+       'step': step,
+    }
+    return HttpResponse()
+
+
+
+
+# @login_required
+# def delete_goal(request,pk):
+#     step = get_object_or_404(Goal, pk=pk)
+#     if request.method == 'POST':
+#         existing_visits = Checklist.objects.filter(pet_id=pet)
+#         for existing_visit in existing_visits:
+#             select_visit = existing_visit.visit
+#             Visit.objects.filter(id=select_visit.pk).delete()
+#         Pet.objects.filter(name=pet.name).delete()
+#         messages.success(request, 'Critter profile has been removed')
+#         return redirect(to='home')
+  
+#     context = {
+#        'pet': pet,
+#     }
+#     return render(request, 'delete-pet.html', context)

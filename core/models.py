@@ -67,7 +67,7 @@ class User(AbstractUser):
         if self.pk:
             old = User.objects.get(pk=self.pk)
             if self.is_active == True and old.is_active == False:
-                send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You may log in now. (Sincerely From Project Impact Team)', 'projectimpact919@gmail.com',
+                send_mail('Account Activation', 'Congrats, your Project Impact account is now active! You can now log in! (Sincerely, Project Impact Team) https://project-impact.herokuapp.com/ ', 'projectimpact919@gmail.com',
                 [self.email_address], fail_silently=False)
         if self.is_superuser: self.is_active=True
         if self.is_superuser: self.is_paired=True

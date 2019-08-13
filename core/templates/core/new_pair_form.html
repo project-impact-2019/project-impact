@@ -19,27 +19,28 @@
     </form>
   </div>
 
-  <div class= adm-wrapper>
+  <div class= "title">
   <h3 class="title">Current Mentor and Mentee Matches:</h3>
   </div>
 
-  
-  <div class='sub-wrapper'>
+ 
+    <div class='sub-wrapper'>
 
-      {% for chatroom in chatrooms %}
-        
-          <div class="existing-pairs card pair-content">
-                <br>
-                <p>Mentor/Mentee Match: {{chatroom.pair}}</p>
-              
-                <button class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">{{chatroom.pair}} Chatroom</a></button>
+        {% for chatroom in chatrooms %}
+          
+            <div class="existing-pairs pair-content">
+                  <br>
+                  <p>Mentor/Mentee Match: {{chatroom.pair}}</p>
                 
-          </div>
+                  <button class="buttons user-button"><a href="/chatrooms/{{chatroom.slug}}">{{chatroom.pair}} Chatroom</a></button>
+                  
+            </div>
+          
+          {% endfor %}
         
-        {% endfor %}
-      
-        
-  </div>
+          
+    </div>
+</div>
          
 
 </div>

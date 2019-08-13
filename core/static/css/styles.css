@@ -578,7 +578,7 @@ blockquote {
 
 .card{
     padding: 2em 1em 1em;  
-    margin: 0 auto;
+    margin: 0 2em;
     border-radius: 10px;
 }
 
@@ -626,6 +626,12 @@ blockquote {
     margin-top: 30px;
     color: var(--red);
 
+}
+
+.resource_card{
+    padding: 2em 1em 1em;  
+    margin: 0 2em;
+    border-radius: 10px;
 }
 
 .resourceTitle{

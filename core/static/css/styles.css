@@ -1144,21 +1144,21 @@ nav{
     }
 
     .logo{
-        /* margin-left: 80px; */
-        font-size:1.4em;
+        margin-left: 13%;
+        font-size: 1.3em;
     }
 
     .group-img img {
-    border-radius: 50%;
-    width: 300px;
-    height: 300px;
-    border: 1px solid silver;
+        border-radius: 50%;
+        width: 300px;
+        height: 300px;
+        border: 1px solid silver;
     }
 
     .about-details {
         /* max-width: 600px; */
-        margin-left: 10%;
-        margin-right: 10%; 
+        margin-left: 5%;
+        margin-right: 5%; 
         width: auto;
     }
 

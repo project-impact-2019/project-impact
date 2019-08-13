@@ -103,6 +103,7 @@ body {
 }
 
 /* Home Page */
+ 
 
 blockquote {
     display: block;
@@ -123,7 +124,7 @@ blockquote {
     width: 3rem;
     height: 2rem;
     font: 6em/1.08em 'PT Sans', sans-serif;
-    color: #666;
+    color: var(--red);
     text-align: center;
   }
   blockquote:after {
@@ -132,6 +133,7 @@ blockquote {
     text-align: right;
     font-size: 0.875em;
     color: var(--black);
+    margin-right: 5em;
   }
 
 .header-paragraph{
@@ -224,6 +226,7 @@ blockquote {
 .profile, .goal-chat, .admin{
     margin-left: auto;
     margin-right: auto;
+    
     /* max-width: 90%; */
 }  
 
@@ -451,7 +454,7 @@ blockquote {
 .goal-chat{
     margin: 0 auto;
     text-align: center;
-    width: 300px;
+    font-size: .9em;
 
 }
 
@@ -478,7 +481,7 @@ blockquote {
     margin: 1em auto;
 }
 
-.subtitle{
+.sub{
     text-align: center;
 }
 
@@ -491,6 +494,7 @@ blockquote {
     border-radius: 10px;
     text-align: center;
 }
+
 
 
 .admin{
@@ -532,10 +536,8 @@ blockquote {
 }
 
 .sub-wrapper{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-row-gap: 20px;
+    display: flexbox;
+   
 }
 
 .adm-wrapper h3{
@@ -568,6 +570,13 @@ blockquote {
 
 .pair-content{
     text-align: center;
+    background: #fff;
+    border: 1px solid silver;
+    border-radius: 20px;
+    box-shadow: 0px -2px 7px 0px rgba(0,0,0,0.75);
+    font-size: .9em;
+
+
 }
 
 .pair-content p{
@@ -1142,9 +1151,6 @@ nav{
         width: 200px;
         padding: 15px;
     }
-
-   
-
     
 }
 
@@ -1152,6 +1158,10 @@ nav{
 /* navegation queries */
 
 @media only screen and (max-width: 767px) {
+
+    body{
+          overflow-x: hidden;
+    }
     
     .image{
         display: hidden;

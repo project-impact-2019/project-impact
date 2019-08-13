@@ -18,7 +18,9 @@ body {
     line-height: 1.6em;
     background-color: var(--body-bg);
     max-width: 100%;
-    overflow-x: hidden;
+    overscroll-behavior-x: contain;
+   
+    
 
 }
 
@@ -198,7 +200,7 @@ blockquote {
 }
 
 .custom-form{
-    margin: 0 auto;
+    margin: 0 3em;
 }
 
 .signup{
@@ -848,27 +850,18 @@ nav{
 
 @media only screen and (min-width:644px){
 
-   /* .goal-details{
-       width:25em;
-   } */
+ 
+
+   .custom-form{
+    margin: 0 auto;
+}
+
 
     .admin{
      width: 400px;
      }
-
-    .custom-form{
-        margin: 0 auto;
-    }
-
    
-   /* .profile, .list-chat-goal{
-       margin-top: 2em;
-       font-size: 1.2em;
-       height: auto;
-       width: auto;
-       white-space: nowrap;
-
-   } */
+  
 
    .card img{
        height: 350px;
@@ -1159,10 +1152,8 @@ nav{
 
 @media only screen and (max-width: 767px) {
 
-    body{
-          overflow-x: hidden;
-    }
-    
+
+   
     .image{
         display: hidden;
     }

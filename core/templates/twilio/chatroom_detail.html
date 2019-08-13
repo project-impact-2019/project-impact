@@ -11,16 +11,19 @@
     <link rel="stylesheet" href="{% static 'twilio/index.css' %}">
 </head>
 <body>
+    <div class="column sidebar">
+        <div class="">
+          <br>
+          <h5 class="title"><center>{{chatroom.name}}</center></h5>
+        </div>
+    </div>
+
   <section>
     <div id="messages" data-chatroom="{{ chatroom.slug }}"></div>
-    <input id="chat-input" type="text" placeholder="say anything" autofocus/>
+    <input id="chat-input" type="text" placeholder="Enter Message..." autofocus/>
   </section>
 
-  <div class="column sidebar">
-    <div class="float-right">
-      <h5 class="title">{{chatroom.name}}</h5>
-    </div>
-  </div>
+ 
 
   <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script src="https://media.twiliocdn.com/sdk/js/chat/v3.0/twilio-chat.min.js"></script>

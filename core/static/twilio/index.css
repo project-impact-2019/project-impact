@@ -8,8 +8,8 @@ html, body {
   height:100%;
   width:100%;
   color:#dedede;
-  background-color: #849091;
-  font-family: 'Helvetica Neue', Helvetica, sans-serif;
+  background-color: #8E0A18;
+  font-family: 'Quicksand', sans-serif;
 }
 
 header {
@@ -20,7 +20,7 @@ header {
 }
 
 header a, header a:visited {
-  font-size:18px;
+  font-size:20px;
   color:#dedede;
   text-decoration:none;
 }
@@ -31,7 +31,7 @@ header a:hover {
 
 section {
   height:70%;
-  background-color:#2B2B2A;
+  background-color:#F9F9F9;
 }
 
 section input {
@@ -44,12 +44,12 @@ section input {
   border:none;
   border-bottom:1px solid #2B2B2A;
   padding:0;
-  font-size:42px;
-  color:#eee;
+  font-size: 30px;
+  color:black;
 }
 
 #messages {
-  background-color:#232323;
+  background-color:#8E0A18;
   padding:10px;
   height:100%;
   width:800px;
@@ -60,16 +60,19 @@ section input {
 #messages p {
   margin:5px 0;
   padding:0;
+  font-size: 42px;
 }
 
 .info {
   margin:5px 0;
   font-style:italic;
+  font-size: 15px;
 }
 
 .message-container {
   margin:5px 0;
   color:#fff;
+  font-size: 18px;
 }
 
 .message-container .username {
@@ -77,11 +80,12 @@ section input {
   margin-right:5px;
   font-weight:bold;
   color:#849091;
+  
 }
 
 .me, .username.me {
   font-weight:bold;
-  color:cyan;
+  color:lightskyblue;
 }
 
 .message-container .username.me {

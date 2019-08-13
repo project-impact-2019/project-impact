@@ -826,6 +826,11 @@ nav{
     text-align: center;
 }
 
+/* Chat Name */
+.title{
+    color: black;
+}
+
 
 /* Media Queries */
 

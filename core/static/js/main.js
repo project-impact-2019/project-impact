@@ -149,5 +149,4 @@ goals.forEach(item => {
 
     });
 
-// const goalPercentage = document.querySelectorAll('.goal-percentage')
-//     goalPer.forEach(item => {
+

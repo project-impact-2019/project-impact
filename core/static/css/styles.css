@@ -4,6 +4,7 @@
     margin: 0;
  }
 
+
 :root{
     --red: #8E0A18;
     --body-bg:#F9F9F9;
@@ -482,7 +483,7 @@ blockquote {
     margin: 1em auto;
 }
 
-.subtitle{
+.sub{
     text-align: center;
 }
 
@@ -506,7 +507,7 @@ blockquote {
 }
 
 .user-button{
-    width: 250px;
+    /* width: 250px; */
     padding:20px;
     align-self: center;
     margin: 10px 50px 10px 40px;
@@ -836,6 +837,11 @@ nav{
 
 .group{
     text-align: center;
+}
+
+/* Chat Name */
+.title{
+    color: black;
 }
 
 
@@ -1275,3 +1281,4 @@ nav{
 .navbarimage {
     max-width: 20%;
 }
+

@@ -710,7 +710,8 @@ blockquote {
 .search-button{
     color: var(--white);
     margin-top: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .resources-results{

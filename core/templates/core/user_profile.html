@@ -23,15 +23,17 @@
                         <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee|linebreaks}}{% if not forloop.last %}{% endif %}</a>
                         {% endfor %}</p>
                         {% endif %}  
-                        
+
                         {% if user.person.role == 'mentor' %}
-                        <p>{{user.person.first_name}}'s Skills and Interests:</p>
-                        <p>
-
+                       <p>{{user.person.first_name}}'s Skills and Interests:</p>
+                       <p class='skills'>
                         {% for category in user.person.categories.all %}
-                        {{ category }}{% if not forloop.last %},{% endif %}
-
+                        {{ category|linebreaks }}{% if not forloop.last %}{% endif %}
                         {% endfor %}</p>
+
+                        {% else %}
+                        
+                
                         {% endif %}
                        
             
@@ -40,11 +42,11 @@
 
 
         <div class="goals-list">
-                <h3> What goals do you have? </h3>
+                <h3> What are your goals? </h3>
                 {% if goals_by_user %}
                  <p class='sub-title'>Goals in progress:</p>
                 {% else %}
-                 <p class='sub-title'><font color='red'>You haven't created a goal yet.</font></p>
+                 <p class='sub-title2'><font color='red'>You haven't created a goal yet.</font></p>
                 {% endif %}
                
 
@@ -96,7 +98,7 @@
                         {% if user == request.user%}
                         <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
                                         {% csrf_token %}
-                                        <button class='delete-button'>Remove Goal</button>
+                                        <button class='delete-button' onclick="return confirm('Are you sure you want to remove this goal?');">Remove Goal</button>
                         </form>
                         {% endif %}
                         </details>
@@ -107,7 +109,7 @@
         
         <div class= "list-chat-goal">
                 <h3>Not sure where to start?</h3>
-                 <p class='sub-title'>Suggested Goals:</p>
+                 <p class='sub-title2'>Suggested Goals:</p>
                 <details class='example-details'>
                 <summary>Apply for a job</summary>
                 <ol class='example-list'>

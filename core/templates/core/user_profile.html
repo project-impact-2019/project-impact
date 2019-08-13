@@ -139,14 +139,16 @@
                 </details>
                
 
-                {% if user == request.user%}
+                {% if user == request.user %}
                 <div class='goal-chat'>
                         <h5 class='goal-chat-header'>Create a goal</h5>
                                 <form id='new_goal' class='new_goal' method='post' action="{% url 'add_goal' %}">{% csrf_token %}
                                 <input required type='text' class="newGoal" placeholder='Add a new goal'></input>
                                 <button class='goal-submit-button' type="submit"> Submit </button>
                         </form>
+                
                         {% endif %}
+                
 
                         {% if user.person.pairs %}
                 

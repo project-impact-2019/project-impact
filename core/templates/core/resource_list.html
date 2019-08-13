@@ -4,18 +4,16 @@
 
  <h3 class="resource">Resources Guide</h3>
 
-</div>  
-<div class="buttons resources-button">
-  <a href="{% url 'search_resource'%}" title="Search">Resource Filter</a>
-</div>
-<br>
+ <button class="buttons resources-button">
+    <a href="{% url 'search_resource'%}" title="Search">Resources Filter</a>
+</button>
 
 <div class="resources-content">
 
   {% if resource_list %}
   <div class="resources-list card">
 
-  <h4 class='category-header'>Career Resources</h4>
+  <h4 class='category-header'>Career</h4>
 
     <ul class='resources-links'>
        {% for resource in resource_list %}
@@ -33,7 +31,7 @@
     {% if resource_list %}
     <div class="resources-list card">
 
-        <h4 class='category-header'>Clothing Resources</h4>
+        <h4 class='category-header'>Clothing</h4>
           <ul class='resources-links'>
             {% for resource in resource_list %}
               {% if resource.category.name == 'Clothing' %}
@@ -50,7 +48,7 @@
     {% if resource_list %}
     <div class="resources-list card">
 
-        <h4 class='category-header'>Education Resources</h4>
+        <h4 class='category-header'>Education</h4>
 
       <ul class='resources-links'>
         {% for resource in resource_list %}
@@ -68,7 +66,7 @@
     {% if resource_list %}
     <div class="resources-list card">
 
-        <h4 class='category-header'>Employment Resources</h4>
+        <h4 class='category-header'>Employment</h4>
 
       <ul class='resources-links'>
         {% for resource in resource_list %}
@@ -85,7 +83,7 @@
     {% if resource_list %}
     <div class="resources-list card">
 
-      <h4 class='category-header'>Financial Resources</h4>
+      <h4 class='category-header'>Financial</h4>
       <ul class='resources-links'>
         {% for resource in resource_list %}
           {% if resource.category.name == 'Finance' %}
@@ -121,7 +119,7 @@
       {% if resource_list %}
       <div class="resources-list card">
 
-          <h4 class='category-header'>Health / Mental Health Resources</h4>
+          <h4 class='category-header'>Health &amp; Mental Health</h4>
 
           <ul class='resources-links'>
             {% for resource in resource_list %}
@@ -139,7 +137,7 @@
         {% if resource_list %}
         <div class="resources-list card">
 
-            <h4 class='category-header'>Independent Living Resources</h4>
+            <h4 class='category-header'>Independent Living</h4>
 
             <ul class='resources-links'>
               {% for resource in resource_list %}
@@ -158,7 +156,7 @@
         {% if resource_list %}
         <div class="resources-list card">
 
-            <h4 class='category-header'>Support Resources</h4>
+            <h4 class='category-header'>Support</h4>
 
             <ul class='resources-links'>
               {% for resource in resource_list %}

@@ -14,7 +14,7 @@
 
 body {
     font-family: 'Quicksand', sans-serif;
-    line-height: 1em;
+    line-height: 1.6em;
     background-color: var(--body-bg);
     max-width: 100%;
 
@@ -213,6 +213,10 @@ blockquote {
 
 /* User's Profile */
 
+.skills{
+    line-break: 1em;
+}
+
 
 .profile, .goal-chat, .admin{
     margin-left: auto;
@@ -222,14 +226,15 @@ blockquote {
 
 .profile {
     border: 1px solid silver;
-    padding: 20px;
+    padding: 30px;
     border-radius: 20px;
     margin-top: 30px;
     background: #FFF;
     height: auto;
     white-space: nowrap;
-    font-size: 1.1em;
+    font-size: 1em;
     text-align: center;
+    width: auto;
    
 }
 
@@ -439,12 +444,10 @@ blockquote {
 .goal-chat{
     margin: 0 auto;
     text-align: center;
-
-}
-
-.goal-chat, .profile{
     width: 300px;
+
 }
+
 
 .goals-list{
     margin-top: 10px;
@@ -503,6 +506,12 @@ blockquote {
 }
 
 .sub-title{
+    margin-top: -1em;
+    text-align: center;
+}
+
+.sub-title2{
+    margin-top: 1em;
     text-align: center;
 }
 
@@ -513,6 +522,12 @@ blockquote {
     display: grid;
     grid-gap: 2em;
 
+}
+
+.sub-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .adm-wrapper h3{
@@ -606,7 +621,7 @@ blockquote {
     font-size: 1.75rem;
     text-align: center;
     margin-top: 30px;
-    background-color: transparent;
+    color: var(--red);
 
 }
 
@@ -645,6 +660,7 @@ blockquote {
     width: 200px;
     border-radius: 20px;
     padding: 1em;
+    margin: 1em auto;
 } 
 
 .resources-detail{
@@ -783,11 +799,18 @@ nav{
     font-family: 'Quicksand', sans-serif;
     text-align: justify;
     padding: 1em;
+    border: 1px solid silver;
+    width: 250px;
+    border-radius: 20px;    
 }
 
 .members{
     margin-top: 2em;
 
+}
+
+.group{
+    text-align: center;
 }
 
 
@@ -796,25 +819,23 @@ nav{
 
 @media only screen and (min-width:644px){
 
-   details{
+   /* .goal-details{
        width:25em;
-   }
+   } */
 
-   .profile, .admin{
+    .admin{
      width: 400px;
-   }
+     }
 
-   .add-goal{
-       width: 400px;
-       padding: 20px;
-   }
    
-   .profile{
+   /* .profile, .list-chat-goal{
        margin-top: 2em;
        font-size: 1.2em;
        height: auto;
+       width: auto;
+       white-space: nowrap;
 
-   }
+   } */
 
    .card img{
        height: 350px;
@@ -842,6 +863,10 @@ nav{
         grid-template-rows: 1fr 80px;
    }
 
+   .header-paragraph{
+       line-height: 2em;
+   }
+
    .bA{
     grid-column: 2/3;
     grid-row: 2/3;
@@ -858,32 +883,17 @@ nav{
         align-self: flex-start;
         margin-top: -.1em;
      
-        
     }
-
-
-
-
 
      /* User profile */
     .profile-wrapper{
         grid-template-columns: 1fr 1fr;
         margin: 0 auto;
-        grid-template-rows: 50px 1fr 1fr 250px 250px;
+        grid-template-rows: 50px 1fr 1fr 250px;
     }
 
-    details{
+    .goal-details{
         width: 22em;
-    }
-
-    .add-goal, .profile{
-        width: 380px;
-    }
-
-    .sideB, .add-goal{
-        border: none;
-        grid-row: 3/4;
-        grid-column: 1/2;
     }
 
     .profile{
@@ -894,24 +904,18 @@ nav{
         
     }
 
-    /* .add-goal{
-       align-self: flex-end;
-       border: 1px solid silver;
-       background: #FFF;
-
-    
-    } */
-
     .goals-list{
+        margin-top: 2.5em;
         grid-column: 2/3;
-        margin-top: 3em;
+    
+        /* margin-top: 3em; */
         
     }
 
-    .chat-board{
+    .list-chat-goal{
         grid-column: 1/2;
-        grid-row: 4/5;
-        height: 250px;
+        grid-row: 3/4;
+        height: auto;
     }
 
     .admin{
@@ -983,40 +987,34 @@ nav{
     }
 
     /* Home Page */
-
     .index-page{
         grid-template-columns: 1fr 1fr;
-        grid-gap: 1em;
+        grid-gap: 2em;
         line-height: 2em;
         grid-template-rows: 1fr 80px;
    }
-    
-    .grid-container p{
-        font-size: 1.2em;
-    }
 
-    .header-paragraph{
-        font-size: 1.4em;
-    }
-
-    .header-div h2{
-        font-size: 2em;
-    }
-
-
-   .mentee-index, .mentor-index{
-       padding: 15px;
-
+   .header-paragraph{
+       line-height: 2em;
    }
 
    .bA{
-       grid-row: 2/3;
-   }
+    grid-column: 2/3;
+    grid-row: 2/3;
+    }
 
-   .index-buttons{
-       align-self: start;
-   }
-
+    .mentor-index{
+        grid-column: 2/3;
+        grid-row:1/2;
+    }
+    
+    .index-buttons{
+        padding: 20px;
+        width: 250px;
+        align-self: flex-start;
+        margin-top: -.1em;
+     
+    }
 
    /* Give back */
    .card-gallery{
@@ -1041,43 +1039,33 @@ nav{
    .profile{
        grid-column: 1/2;
        grid-row: 2;
-       margin-top: 1em;
+       margin-top: -1em;
        font-size: 1.2em;
        height: auto;
    }
 
-   .goals-list{
-       grid-row:2;
-       
-   }
+    .goals-list{
+        grid-row:2;
+        margin-top: -1.1em;
+        
+    }
 
-   .add-goal, .visitor{
-       grid-row:2;
-       grid-column: 3/4;
+    .goal-details{
+        width: 25em;
+    }
 
-   }
-
-   .add-goal, .visitor{
+    .list-chat-goal{
+        grid-column: 3/4;
+        height: auto;
+        grid-row:2;
+        margin-top: -1.1em;
+    }
    
-    background: #FFF;
-    text-align: center;
-    align-self: flex-end;
-    
-  }
-   
-   .sideB{
+    .newGoal{
+        width: 250px;
+    }
+  
 
-    grid-column: 3/4;
-    grid-row: 2;
-    margin-top:-9px;
-    
- }
-
- .chat-board{
-     grid-row:3/4;
-     grid-column: 3/4;
-     width:400px;
- }
 
  .admin{
      grid-column: 1/4;
@@ -1090,10 +1078,9 @@ nav{
  }
 
 
-   .sideA, .sideB{
-       border-top: none;
-    
-   }
+   
+
+    /* About Page */
    
     .about-wrapper{
         display: grid;

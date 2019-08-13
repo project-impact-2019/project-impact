@@ -809,8 +809,9 @@ nav{
     text-align: justify;
     padding: 1em;
     border: 1px solid silver;
-    width: 250px;
-    border-radius: 20px;    
+    width: 500px;
+    border-radius: 20px;  
+    margin: 0 auto;  
 }
 
 .members{

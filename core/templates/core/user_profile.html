@@ -26,9 +26,9 @@
 
                         {% if user.person.role == 'mentor' %}
                        <p>{{user.person.first_name}}'s Skills and Interests:</p>
-                       <p>
+                       <p class='skills'>
                         {% for category in user.person.categories.all %}
-                        {{ category }}{% if not forloop.last %},{% endif %}
+                        {{ category|linebreaks }}{% if not forloop.last %}{% endif %}
                         {% endfor %}</p>
 
                         {% else %}
@@ -36,7 +36,7 @@
                         <p>{{user.person.first_name}}'s Interests:</p>
                         <p>
                         {% for category in user.person.categories.all %}
-                        {{ category }}{% if not forloop.last %},{% endif %}
+                        {{ category|linebreaks }}{% if not forloop.last %}{% endif %}
 
                         {% endfor %}</p>
                         {% endif %}
@@ -47,11 +47,11 @@
 
 
         <div class="goals-list">
-                <h3> What goals do you have? </h3>
+                <h3> What are your goals? </h3>
                 {% if goals_by_user %}
                  <p class='sub-title'>Goals in progress:</p>
                 {% else %}
-                 <p class='sub-title'><font color='red'>You haven't created a goal yet.</font></p>
+                 <p class='sub-title2'><font color='red'>You haven't created a goal yet.</font></p>
                 {% endif %}
                
 
@@ -107,7 +107,7 @@
         
         <div class= "list-chat-goal">
                 <h3>Not sure where to start?</h3>
-                 <p class='sub-title'>Suggested Goals:</p>
+                 <p class='sub-title2'>Suggested Goals:</p>
                 <details class='example-details'>
                 <summary>Apply for a job</summary>
                 <ol class='example-list'>

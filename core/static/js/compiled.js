@@ -203,4 +203,5 @@ function openTarget() {
     }
     window.addEventListener('hashchange', openTarget);
     openTarget();
+
 },{}]},{},[1]);

@@ -5,20 +5,20 @@
 
 <div class='grid-container profile-wrapper'>
         <div class="profile">
-                        <h4>Welcome {{user.person.first_name}}!</h4>
-                        {% if user.person.upload == '1' %}
-                        <img class='photo-holder'src='https://projectimpact.s3.amazonaws.com/media/service_default_avatar_182956.png'/>
-                        {% else %} 
-                        <img class='photo-holder'src="{{ user.person.upload.url }}"/>
-                        {% endif %}
-                        
-          
-                        <p><a href="{% url 'update-photo' %}">Edit Profile Picture</a></p>
-                        <p>Username: {{user}}</p>
-                        <p>Email: <a href="">{{user.person.email_address}}</a></p> 
-                        
-                        {% if user.person.role == 'mentor' %}
-                        <p>View Mentee Profile(s):
+                <h4>Welcome {{user.person.first_name}}!</h4>
+                {% if user.person.upload == '1' %}
+                <img class='photo-holder'src='https://projectimpact.s3.amazonaws.com/media/service_default_avatar_182956.png'/>
+                {% else %} 
+                <img class='photo-holder'src="{{ user.person.upload.url }}"/>
+                {% endif %}
+                {% if user == request.user%}
+                <p><a href="{% url 'update-photo' %}">Edit Profile Picture</a></p>
+                {% endif %}
+                <p>Username: {{user}}</p>
+                <p>Email: <a href="">{{user.person.email_address}}</a></p> 
+                
+                {% if user.person.role == 'mentor' %}
+                <p>View Mentee Profile(s):
                         {% for pair in user.person.pairs %}
                         <a href="{% url 'profile-view' user_id=pair.mentee.id %}" title="Profile" target="_blank">{{pair.mentee|linebreaks}}{% if not forloop.last %}{% endif %}</a>
                         {% endfor %}</p>
@@ -33,12 +33,7 @@
 
                         {% else %}
                         
-                        <p>{{user.person.first_name}}'s Interests:</p>
-                        <p>
-                        {% for category in user.person.categories.all %}
-                        {{ category|linebreaks }}{% if not forloop.last %}{% endif %}
-
-                        {% endfor %}</p>
+                
                         {% endif %}
                        
             
@@ -63,17 +58,19 @@
 
                 <summary><font color=DarkGreen>{{goal.description|title}} - Completed </font>
                 {% if user == request.user%}   
-                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/></summary>
+                <input type="checkbox" checked=checked class='goal-done-checkbox is-done' data-goal='{{goal.pk}}'/> 
+                </summary>
                 {% endif %}
 
                 {% for step in goal.steps.all %}
 
                 <font color=DarkGreen><p>- {{ step|title }}</p></font>
-                
                 {% endfor %}
 
                 {% else %}      
-                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/></summary>           
+                <summary>{{goal.description}} - <span class="percent-done">{{goal.percent_done}}</span>% Completed <input type="checkbox"class='goal-done-checkbox' data-goal='{{goal.pk}}'/>
+                        
+                </summary>           
                 {% for step in goal.steps.all %}
                 <p class='goals{{goal.pk}}'>
                         {% if step.done %}
@@ -98,7 +95,12 @@
                         </form>
                         {% endif %}
                         {% endif %}                                        
-
+                        {% if user == request.user%}
+                        <form action = "{% url 'delete_goal' goal.pk %}" method = "POST">
+                                        {% csrf_token %}
+                                        <button class='delete-button' onclick="return confirm('Are you sure you want to remove this goal?');">Remove Goal</button>
+                        </form>
+                        {% endif %}
                         </details>
                         
                         {% endfor %} 
@@ -168,7 +170,6 @@
                 {% endif %}
        </div>
 
-
                 {% if request.user.is_superuser or request.user.is_adm %}
                 <div class="admin-functionality admin card">
 
@@ -178,10 +179,6 @@
 
                 </div>
                 {% endif %}
-
-                
-             
-      
 </div>
 
 {% endblock %}
@@ -189,3 +186,4 @@
 {% block footer %}
     {% include "snippets/footer.html" %}
 {% endblock %}
+

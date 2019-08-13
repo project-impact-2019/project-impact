@@ -5,15 +5,15 @@
 
 <div class='grid-container profile-wrapper'>
         <div class="profile">
-                        <h4>Welcome {{user.person.first_name}}!</h4>
+                        <h4 class='centered'>Welcome {{user.person.first_name}}!</h4>
                         {% if user.person.upload == '1' %}
-                        <img class='photo-holder'src='https://projectimpact.s3.amazonaws.com/media/service_default_avatar_182956.png'/>
+                        <img class='photo-holder centered'src='https://projectimpact.s3.amazonaws.com/media/service_default_avatar_182956.png'/>
                         {% else %} 
-                        <img class='photo-holder'src="{{ user.person.upload.url }}"/>
+                        <img class='photo-holder center-button'src="{{ user.person.upload.url }}"/>
                         {% endif %}
                         
           
-                        <p><a href="{% url 'update-photo' %}">Edit Profile Picture</a></p>
+                        <p class='centered'><a href="{% url 'update-photo' %}">Edit Profile Picture</a></p>
                         <p>Username: {{user}}</p>
                         <p>Email: <a href="">{{user.person.email_address}}</a></p> 
                         

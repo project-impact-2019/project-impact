@@ -435,6 +435,8 @@ blockquote {
 }
 
 .goal-chat-header{
+    margin: 0 auto;
+    text-align: center;
     padding-bottom: 20px;
     padding-top: 20px;
     color: var(--red);
@@ -497,7 +499,7 @@ blockquote {
     width: 250px;
     padding:20px;
     align-self: center;
-    margin: 10px 0;
+    margin: 10px 50px 10px 40px;
 
 }
 

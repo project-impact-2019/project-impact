@@ -855,6 +855,10 @@ nav{
         margin-top: 1em;
     }
 
+    .logo a{
+        color: var(--white);
+        text-decoration: none;
+    }
    /* .logo{
        margin-left: -10px;
    } */
@@ -1140,10 +1144,23 @@ nav{
     }
 
     .logo{
-        margin-left: 80px;
-        font-size:1.6em;
+        /* margin-left: 80px; */
+        font-size:1.4em;
     }
 
+    .group-img img {
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    border: 1px solid silver;
+    }
+
+    .about-details {
+        /* max-width: 600px; */
+        margin-left: 10%;
+        margin-right: 10%; 
+        width: auto;
+    }
 
     .nav-links{
         position: absolute;
@@ -1244,4 +1261,8 @@ nav{
     margin-bottom: 10px;
     margin-left: 33%;
     cursor: pointer;
+}
+
+.navbarimage {
+    max-width: 20%;
 }

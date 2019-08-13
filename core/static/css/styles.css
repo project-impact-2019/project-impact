@@ -501,7 +501,7 @@ blockquote {
 }
 
 .user-button{
-    width: 250px;
+    /* width: 250px; */
     padding:20px;
     align-self: center;
     margin: 10px 50px 10px 40px;
@@ -826,6 +826,11 @@ nav{
 
 .group{
     text-align: center;
+}
+
+/* Chat Name */
+.title{
+    color: black;
 }
 
 

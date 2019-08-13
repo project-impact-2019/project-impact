@@ -193,7 +193,7 @@ blockquote {
 }
 
 .custom-form{
-    margin: 20px 50px;
+    margin: 0 auto;
 }
 
 .signup{
@@ -955,7 +955,9 @@ nav{
 
     .needscenter{
         font-size: 1.5em;
+        text-align: center;
     }
+
 
     /* resources */
 

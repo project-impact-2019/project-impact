@@ -1,41 +1,42 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class= "resources-search card">
+<div class='resource-div'>
+  <div class= "resources-search card">
 
-  <form method="GET">
-      <div class="">
-              <div>{{ filter.form.title__icontains.label_tag }}</div>
-              <div>{{ filter.form.title__icontains }}</div>
+    <form method="GET">
+        <div class="test">
+                <div>{{ filter.form.title__icontains.label_tag }}</div>
+                <div>{{ filter.form.title__icontains }}</div>
 
-              <div>{{ filter.form.description__icontains.label_tag }}</div>
-              <div>{{ filter.form.description__icontains }}</div>
+                <div>{{ filter.form.description__icontains.label_tag}}</div>
+                <div>{{ filter.form.description__icontains }}</div>
 
-              <div class="">{{ filter.form.category.label_tag }}</div>
-              <div>{{ filter.form.category }}</div>
+                <div class="">{{ filter.form.category.label_tag }}</div>
+                <div>{{ filter.form.category }}</div>
 
-              <button class="buttons search-button" type='submit'>Filter</button>
-      </div>
-  </form>
- 
-</div>
-
-
-<h3 class='search-header'>Search For Resource</h3>
-  <div class="resources-results">
-
-  {% if filter.qs %}
-    {% for obj in filter.qs %}
-        <p class ="resourceTitle">{{obj.title|title}}</p>
-        <p id="resourceURL">Website: <a href={{obj.url_address}}>{{obj.url_address}}</a>
-       
-    <div class= ''>
-    <p id="resourceDescription">{{obj.description }}</p>
-    {% endfor %}
-  {% else %}
-    <p>Your search contains no results.</p>
-  {% endif %}
- 
+                <button class="buttons search-button" type='submit'>Filter</button>
+        </div>
+    </form>
+  
   </div>
+
+
+  <h3 class='search-header'>Search For Resource</h3>
+    <div class="resources-results card">
+
+    {% if filter.qs %}
+      {% for obj in filter.qs %}
+          <p class ="resourceTitle">{{obj.title|title}}</p>
+          <p id="resourceURL">Website: <a href={{obj.url_address}}>{{obj.url_address}}</a>
+        
+      <div class= ''>
+      <p id="resourceDescription">{{obj.description }}</p>
+      {% endfor %}
+    {% else %}
+      <p>Your search contains no results.</p>
+    {% endif %}
+  
+    </div>
+</div>
 
 {% endblock %}

@@ -24,12 +24,17 @@ body {
 
 }
 
+html, body{
+    overflow-x: hidden;
+}
+
 .center-button{
     text-align: center;
 }
 
 
 /* main div to keep background photo in place */
+
 .main{
     margin: 0 auto;
     display: grid;
@@ -243,9 +248,9 @@ blockquote {
     font-size: 0.9em;
     text-align: center;
     width: auto;
+    
    
 }
-
 
 .profile h4{
     padding-bottom: 20px;
@@ -313,7 +318,7 @@ blockquote {
     text-align: left;
     margin: 1rem auto;
     padding: 0 1rem;
-    width: 18em;
+    width: 12em;
     /* max-width: calc(100% - 2rem); */
     position: relative;
     border: 1px solid #78909C;
@@ -381,9 +386,9 @@ blockquote {
       }
     }
     
-    &::-webkit-details-marker {
+    /* &::-webkit-details-marker {
       display: none;
-    }
+    } */
   }
   
   .step-button{
@@ -416,12 +421,14 @@ blockquote {
 
 .list-chat-goal{
     border: 1px solid silver;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
     background: #FFF;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-top: 20px;
+    margin-bottom: 20px; */
     text-align: center;
+    max-width: 80%;
+    margin: 20px auto;
 
 }
 
@@ -467,7 +474,7 @@ blockquote {
 }
 
 .newGoal{
-    width: 18em;
+    width: 15em;
     text-align: center;
     height: 50px;
     border-radius: 10px;
@@ -477,7 +484,7 @@ blockquote {
 .goal-submit-button{
     background: var(--red);
     color: var(--white);
-    width: 150px;
+    width: 100px;
     border-radius: 10px;    
     padding: 10px;
     margin: 1em auto;
@@ -502,7 +509,9 @@ blockquote {
 .admin{
     text-align: center;
     padding: 10em;
-    width: 300px;
+    /* width: 90%;
+    margin-left: auto;
+    margin-right: auto; */
 
 }
 
@@ -655,9 +664,11 @@ blockquote {
     font-weight: bold;
 }
 
- #resourceDescription{
+#resourceDescription{
      font-style: italic;
- }
+}
+
+
 
 .category-header{
     text-align: center;
@@ -701,21 +712,23 @@ blockquote {
 }
 
 .resources-search{
-    margin: 20px 20px;
+    margin: 20px 70px;
     font-size: 1.2em;
     padding: 30px;
 
 }
 
+
 .search-button{
     color: var(--white);
     margin-top: 30px;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .resources-results{
    justify-content: center;
-   margin: 10px 30px;
+   margin: 10px 70px;
    font-size: 1.1em;
 }
 
@@ -724,6 +737,10 @@ blockquote {
     margin-bottom: 30px;
     text-decoration: underline;
     color: var(--red);
+}
+
+.test{
+    width: 300px;
 }
 
 
@@ -850,18 +867,15 @@ nav{
 
 @media only screen and (min-width:644px){
 
- 
-
    .custom-form{
     margin: 0 auto;
-}
+  }
 
 
     .admin{
      width: 400px;
-     }
+    }
    
-  
 
    .card img{
        height: 350px;
@@ -934,6 +948,7 @@ nav{
         
     }
 
+
     .goals-list{
         margin-top: 2.5em;
         grid-column: 2/3;
@@ -946,6 +961,8 @@ nav{
         grid-column: 1/2;
         grid-row: 3/4;
         height: auto;
+       
+       
     }
 
     .admin{
@@ -1091,12 +1108,17 @@ nav{
         height: auto;
         grid-row:2;
         margin-top: -1.1em;
+      
+       
     }
    
     .newGoal{
         width: 250px;
     }
   
+    .example-details{
+        width: 12em;
+    }
 
 
  .admin{
@@ -1225,18 +1247,26 @@ nav{
    .nav-links{
        font-size: .7em;
        letter-spacing: 0;
-       width: 70%;
+       width: 100%;
        
    }
 
    .logo{
        font-size: 1.5em;
+       margin: 0 auto;
    }
 
    .grid-container p{
        font-size: 1.1em;
    }
 
+   .admin{
+       width: 90%;
+   }
+
+   .example-details{
+       width: 15em;
+   }
 
 }
 

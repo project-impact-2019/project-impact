@@ -10,6 +10,7 @@ function qAll (selector) {
 
 
 
+
 // Navigation Variables
 const hamburger = q('.burger');
 const nav = q('.nav-links');
